@@ -6,7 +6,7 @@ export default function Hero() {
 
     <div  className="text-center">
 
-      <h1 className="mt-20 text-7xl font-bold opacity-100 translate-y-4 animate-[fadeDown_1.6s_ease-out_forwards]">
+      <h1 className="mt-30 text-7xl font-bold opacity-100 translate-y-4 animate-[fadeDown_1.6s_ease-out_forwards]">
           César Dianov
       </h1>
 
