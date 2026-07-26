@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import Link from "next/link";
+
 export default function Hero() {
   return (
   <section className="relative min-h-screen">
@@ -34,20 +36,16 @@ export default function Hero() {
         Through academic and personal projects, I have gained experience with various programming languages and technologies while strengthening my technical and teamwork skills.
       </p>
 
-      <p className="mx-auto mt-3 mb-20 max-w-3xl px-10 text-left text-xl leading-relaxed">
+      <p className="mx-auto mt-3 mb-10 max-w-3xl px-10 text-left text-xl leading-relaxed">
         I am currently seeking opportunities to apply my knowledge, gain professional experience, and continue growing as a software engineer.
       </p>
 
     </div> 
 
     <div className="grid grid-cols-2 max-w-xl mx-auto mb-20 text-xl ">
-      <p className="flex items-center pl-10 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-10 text-white bg-orange-400 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">
-        EXPLORE MY WORK
-
-      </p>
-      <p className="flex items-center pl-16 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-10 text-white bg-orange-400 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">
-        GET IN TOUCH
-      </p>
+        <Link href="/work "  className="flex items-center pl-10 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-10 text-white bg-orange-400 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">EXPLORE MY WORK</Link>
+    
+        <Link href="/contacts "  className="flex items-center pl-16 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-10 text-white bg-orange-400 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">GET IN TOUCH</Link>
     </div>
 
 

@@ -8,11 +8,11 @@ export default function contacts(){
             </div>
 
             <div className="mt-10 flex justify-center gap-8">
-                <a className="transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl "href="https://www.linkedin.com/in/c%C3%A9sar-dianov-91b3993a0/" >
+                <a className="transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] "href="https://www.linkedin.com/in/c%C3%A9sar-dianov-91b3993a0/" >
                     <img src="/linkedin-83.png" alt="LinkedIn" className="w-15 h-15 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]" />
                 </a>
 
-                <a className="transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl" href="https://github.com/CesarDanielDianov" >
+                <a className="transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] " href="https://github.com/CesarDanielDianov" >
                     <img src="/github.png" alt="github" className="w-15 h-15 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]" />
                 </a>
             </div>
