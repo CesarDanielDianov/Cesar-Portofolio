@@ -2,7 +2,7 @@ export default function cv(){
     return(
         <section className="relative min-h-screen">
 
-            <p className=" text-center mt-30 text-5xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
+            <p className=" text-center mt-30 text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
                 CV
             </p>
 

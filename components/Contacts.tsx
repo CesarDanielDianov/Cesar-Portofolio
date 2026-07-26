@@ -3,7 +3,7 @@ export default function contacts(){
         <section className="relative min-h-screen">
             <div className="text-center font-bond mt-30">
                 
-            <h1 className="text-5xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]"> Contact me </h1>  
+            <h1 className="text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]"> Contact me </h1>  
             <p className="text-2xl mt-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">Reach out to me on LinkedIn / Github</p>  
             </div>
 
