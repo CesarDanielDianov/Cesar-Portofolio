@@ -4,7 +4,7 @@ export default function work(){
     return(
         <section className="relative min-h-screen">
             <p className=" mt-30 text-center text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
-                Projects
+                Projects 📁
             </p>
             
             <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto mt-20 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
@@ -43,7 +43,7 @@ export default function work(){
                         <img
                             src="/library.webp"
                             alt="lib"
-                            className=" mt-7 w-10 h-10 "                   
+                            className=" mt-9 w-10 h-10 "                   
                         />
                     </div>
                 </Link>
@@ -103,13 +103,13 @@ export default function work(){
                     </h2>
                     <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
                     <div className="flex">
-                        <p className="flex items-center justify-center mt-11 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
-                        <p className="flex items-center justify-center mt-11 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-33 ">AI Algorithms </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-33 ">AI Algorithms </p>
                         
                         <img
                         src="/robot.png"
                         alt="rb"
-                        className=" mt-8 ml-37 w-13 h-13 "                   
+                        className=" mt-9 ml-37 w-13 h-13 "                   
                         />                               
                     </div>
                 </Link>   
@@ -132,6 +132,44 @@ export default function work(){
                         />                      
                     </div>
                 </Link>   
+
+                <Link href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    >
+                    <h2 className="text-2xl font-bold">
+                        PROTEIN-CHAIN-ENERGY-MAXIMIZER
+                    </h2>
+                    <p className="mt-7">A Protein Chain Energy Maximizer algorithm written in C++ for my Analysis and Synthesis of Algorithms.</p>
+                    <div className="flex justify-between">
+                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">C++ </p>
+                    
+                        <img
+                        src="/opt.jpg"
+                        alt="opt"
+                        className=" mt-3 ml-37 w-13 h-13 "                   
+                        />                      
+                    </div>
+                </Link>   
+
+
+                <Link href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    >
+                    <h2 className="text-2xl font-bold">
+                        DAG-PATH-COUNTER-TRUCK-ROUTING
+                    </h2>
+                    <p className="mt-7">A C++ DAG Path Counter & Truck Routing algorithm for my Anaysis and Synthesis for Algorithms.</p>
+                    <div className="flex justify-between">
+                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">C++ </p>
+                    
+                        <img
+                        src="/opt.jpg"
+                        alt="opt"
+                        className=" mt-3 ml-37 w-13 h-13 "                   
+                        />                      
+                    </div>
+                </Link>   
+
 
             </div>
 

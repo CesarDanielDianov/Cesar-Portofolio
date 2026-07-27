@@ -41,9 +41,9 @@ export default function Hero() {
     </div> 
 
     <div className="grid grid-cols-2 max-w-xl mx-auto mb-20 text-xl ">
-        <Link href="/work "  className="flex items-center pl-10 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">EXPLORE MY WORK</Link>
+        <Link href="/work "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">EXPLORE MY WORK 🛠️</Link>
     
-        <Link href="/contacts "  className="flex items-center pl-16 font-bold h-15 rounded-2xl border gap-3 w-70 mx-auto  mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">GET IN TOUCH</Link>
+        <Link href="/contacts "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">GET IN TOUCH 📩</Link>
     </div>
 
 
