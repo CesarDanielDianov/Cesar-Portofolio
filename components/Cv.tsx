@@ -18,7 +18,7 @@ export default function cv(){
             </div>
 
         <iframe
-            src="/cvatua.pdf "
+            src="/CV-CésarDianov.pdf "
             className="w-3/4 h-screen mx-auto mt-10 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]"
         />            
         </section>
