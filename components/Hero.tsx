@@ -1,10 +1,10 @@
 import Image from "next/image";
-
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Hero() {
   return (
-  <section className="relative min-h-screen">
+  <section className="relative min-h-screen ">
 
     <div  className="text-center">
 
