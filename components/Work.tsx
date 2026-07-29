@@ -11,8 +11,8 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
                     className="block h-60 rounded-3xl border-4 border-cyan-500  
-                    bg-gradient-to-br from-cyan-100 to-white  dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white  dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         MULTI CLIENT PACMAN GAME
@@ -34,8 +34,8 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/LibraryManager"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         LIBRARY MANAGMENT SYSTEM
@@ -54,8 +54,8 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/C-sar-s-Portofolio"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white 
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white 
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         PORTOFOLIO
@@ -84,8 +84,8 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/VACCINE-MANAGER"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         VACCINE MANAGMENT SYSTEM
@@ -105,16 +105,16 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         SLITHERLINK AI SOLVER
                     </h2>
                     <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
                     <div className="flex">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-33 ">AI Algorithms </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Python </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-35 ">AI Algorithms </p>
                         
                         <img
                         src="/robot.png"
@@ -127,8 +127,8 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/Star-Battle-Game-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         STAR BATTLE GAME SOLVER
@@ -147,15 +147,15 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         PROTEIN-CHAIN-ENERGY-MAXIMIZER
                     </h2>
                     <p className="mt-7">A Protein Chain Energy Maximizer algorithm written in C++ for my Analysis and Synthesis of Algorithms.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">C++ </p>
+                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
                         src="/opt.jpg"
@@ -168,15 +168,15 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         DAG-PATH-COUNTER-TRUCK-ROUTING
                     </h2>
                     <p className="mt-7">A C++ DAG Path Counter & Truck Routing algorithm for my Anaysis and Synthesis for Algorithms.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">C++ </p>
+                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
                         src="/opt.jpg"

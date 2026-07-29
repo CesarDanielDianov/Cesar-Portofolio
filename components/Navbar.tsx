@@ -3,19 +3,19 @@ import { ThemeToggle } from "@/app/theme-toggle";
  
 export default function Navbar() {
   return (
-    <nav className="fixed top-0  w-full z-20 bg-white/80 flex justify-center py-6 shadow-2xl shadow-gray-500">
+    <nav className="fixed top-0  w-full z-20 bg-white/80 dark:bg-gray-800/80  flex justify-center py-6 shadow-2xl shadow-gray-300 dark:shadow-gray-900">
 
       
 
-      <div className="flex justify-center text-xl font-bold text-black gap-25">
+      <div className="flex dark:text-white  justify-center text-xl font-bold text-black gap-25">
 
-        <Link href="/" className="text-black hover:text-cyan-500 transition-colors duration-300">HOME</Link>
+        <Link href="/" className=" hover:text-cyan-500 transition-colors duration-300">HOME</Link>
 
-        <Link href="/work " className="text-black hover:text-cyan-500 transition-colors duration-300">PROJECTS</Link>
+        <Link href="/work " className=" hover:text-cyan-500 transition-colors duration-300">PROJECTS</Link>
 
-        <Link href="/cv" className="text-black hover:text-cyan-500 transition-colors duration-300">CV</Link>
+        <Link href="/cv" className=" hover:text-cyan-500 transition-colors duration-300">CV</Link>
 
-        <Link href="/contacts" className="text-black hover:text-cyan-500 transition-colors duration-300">CONTACTS</Link>
+        <Link href="/contacts" className=" hover:text-cyan-500 transition-colors duration-300">CONTACTS</Link>
 
       </div>
 

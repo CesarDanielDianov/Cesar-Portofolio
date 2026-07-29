@@ -3,7 +3,7 @@ export default function cv(){
         <section className="relative min-h-screen">
 
             <p className=" text-center mt-30 text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
-                CV📄
+                CV
             </p>
 
             <div className="flex justify-center text-center mt-10">

@@ -24,6 +24,7 @@ export default function Hero() {
     </p>
 
       <Image  className="mx-auto mt-20 rounded-full shadow-2xl shadow-gray-500
+      dark:shadow-gray-900
       opacity-100 translate-y-4 animate-[fadeIn_1.0s_ease-out_forwards]
       transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
         src="/cesar1.png"
@@ -41,10 +42,10 @@ export default function Hero() {
 
     </div> 
 
-    <div className="grid grid-cols-2 max-w-xl mx-auto mb-20 text-xl ">
-        <Link href="/work "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">EXPLORE MY WORK 🛠️</Link>
+    <div className="grid grid-cols-2 max-w-xl mx-auto mb-16 text-xl ">
+        <Link href="/work "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-cyan-500 transition-all duration-300 hover:bg-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl">EXPLORE MY WORK 🛠️</Link>
     
-        <Link href="/contacts "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-orange-500 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">GET IN TOUCH 📩</Link>
+        <Link href="/contacts "  className="flex items-center justify-center  font-bold h-15 rounded-2xl border  w-70   mb-6 text-white bg-cyan-500 transition-all duration-300 hover:bg-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl">GET IN TOUCH 📩</Link>
     </div>
 
 
