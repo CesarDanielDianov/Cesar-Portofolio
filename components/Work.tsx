@@ -9,52 +9,31 @@ export default function work(){
             
             <div className="grid grid-cols-2 gap-6   max-w-4xl mx-auto mt-20 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
 
-                <Link href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500  
-                    bg-gradient-to-br from-cyan-100 to-white  dark:from-cyan-900 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
-                    <h2 className="text-2xl font-bold">
-                        MULTI CLIENT PACMAN GAME
-                    </h2>
-                    
-                    <p className="mt-7">A C implementation of the Pacman Game ,built on a server-client achitecture</p>
-                    <div className="flex justify-between">
-                        <div className="flex">
-                            <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Linux </p>
-                            <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-8 ">C </p>
-                        </div>
-                        <img
-                            src="/pacman.png"
-                            alt="pac"
-                            className=" mt-9 w-10 h-10"
-                        />
-                    </div>
-                </Link>
-
-                <Link href="https://github.com/CesarDanielDianov/LibraryManager"
+                <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
-                        LIBRARY MANAGMENT SYSTEM
+                        SLITHERLINK AI SOLVER
                     </h2>
-                    <p className="mt-7">A text based  Library Managment system written in java</p>
-
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Java </p>
+                    <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
+                    <div className="flex">
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Python </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-35 ">AI Algorithms </p>
+                        
                         <img
-                            src="/library.webp"
-                            alt="lib"
-                            className=" mt-9 w-10 h-10 "                   
-                        />
+                        src="/robot.png"
+                        alt="rb"
+                        className=" mt-9 ml-37 w-13 h-13 "                   
+                        />                               
                     </div>
-                </Link>
+                </Link>   
+
 
                 <Link href="https://github.com/CesarDanielDianov/C-sar-s-Portofolio"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white 
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
@@ -82,9 +61,54 @@ export default function work(){
 
                 </Link>  
 
+
+                <Link href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500  
+                    bg-gradient-to-br from-cyan-100 to-white  dark:from-gray-700 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    >
+                    <h2 className="text-2xl font-bold">
+                        MULTI CLIENT PACMAN GAME
+                    </h2>
+                    
+                    <p className="mt-7">A C implementation of the Pacman Game ,built on a server-client achitecture</p>
+                    <div className="flex justify-between">
+                        <div className="flex">
+                            <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Linux </p>
+                            <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-8 ">C </p>
+                        </div>
+                        <img
+                            src="/pacman.png"
+                            alt="pac"
+                            className=" mt-9 w-10 h-10"
+                        />
+                    </div>
+                </Link>
+
+                <Link href="https://github.com/CesarDanielDianov/LibraryManager"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    >
+                    <h2 className="text-2xl font-bold">
+                        LIBRARY MANAGMENT SYSTEM
+                    </h2>
+                    <p className="mt-7">A text based  Library Managment system written in java</p>
+
+                    <div className="flex justify-between">
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Java </p>
+                        <img
+                            src="/library.webp"
+                            alt="lib"
+                            className=" mt-9 w-10 h-10 "                   
+                        />
+                    </div>
+                </Link>
+
+
                 <Link href="https://github.com/CesarDanielDianov/VACCINE-MANAGER"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
@@ -103,31 +127,12 @@ export default function work(){
 
                 </Link>                   
 
-                <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
-                    <h2 className="text-2xl font-bold">
-                        SLITHERLINK AI SOLVER
-                    </h2>
-                    <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
-                    <div className="flex">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Python </p>
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-35 ">AI Algorithms </p>
-                        
-                        <img
-                        src="/robot.png"
-                        alt="rb"
-                        className=" mt-9 ml-37 w-13 h-13 "                   
-                        />                               
-                    </div>
-                </Link>   
+
 
 
                 <Link href="https://github.com/CesarDanielDianov/Star-Battle-Game-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
@@ -147,11 +152,11 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
-                        PROTEIN-CHAIN-ENERGY-MAXIMIZER
+                        PROTEIN CHAIN ENERGY MAXIMIZER
                     </h2>
                     <p className="mt-7">A Protein Chain Energy Maximizer algorithm written in C++ for my Analysis and Synthesis of Algorithms.</p>
                     <div className="flex justify-between">
@@ -168,11 +173,11 @@ export default function work(){
 
                 <Link href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-gray-900 dark:text-white
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
                     p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
-                        DAG-PATH-COUNTER-TRUCK-ROUTING
+                        DAG PATH COUNTER TRUCK ROUTING
                     </h2>
                     <p className="mt-7">A C++ DAG Path Counter & Truck Routing algorithm for my Anaysis and Synthesis for Algorithms.</p>
                     <div className="flex justify-between">
