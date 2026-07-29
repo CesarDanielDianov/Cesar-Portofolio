@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/app/theme-toggle";
  
 export default function Navbar() {
   return (
-    <nav className="fixed top-0  w-full z-20 bg-white/80 flex justify-center py-6 shadow-2xl shadow-gray-300">
+    <nav className="fixed top-0  w-full z-20 bg-white/80 flex justify-center py-6 shadow-2xl shadow-gray-500">
 
       
 

@@ -13,7 +13,8 @@ export default function Hero() {
       </h1>
 
     <p className="flex items-center pl-9 font-bold h-10 text-xl rounded-3xl border-2 border-cyan-500 gap-3 w-140 mx-auto mt-4 mb-10 text-gray-600  
-        opacity-0 translate-y-4 animate-[fadeIn_0.8s_ease-out_forwards] bg-gradient-to-br from-cyan-100 to-white">
+        opacity-0 translate-y-4 animate-[fadeIn_0.8s_ease-out_forwards] 
+        bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white">
       Computer Science and Engineering Student @ IST
       
       <span className="relative flex h-3 w-3">
@@ -22,7 +23,7 @@ export default function Hero() {
       </span>
     </p>
 
-      <Image  className="mx-auto mt-20 rounded-full shadow-2xl shadow-gray-600
+      <Image  className="mx-auto mt-20 rounded-full shadow-2xl shadow-gray-500
       opacity-100 translate-y-4 animate-[fadeIn_1.0s_ease-out_forwards]
       transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
         src="/cesar1.png"

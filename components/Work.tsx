@@ -7,10 +7,12 @@ export default function work(){
                 Projects 📁
             </p>
             
-            <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto mt-20 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
+            <div className="grid grid-cols-2 gap-6   max-w-4xl mx-auto mt-20 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
 
                 <Link href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500  
+                    bg-gradient-to-br from-cyan-100 to-white  dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         MULTI CLIENT PACMAN GAME
@@ -31,7 +33,9 @@ export default function work(){
                 </Link>
 
                 <Link href="https://github.com/CesarDanielDianov/LibraryManager"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         LIBRARY MANAGMENT SYSTEM
@@ -49,7 +53,9 @@ export default function work(){
                 </Link>
 
                 <Link href="https://github.com/CesarDanielDianov/C-sar-s-Portofolio"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white 
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         PORTOFOLIO
@@ -77,7 +83,9 @@ export default function work(){
                 </Link>  
 
                 <Link href="https://github.com/CesarDanielDianov/VACCINE-MANAGER"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         VACCINE MANAGMENT SYSTEM
@@ -96,7 +104,9 @@ export default function work(){
                 </Link>                   
 
                 <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         SLITHERLINK AI SOLVER
@@ -116,7 +126,9 @@ export default function work(){
 
 
                 <Link href="https://github.com/CesarDanielDianov/Star-Battle-Game-Solver"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         STAR BATTLE GAME SOLVER
@@ -134,7 +146,9 @@ export default function work(){
                 </Link>   
 
                 <Link href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         PROTEIN-CHAIN-ENERGY-MAXIMIZER
@@ -153,7 +167,9 @@ export default function work(){
 
 
                 <Link href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="block h-60 rounded-3xl border-4 border-cyan-500 
+                    bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white
+                    p-6 mt-2 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                     >
                     <h2 className="text-2xl font-bold">
                         DAG-PATH-COUNTER-TRUCK-ROUTING
