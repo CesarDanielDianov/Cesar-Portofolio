@@ -98,8 +98,8 @@ export default function work(){
                     <div className="flex justify-between">
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Java </p>
                         <img
-                            src="/library.webp"
-                            alt="lib"
+                            src="/l.png"
+                            alt="l"
                             className=" mt-9 w-10 h-10 "                   
                         />
                     </div>
@@ -163,9 +163,9 @@ export default function work(){
                         <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
-                        src="/opt.jpg"
-                        alt="opt"
-                        className=" mt-3 ml-37 w-13 h-13 "                   
+                        src="/eff.png"
+                        alt="eff"
+                        className=" mt-1 ml-37 w-15 h-13 "                   
                         />                      
                     </div>
                 </Link>   
@@ -184,9 +184,9 @@ export default function work(){
                         <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
-                        src="/opt.jpg"
-                        alt="opt"
-                        className=" mt-3 ml-37 w-13 h-13 "                   
+                        src="/eff.png"
+                        alt="eff"
+                        className=" mt-1 ml-37 w-15 h-13 "                   
                         />                      
                     </div>
                 </Link>   
