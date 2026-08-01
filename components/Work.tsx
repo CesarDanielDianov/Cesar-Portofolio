@@ -7,7 +7,7 @@ export default function work(){
                 Projects 📁
             </p>
             
-            <div className="grid grid-cols-2 gap-6   max-w-4xl mx-auto mt-20 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
+            <div className="grid grid-cols-2 gap-6   max-w-4xl mx-auto mt-20 mb-15 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
 
                 <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
@@ -18,7 +18,7 @@ export default function work(){
                         SLITHERLINK AI SOLVER
                     </h2>
                     <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
-                    <div className="flex">
+                    <div className="flex gap-1">
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Python </p>
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-35 ">AI Algorithms </p>
                         
@@ -42,8 +42,8 @@ export default function work(){
                     <p className="mt-7">A modern portfolio developed with Next.js and Tailwind CSS to showcase my work and technical background.</p>
                     
 
-                    <div className="flex justify-between">
-                        <div className="flex ">
+                    <div className="flex justify-between ">
+                        <div className="flex gap-1">
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Next.js </p>
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">React </p>
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-27 ">TypeScript </p>
@@ -52,7 +52,7 @@ export default function work(){
                             <img
                             src="/porrt.png"
                             alt="lib"
-                            className=" mt-4 ml-17 w-10 h-10 rotate-6"                   
+                            className=" mt-4 ml-16 w-10 h-10 rotate-6"                   
                             />
                         </div>
 
@@ -73,7 +73,7 @@ export default function work(){
                     
                     <p className="mt-7">A C implementation of the Pacman Game ,built on a server-client achitecture</p>
                     <div className="flex justify-between">
-                        <div className="flex">
+                        <div className="flex gap-1">
                             <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Linux </p>
                             <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-8 ">C </p>
                         </div>
@@ -223,7 +223,7 @@ export default function work(){
                     <p className="mt-7">Human-Computer Interaction project focused on optimizing dense UI target selection.</p>
                     <div className="flex justify-between">
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-24 ">Javascript </p>
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">CSS </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">CSS </p>
                         <img
                         src="/e.png"
                         alt="e"
@@ -242,7 +242,7 @@ export default function work(){
                     </h2>
                     <p className="mt-7">Modern food-focused mobile app UI/UX prototype designed in Figma.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-24 ">Figma </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Figma </p>
                         <img
                         src="/44.png"
                         alt="44"
@@ -262,7 +262,7 @@ export default function work(){
                     <p className="mt-7">An implementation in Assembly RISC-V of a feedforward Artificial Neural Network.</p>
                     <div className="flex justify-between">
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-24 ">Assembly </p>
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-22 ">RISC-V </p>
+                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">RISC-V </p>
                         <img
                         src="/9.png"
                         alt="9"
@@ -301,11 +301,11 @@ export default function work(){
                     <p className="mt-9">Zoo management relational database with UML design, implemented using PostgreSQL and SQL.</p>
                     <div className="flex justify-between">
                         <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-26 ">PostgreSQL </p>
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">SQL </p>
+                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">SQL </p>
                         <img
                         src="/99.png"
                         alt="99"
-                        className=" mt-5 ml-39 w-13 h-13 "                   
+                        className=" mt-6 ml-39 w-13 h-13 "                   
                         />                      
                     </div>
                 </Link> 
@@ -349,7 +349,13 @@ export default function work(){
                 </Link> 
 
 
+
+
             </div>   
+
+            <p className="flex justify-center text-gray-400 font-bold mb-5">
+                More projects are on the way. Stay tuned!
+            </p>
         </section>
     );
 }

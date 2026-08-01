@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
-      <body className={`${manrope.className} min-h-screen flex flex-col`}>
+      <body className={`${manrope.className} min-h-screen flex flex-col bg-[url('/white.jpg')] dark:bg-[url('/black.jpg')] dark:bg-cover dark:bg-center dark:bg-fixed`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <Navbar />
           {children}
