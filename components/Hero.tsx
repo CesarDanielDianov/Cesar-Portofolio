@@ -14,7 +14,7 @@ export default function Hero() {
 
     <p className="flex items-center pl-9 font-bold h-10 text-xl rounded-3xl border-2 border-cyan-500 gap-3 w-140 mx-auto mt-4 mb-10 text-gray-600  
         opacity-0 translate-y-4 animate-[fadeIn_0.8s_ease-out_forwards] 
-        bg-gradient-to-br from-cyan-100 to-white dark:from-cyan-900 dark:to-black dark:text-white">
+        bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white">
       Computer Science and Engineering Student @ IST
       
       <span className="relative flex h-3 w-3">
