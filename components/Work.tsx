@@ -7,7 +7,16 @@ export default function work(){
                 Projects 📁
             </p>
             
-            <div className="grid grid-cols-2 gap-6   max-w-4xl mx-auto mt-20 mb-15 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
+            <div className="grid
+                            grid-cols-1
+                            sm:grid-cols-1
+                            md:grid-cols-2
+                            lg:grid-cols-2
+                            gap-6
+                            max-w-4xl
+                            mx-auto
+                            mt-20
+                            mb-15">
 
                 <Link href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
                     className="block h-60 rounded-3xl border-4 border-cyan-500 
@@ -347,9 +356,6 @@ export default function work(){
                         />                      
                     </div>
                 </Link> 
-
-
-
 
             </div>   
 

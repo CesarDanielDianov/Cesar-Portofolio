@@ -100,7 +100,7 @@ export default function Contacts() {
                         type="text"
                         placeholder="Your name"
                         required
-                        className="w-full rounded-xl border p-4"
+                        className="w-full rounded-xl border border-gray-600 p-4"
                     />
 
                 </div>
@@ -116,7 +116,7 @@ export default function Contacts() {
                         type="email"
                         placeholder="your@mail.com"
                         required
-                        className="w-full rounded-xl border p-4"
+                        className="w-full rounded-xl border border-gray-600 p-4"
                     />
 
                 </div>
@@ -132,7 +132,7 @@ export default function Contacts() {
                         rows={7}
                         placeholder="How can I help you?"
                         required
-                        className="w-full rounded-xl border p-4"
+                        className="w-full rounded-xl border border-gray-600 p-4"
                     />
 
                 </div>
