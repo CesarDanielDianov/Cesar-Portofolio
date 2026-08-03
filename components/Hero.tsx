@@ -78,7 +78,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="
+        className="text-2xl
         grid grid-cols-1 md:grid-cols-2
         gap-4
         max-w-3xl
@@ -106,7 +106,7 @@ export default function Hero() {
 
         <Link
           href="/contacts"
-          className="
+          className=" text-2xl
           flex items-center justify-center
           w-full h-14
           rounded-2xl

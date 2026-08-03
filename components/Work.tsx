@@ -196,214 +196,293 @@ export default function work() {
 
 
 
-                <Link href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         PROTEIN CHAIN ENERGY MAXIMIZER
                     </h2>
-                    <p className="mt-7">A Protein Chain Energy Maximizer algorithm written in C++ for my Analysis and Synthesis of Algorithms.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
-                    
+
+                    <p className="mt-5 flex-grow">
+                        A C++ algorithm developed for the Analysis and Synthesis of Algorithms course to maximize protein chain energy.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                C++
+                            </span>
+                        </div>
+
                         <img
-                        src="/eff.png"
-                        alt="eff"
-                        className=" mt-4 ml-37 w-13 h-11 "                   
-                        />                      
+                            src="/eff.png"
+                            alt="Protein"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
                     </div>
-                </Link>   
+                </Link>
 
-
-                <Link href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                <Link
+                    href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         DAG PATH COUNTER TRUCK ROUTING
                     </h2>
-                    <p className="mt-7">A C++ DAG Path Counter & Truck Routing algorithm for my Anaysis and Synthesis for Algorithms.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
-                    
+
+                    <p className="mt-5 flex-grow">
+                        A C++ project implementing DAG path counting and truck routing algorithms for the Analysis and Synthesis of Algorithms course.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                C++
+                            </span>
+                        </div>
+
                         <img
-                        src="/eff.png"
-                        alt="eff"
-                        className=" mt-4 ml-37 w-13 h-11 "                   
-                        />                      
+                            src="/eff.png"
+                            alt="Algorithms"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
                     </div>
-                </Link>   
+                </Link>
 
-
-                <Link href="https://github.com/CesarDanielDianov/8-bit-Spike-Processor"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                <Link
+                    href="https://github.com/CesarDanielDianov/8-bit-Spike-Processor"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         8-BIT SPIKE PROCESSOR
                     </h2>
-                    <p className="mt-7">A logic diagram implementation of a processor with a 8-bit data path architecture.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Logisim </p>
-                    
-                        <img
-                        src="/7.png"
-                        alt="6"
-                        className=" mt-7 ml-44 w-12 h-12 "                   
-                        />                      
-                    </div>
-                </Link>                   
 
-                <Link href="https://github.com/CesarDanielDianov/Selection-Optimization-UI"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                    <p className="mt-5 flex-grow">
+                        A logic diagram implementation of an 8-bit processor featuring a complete data path architecture.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Logisim
+                            </span>
+                        </div>
+
+                        <img
+                            src="/7.png"
+                            alt="Processor"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
+                    </div>
+                </Link>
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/Selection-Optimization-UI"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         SELECTION OPTIMIZATION UI
                     </h2>
-                    <p className="mt-7">Human-Computer Interaction project focused on optimizing dense UI target selection.</p>
 
-                    <div className="flex justify-between">
-                        <div className="flex gap-1">
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-24 ">Javascript </p>
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">CSS </p>
+                    <p className="mt-5 flex-grow">
+                        A Human-Computer Interaction project focused on optimizing dense user interface target selection.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                JavaScript
+                            </span>
+
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                CSS
+                            </span>
                         </div>
+
                         <img
                             src="/e.png"
-                            alt="e"
-                            className=" mt-7 w-14 h-10"
+                            alt="UI"
+                            className="w-12 h-12 object-contain flex-shrink-0"
                         />
-                    </div>                    
-                </Link>  
+                    </div>
+                </Link> 
 
-                <Link href="https://github.com/CesarDanielDianov/FOODINHO"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+
+
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/FOODINHO"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         FOODINHO
                     </h2>
-                    <p className="mt-7">Modern food-focused mobile app UI/UX prototype designed in Figma.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-10 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Figma </p>
-                        <img
-                        src="/44.png"
-                        alt="44"
-                        className=" mt-7 ml-44 w-13 h-13 "                   
-                        />                      
-                    </div>
-                </Link> 
 
-                <Link href="https://github.com/CesarDanielDianov/Neural-Network-in-RISC-V"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
-                    <h2 className="text-2xl font-bold">
-                        NEURAL NETWORK 
-                    </h2>
-                    <p className="mt-7">An implementation in Assembly RISC-V of a feedforward Artificial Neural Network.</p>
+                    <p className="mt-5 flex-grow">
+                        A modern food-focused mobile app UI/UX prototype designed in Figma.
+                    </p>
 
-                    <div className="flex justify-between">
-                        <div className="flex gap-1">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-24 ">Assembly </p>
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">RISC-V </p>
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Figma
+                            </span>
                         </div>
+
+                        <img
+                            src="/44.png"
+                            alt="Foodinho"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
+                    </div>
+                </Link>
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/Neural-Network-in-RISC-V"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
+                    <h2 className="text-2xl font-bold">
+                        NEURAL NETWORK
+                    </h2>
+
+                    <p className="mt-5 flex-grow">
+                        An Assembly RISC-V implementation of a feedforward artificial neural network.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Assembly
+                            </span>
+
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                RISC-V
+                            </span>
+                        </div>
+
                         <img
                             src="/9.png"
-                            alt="9"
-                            className=" mt-10 w-12 h-12"
+                            alt="Neural Network"
+                            className="w-12 h-12 object-contain flex-shrink-0"
                         />
-                    </div>                      
-                </Link> 
+                    </div>
+                </Link>
 
-                <Link href="https://github.com/CesarDanielDianov/MILP-Sports-League-Optimizer"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                <Link
+                    href="https://github.com/CesarDanielDianov/MILP-Sports-League-Optimizer"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         MILP SPORTS LEAGUE OPTIMIZER
                     </h2>
-                    <p className="mt-3">A Pyhton implementation of a MILP Sports League Optimizer for my Analysis and Synthesis of Algorithms.</p>
-                    <div className="flex items-center justify-between w-full  -mt-12 md:mt-1">
-                        <p className="flex items-center justify-center mt-15 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
-                        <img
-                        src="/eff.png"
-                        alt="eff"
-                        className=" mt-12 ml-37 w-13 h-11 "                   
-                        />                      
-                    </div>
-                </Link> 
 
-                <Link href="https://github.com/CesarDanielDianov/ZOO-MANAGMENT-DATABASE"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                    <p className="mt-5 flex-grow">
+                        A Python implementation of a MILP Sports League Optimizer developed for the Analysis and Synthesis of Algorithms course.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Python
+                            </span>
+                        </div>
+
+                        <img
+                            src="/eff.png"
+                            alt="MILP"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
+                    </div>
+                </Link>
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/ZOO-MANAGMENT-DATABASE"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         ZOO DATABASE
                     </h2>
-                    <p className="mt-9">Zoo management relational database with UML design, implemented using PostgreSQL and SQL.</p>
-                    
-                    <div className="flex items-center justify-between w-full  mt-2 md:mt-6">
-                        <div className="flex gap-1">
-                            <p className="flex items-center justify-center font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-26">PostgreSQL</p>
 
-                            <p className="flex items-center justify-center font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14">SQL</p>
+                    <p className="mt-5 flex-grow">
+                        A zoo management relational database with UML design, implemented using PostgreSQL and SQL.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                PostgreSQL
+                            </span>
+
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                SQL
+                            </span>
                         </div>
 
-                    <img
-                        src="/99.png"
-                        alt="99"
-                        className="w-13 h-13"
-                    />
+                        <img
+                            src="/99.png"
+                            alt="Zoo Database"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
                     </div>
-                </Link> 
+                </Link>
 
-                <Link href="https://github.com/CesarDanielDianov/Orbito-game"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/Orbito-game"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         ORBITO GAME
                     </h2>
-                    <p className="mt-9">A playable implementation of the Orbito board game built with Python.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Pyhton </p>
-                        <img
-                        src="/puzz.png"
-                        alt="p"
-                        className=" mt-5 ml-37 w-13 h-13 "                   
-                        />                      
-                    </div>
-                </Link> 
 
-                <Link href="https://github.com/CesarDanielDianov/MNK-Game"
-                    className="block h-60 rounded-3xl border-4 border-cyan-500 
-                    bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white
-                    p-6 mt-2 transition-all duration-300 hover:border-cyan-700 -translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
-                    >
+                    <p className="mt-5 flex-grow">
+                        A playable implementation of the Orbito board game built with Python.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Python
+                            </span>
+                        </div>
+
+                        <img
+                            src="/puzz.png"
+                            alt="Orbito"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
+                    </div>
+                </Link>
+
+                <Link
+                    href="https://github.com/CesarDanielDianov/MNK-Game"
+                    className="flex flex-col rounded-3xl border-4 border-cyan-500 bg-gradient-to-br from-cyan-100 to-white dark:from-gray-700 dark:to-gray-900 dark:text-white p-6 transition-all duration-300 hover:border-cyan-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                >
                     <h2 className="text-2xl font-bold">
                         MNK GAME
                     </h2>
-                    <p className="mt-9">A playable implementation of the MNK board game built with Python.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Pyhton </p>
+
+                    <p className="mt-5 flex-grow">
+                        A playable implementation of the MNK board game built with Python.
+                    </p>
+
+                    <div className="flex items-end justify-between mt-6">
+                        <div className="flex gap-2 flex-wrap">
+                            <span className="flex items-center justify-center h-8 px-4 rounded-2xl bg-cyan-500 text-white font-bold">
+                                Python
+                            </span>
+                        </div>
+
                         <img
-                        src="/puzz.png"
-                        alt="p"
-                        className=" mt-5 ml-37 w-13 h-13 "                   
-                        />                      
+                            src="/puzz.png"
+                            alt="MNK"
+                            className="w-12 h-12 object-contain flex-shrink-0"
+                        />
                     </div>
-                </Link> 
+                </Link>
 
             </div>   
 
