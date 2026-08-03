@@ -300,14 +300,19 @@ export default function work(){
                         ZOO DATABASE
                     </h2>
                     <p className="mt-9">Zoo management relational database with UML design, implemented using PostgreSQL and SQL.</p>
-                    <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-26 ">PostgreSQL </p>
-                        <p className="flex items-center justify-center mt-9 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">SQL </p>
-                        <img
+                    
+                    <div className="flex items-center justify-between w-full mt-6">
+                        <div className="flex gap-1">
+                            <p className="flex items-center justify-center font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-26">PostgreSQL</p>
+
+                            <p className="flex items-center justify-center font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14">SQL</p>
+                        </div>
+
+                    <img
                         src="/99.png"
                         alt="99"
-                        className=" mt-6 ml-39 w-13 h-13 "                   
-                        />                      
+                        className="w-13 h-13"
+                    />
                     </div>
                 </Link> 
 
