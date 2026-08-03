@@ -301,7 +301,7 @@ export default function work(){
                     </h2>
                     <p className="mt-9">Zoo management relational database with UML design, implemented using PostgreSQL and SQL.</p>
                     
-                    <div className="flex items-center justify-between w-full mt-6">
+                    <div className="flex items-center justify-between w-full  mt-3 md:mt-6">
                         <div className="flex gap-1">
                             <p className="flex items-center justify-center font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-26">PostgreSQL</p>
 
