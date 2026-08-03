@@ -1,26 +1,32 @@
-export default function cv(){
-    return(
-        <section className="relative min-h-screen">
+export default function CV() {
+    return (
+        <section className="relative min-h-screen px-4">
 
-            <p className=" text-center mt-30 text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
+            <h1 className="mt-24 md:mt-30 text-center text-4xl sm:text-5xl md:text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
                 CV
-            </p>
+            </h1>
 
-            <div className="flex justify-center text-center mt-10">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-10 text-center opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
 
-                <p className="mt-10 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
-                    If Your browser does not support PDFs.
+                <p>
+                    If your browser does not support PDFs,
                 </p>
-                <a href="/cvatua.pdf" download className="mt-10 font-bold underline decoration-dotted opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
-                    Download CV
-                </a>     
+
+                <a
+                    href="/CV-CésarDianov.pdf"
+                    download
+                    className="font-bold underline decoration-dotted"
+                >
+                    download my CV.
+                </a>
 
             </div>
 
-        <iframe
-            src="/CV-CésarDianov.pdf "
-            className="w-3/4 h-screen mx-auto mt-10 mb-20 opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]"
-        />            
+            <iframe
+                src="/CV-CésarDianov.pdf"
+                className="w-full md:w-4/5 lg:w-3/4 h-[75vh] md:h-screen mx-auto mt-10 mb-20 rounded-xl shadow-lg opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]"
+            />
+
         </section>
     );
 }
