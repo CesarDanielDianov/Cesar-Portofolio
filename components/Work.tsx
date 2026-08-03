@@ -42,7 +42,7 @@ export default function work(){
                     <p className="mt-7">A modern portfolio developed with Next.js and Tailwind CSS to showcase my work and technical background.</p>
                     
 
-                    <div className="flex justify-between ">
+                    <div className="flex justify-between mt-6">
                         <div className="flex gap-1">
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Next.js </p>
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">React </p>
@@ -96,11 +96,11 @@ export default function work(){
                     <p className="mt-7">A text based  Library Managment system written in java</p>
 
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Java </p>
+                        <p className="flex items-center justify-center mt-17 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">Java </p>
                         <img
                             src="/l.png"
                             alt="l"
-                            className=" mt-9 w-10 h-10 "                   
+                            className=" mt-17 w-10 h-10 "                   
                         />
                     </div>
                 </Link>
@@ -160,12 +160,12 @@ export default function work(){
                     </h2>
                     <p className="mt-7">A Protein Chain Energy Maximizer algorithm written in C++ for my Analysis and Synthesis of Algorithms.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
+                        <p className="flex items-center justify-center mt-11 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
                         src="/eff.png"
                         alt="eff"
-                        className=" mt-1 ml-37 w-13 h-11 "                   
+                        className=" mt-9 ml-37 w-13 h-11 "                   
                         />                      
                     </div>
                 </Link>   
@@ -181,12 +181,12 @@ export default function work(){
                     </h2>
                     <p className="mt-7">A C++ DAG Path Counter & Truck Routing algorithm for my Anaysis and Synthesis for Algorithms.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-5 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
+                        <p className="flex items-center justify-center mt-11 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-14 ">C++ </p>
                     
                         <img
                         src="/eff.png"
                         alt="eff"
-                        className=" mt-1 ml-37 w-13 h-11 "                   
+                        className=" mt-9 ml-37 w-13 h-11 "                   
                         />                      
                     </div>
                 </Link>   
@@ -281,11 +281,11 @@ export default function work(){
                     </h2>
                     <p className="mt-3">A Pyhton implementation of a MILP Sports League Optimizer for my Analysis and Synthesis of Algorithms.</p>
                     <div className="flex justify-between">
-                        <p className="flex items-center justify-center mt-3 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
+                        <p className="flex items-center justify-center mt-15 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
                         <img
                         src="/eff.png"
                         alt="eff"
-                        className=" ml-37 w-13 h-11 "                   
+                        className=" mt-12 ml-37 w-13 h-11 "                   
                         />                      
                     </div>
                 </Link> 
@@ -350,7 +350,7 @@ export default function work(){
 
             </div>   
 
-            <p className="flex justify-center text-gray-400 font-bold mb-5">
+            <p className="flex justify-center text-gray-400 font-bold mt-10 mb-5">
                 More projects are on the way. Stay tuned!
             </p>
         </section>
