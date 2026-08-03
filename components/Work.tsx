@@ -18,7 +18,8 @@ export default function work(){
                         SLITHERLINK AI SOLVER
                     </h2>
                     <p className="mt-7">AI-powered solver for SlitherLink puzzles using custom algorithms to calculate optimal solutions.</p>
-                    <div className="flex gap-1">
+                    <div className="flex  gap-1">
+                        
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-20 ">Python </p>
                         <p className="flex items-center justify-center mt-12 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-35 ">AI Algorithms </p>
                         
@@ -43,7 +44,7 @@ export default function work(){
                     
 
                     <div className="flex justify-between mt-6">
-                        <div className="flex gap-1">
+                        <div className="flex  gap-1">
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Next.js </p>
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-16 ">React </p>
                             <p className="flex items-center justify-center mt-6 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-27 ">TypeScript </p>
