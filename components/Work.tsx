@@ -281,7 +281,7 @@ export default function work(){
                         MILP SPORTS LEAGUE OPTIMIZER
                     </h2>
                     <p className="mt-3">A Pyhton implementation of a MILP Sports League Optimizer for my Analysis and Synthesis of Algorithms.</p>
-                    <div className="flex justify-between">
+                    <div className="flex items-center justify-between w-full  mt-1 md:mt-1">
                         <p className="flex items-center justify-center mt-15 font-bold h-8 rounded-2xl border-2 bg-cyan-500 text-white w-18 ">Python </p>
                         <img
                         src="/eff.png"
