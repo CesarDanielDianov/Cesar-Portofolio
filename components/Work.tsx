@@ -104,7 +104,7 @@ export default function work() {
 
                         <img
                             src="/pacman.png"
-                            alt="Pacman"
+                            alt="s"
                             className="w-12 h-12 object-contain flex-shrink-0"
                         />
                     </div>
@@ -335,7 +335,7 @@ export default function work() {
                         <img
                             src="/44.png"
                             alt="Foodinho"
-                            className="w-12 h-12 object-contain flex-shrink-0"
+                            className="w-14 h-14 object-contain flex-shrink-0"
                         />
                     </div>
                 </Link>
@@ -450,9 +450,9 @@ export default function work() {
                         </div>
 
                         <img
-                            src="/puzz.png"
-                            alt="Orbito"
-                            className="w-12 h-12 object-contain flex-shrink-0"
+                            src="/game.png"
+                            alt="game"
+                            className="w-15 h-15 object-contain flex-shrink-0"
                         />
                     </div>
                 </Link>
@@ -477,9 +477,9 @@ export default function work() {
                         </div>
 
                         <img
-                            src="/puzz.png"
-                            alt="MNK"
-                            className="w-12 h-12 object-contain flex-shrink-0"
+                            src="/game.png"
+                            alt="game"
+                            className="w-15 h-15 object-contain flex-shrink-0"
                         />
                     </div>
                 </Link>
