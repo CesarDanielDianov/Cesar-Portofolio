@@ -46,7 +46,7 @@ export default function Hero() {
           height={240}
           className="
           mx-auto mt-12
-          w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60
+          w-40 h-40 sm:w-52 sm:h-52 md:w-80 md:h-80
           rounded-full
           shadow-2xl shadow-gray-500
           dark:shadow-gray-900
@@ -60,7 +60,7 @@ export default function Hero() {
 
         <p
           className="
-          mx-auto mt-14 mb-10
+          mx-auto mt-20 mb-10
           max-w-3xl
           px-6 sm:px-10 md:px-16
           text-left
@@ -84,6 +84,7 @@ export default function Hero() {
         max-w-3xl
         mx-auto
         px-6
+        mt-20
         mb-16"
       >
         <Link
