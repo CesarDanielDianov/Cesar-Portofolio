@@ -21,6 +21,23 @@ export default function Hero() {
         {/* LEFT SIDE */}
         <div className="text-center lg:text-left">
 
+          <h1
+            className="
+            text-5xl
+            sm:text-6xl
+            md:text-7xl
+            lg:text-8xl
+            font-bold
+            mb-6
+            opacity-100
+            translate-y-4
+            animate-[fadeDown_1.6s_ease-out_forwards]"
+          >
+            César Dianov
+          </h1>
+
+
+
           <p
             className="
             mx-auto lg:mx-0
@@ -45,19 +62,7 @@ export default function Hero() {
             </span>
           </p>
 
-          <h1
-            className="
-            text-5xl
-            sm:text-6xl
-            md:text-7xl
-            lg:text-8xl
-            font-bold
-            opacity-100
-            translate-y-4
-            animate-[fadeDown_1.6s_ease-out_forwards]"
-          >
-            César Dianov
-          </h1>
+
 
           <p
             className="
