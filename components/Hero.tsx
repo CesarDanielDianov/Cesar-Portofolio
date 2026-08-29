@@ -19,10 +19,13 @@ export default function Hero() {
       >
 
         {/* LEFT SIDE */}
-        <div className="text-center lg:text-left">
+        <div className="contents lg:block">
 
+          {/* NAME */}
           <h1
             className="
+            order-1
+            text-center lg:text-left
             text-5xl
             sm:text-6xl
             md:text-7xl
@@ -31,15 +34,17 @@ export default function Hero() {
             mb-6
             opacity-100
             translate-y-4
-            animate-[fadeDown_1.6s_ease-out_forwards]"
+            animate-[fadeDown_1.6s_ease-out_forwards]
+            lg:order-none
+          "
           >
             César Dianov
           </h1>
 
-
-
+          {/* SOFTWARE ENGINEER */}
           <p
             className="
+            order-2
             mx-auto lg:mx-0
             mb-6
             inline-flex items-center gap-3
@@ -52,7 +57,9 @@ export default function Hero() {
             dark:text-white
             opacity-0
             translate-y-4
-            animate-[fadeIn_0.8s_ease-out_forwards]"
+            animate-[fadeIn_0.8s_ease-out_forwards]
+            lg:order-none
+          "
           >
             Computer Science and Engineering Student @ IST
 
@@ -62,10 +69,45 @@ export default function Hero() {
             </span>
           </p>
 
+          {/* PHOTO - MOBILE ONLY POSITION */}
+          <div
+            className="
+            order-3
+            flex
+            justify-center
+            mb-8
+            lg:order-none
+            lg:hidden
+            opacity-100
+            translate-y-4
+            animate-[fadeIn_1s_ease-out_forwards]
+          "
+          >
+            <Image
+              src="/cesar1.png"
+              alt="César Dianov"
+              width={400}
+              height={400}
+              className="
+              w-60 h-60
+              sm:w-72 sm:h-72
+              md:w-80 md:h-80
+              rounded-full
+              shadow-2xl
+              shadow-gray-500
+              dark:shadow-gray-900
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:scale-[1.02]
+            "
+            />
+          </div>
 
-
+          {/* DESCRIPTION */}
           <p
             className="
+            order-4
             mx-auto lg:mx-0
             mt-8
             max-w-2xl
@@ -73,7 +115,9 @@ export default function Hero() {
             text-base sm:text-lg md:text-xl
             leading-relaxed
             text-gray-600
-            dark:text-gray-300"
+            dark:text-gray-300
+            lg:order-none
+          "
           >
             I am a Computer Science and Engineering student at Instituto
             Superior Técnico, preparing to begin the final year of my degree.
@@ -81,15 +125,19 @@ export default function Hero() {
             intelligence, databases, and problem-solving.
           </p>
 
+          {/* BUTTONS */}
           <div
             className="
+            order-5
             mt-8
             flex
             flex-col
             sm:flex-row
             justify-center
             lg:justify-start
-            gap-4"
+            gap-4
+            lg:order-none
+          "
           >
             <Link
               href="/work"
@@ -106,7 +154,8 @@ export default function Hero() {
               transition-all
               duration-300
               hover:bg-cyan-700
-              hover:-translate-y-1"
+              hover:-translate-y-1
+            "
             >
               EXPLORE MY WORK 🛠️
             </Link>
@@ -129,7 +178,8 @@ export default function Hero() {
               duration-300
               hover:bg-cyan-500
               hover:text-white
-              hover:-translate-y-1"
+              hover:-translate-y-1
+            "
             >
               GET IN TOUCH 📩
             </Link>
@@ -137,18 +187,18 @@ export default function Hero() {
 
         </div>
 
-
-        {/* RIGHT SIDE */}
+        {/* RIGHT SIDE - DESKTOP ONLY */}
         <div
           className="
-          flex
+          hidden
+          lg:flex
           justify-center
           lg:justify-end
           opacity-100
           translate-y-4
-          animate-[fadeIn_1s_ease-out_forwards]"
+          animate-[fadeIn_1s_ease-out_forwards]
+        "
         >
-
           <Image
             src="/cesar1.png"
             alt="César Dianov"
@@ -166,12 +216,13 @@ export default function Hero() {
             transition-all
             duration-300
             hover:-translate-y-1
-            hover:scale-[1.02]"
+            hover:scale-[1.02]
+          "
           />
-
         </div>
 
       </div>
     </section>
   );
 }
+
