@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
 
             {/* Code */}
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-gray-700 dark:text-gray-300">
+            <pre className="overflow-x-auto p-10 font-mono text-sm leading-7 text-gray-700 dark:text-gray-300">
               <code>
                 <span className="text-purple-600 dark:text-purple-400">const</span>{" "}
                 <span className="text-cyan-600 dark:text-cyan-400">cesar</span> = {"{"}
