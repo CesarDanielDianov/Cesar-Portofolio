@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section>
-      <div className="mx-auto grid min-h-[80vh] max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+      <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
         {/* LEFT SIDE */}
         <div>
           <h1 className="mb-6 text-center text-5xl font-bold sm:text-6xl md:text-7xl lg:text-left lg:text-8xl animate-[fadeDown_1.6s_ease-out_forwards]">
@@ -25,12 +25,11 @@ export default function Hero() {
             intelligence, databases, and problem-solving.
           </p>
 
-
         </div>
 
         {/* RIGHT SIDE - DESKTOP ONLY */}
         <div className="hidden justify-end opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards] lg:flex">
-          <div className="w-full max-w-md overflow-hidden rounded-2xl border-2 border-gray-500  ">
+          <div className="w-full max-w-md overflow-hidden rounded-2xl border-2 border-gray-500">
             {/* Window bar */}
             <div className="flex items-center gap-2 border-b border-gray-500/30 px-4 py-3">
               <span className="h-3 w-3 rounded-full bg-red-500" />
