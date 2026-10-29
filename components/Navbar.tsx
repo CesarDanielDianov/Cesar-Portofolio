@@ -20,19 +20,19 @@ export default function Navbar() {
           font-bold
           dark:text-white"
         >
-          <Link href="/" className="hover:text-cyan-500 transition-colors">
+          <Link href="/" className="hover:text-gray-400 transition-colors">
             HOME
           </Link>
 
-          <Link href="/work" className="hover:text-cyan-500 transition-colors">
+          <Link href="/work" className="hover:text-gray-300 transition-colors">
             PROJECTS
           </Link>
 
-          <Link href="/cv" className="hover:text-cyan-500 transition-colors">
+          <Link href="/cv" className="hover:text-gray-300 transition-colors">
             CV
           </Link>
 
-          <Link href="/contacts" className="hover:text-cyan-500 transition-colors">
+          <Link href="/contacts" className="hover:text-gray-300 transition-colors">
             CONTACTS
           </Link>
         </div>
