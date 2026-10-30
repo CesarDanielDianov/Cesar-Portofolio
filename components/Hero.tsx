@@ -20,11 +20,7 @@ export default function Hero() {
           </p>
 
           <p className="mx-auto mt-8 max-w-2xl text-left text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg md:text-xl lg:mx-0 animate-[fadeIn_1.6s_ease-out_forwards]">
-            I am a Computer Science and Engineering student at Instituto
-            Superior Técnico, preparing to begin the final year of my degree.
-            I am passionate about software development, artificial
-            intelligence, databases, and problem-solving.
-          </p>
+            Computer Engineering student at IST, IT Executive at Five Thousand Miles,Dev-Team & HR member at NEIIST. Passionate about software engineering, AI, and technology.          </p>
         </div>
 
         {/* RIGHT SIDE */}
