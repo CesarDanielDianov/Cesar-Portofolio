@@ -102,7 +102,7 @@ export default function Contacts() {
                         type="text"
                         placeholder="Your name"
                         required
-                        className="w-full rounded-xl border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="w-full  border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
                     />
 
                 </div>
@@ -118,7 +118,7 @@ export default function Contacts() {
                         type="email"
                         placeholder="your@mail.com"
                         required
-                        className="w-full rounded-xl border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="w-full  border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
                     />
 
                 </div>
@@ -134,14 +134,14 @@ export default function Contacts() {
                         rows={7}
                         placeholder="How can I help you?"
                         required
-                        className="w-full rounded-xl border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="w-full  border border-gray-600 p-4 text-base focus:outline-none focus:ring-2 focus:ring-cyan-500"
                     />
 
                 </div>
 
                 <button
                     type="submit"
-                    className="w-full rounded-xl bg-cyan-500 text-white py-4 font-bold text-xl hover:bg-cyan-700 mb-10 transition"
+                    className="w-full  bg-cyan-500 text-white py-4 font-bold text-xl hover:bg-cyan-700 mb-10 transition"
                 >
                     SEND MESSAGE →
                 </button>
