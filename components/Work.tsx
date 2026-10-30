@@ -5,7 +5,7 @@ export default function work() {
     return (
         <section className="relative min-h-screen">
             <p className="mt-30 mb-15 text-center text-6xl font-bold opacity-100 translate-y-2 animate-[fadeDown_0.8s_ease-out_forwards]">
-                Projects 📁
+                Projects 
             </p>
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 max-w-5xl mx-auto">
