@@ -11,7 +11,7 @@ export default function Hero() {
             César Dianov
           </h1>
 
-          <p className="mx-auto mb-6 flex w-fit items-center gap-3 rounded-3xl border-2 border-gray-500 px-5 py-2 text-sm font-bold text-gray-600 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards] dark:text-white sm:text-base md:text-lg lg:mx-0">
+          <p className="mx-auto mb-6 flex w-fit items-center gap-3 rounded-xl border-2 border-gray-500 px-5 py-2 text-sm font-bold text-gray-600 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards] dark:text-white sm:text-base md:text-lg lg:mx-0">
             Computer Science and Engineering Student @ IST
             <span className="relative flex h-3 w-3">
               <span className="absolute h-3 w-3 animate-ping rounded-full bg-green-400 opacity-75" />
@@ -25,7 +25,7 @@ export default function Hero() {
 
         {/* RIGHT SIDE */}
         <div className="flex justify-center opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards] lg:justify-end">
-          <div className="w-full max-w-md overflow-hidden rounded-xl border-2 border-gray-600 ">
+          <div className="w-full max-w-md overflow-hidden  border-2 border-gray-600 ">
 
             {/* Linux/Tilix style Window bar */}
             <div className="flex items-center justify-between border-b border-gray-300/50  px-4 py-2.5 ">
