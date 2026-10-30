@@ -141,7 +141,7 @@ export default function Contacts() {
 
                 <button
                     type="submit"
-                    className="w-full  bg-cyan-500 text-white py-4 font-bold text-xl hover:bg-cyan-700 mb-10 transition"
+                    className="w-full  bg-gray-500 text-white py-4 font-bold text-xl hover:bg-gray-700 mb-10 transition"
                 >
                     SEND MESSAGE →
                 </button>
