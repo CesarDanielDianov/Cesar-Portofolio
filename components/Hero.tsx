@@ -24,41 +24,52 @@ export default function Hero() {
             I am passionate about software development, artificial
             intelligence, databases, and problem-solving.
           </p>
-
         </div>
 
-        {/* RIGHT SIDE - DESKTOP ONLY */}
-        <div className="hidden justify-end opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards] lg:flex">
+        {/* RIGHT SIDE */}
+        <div className="flex justify-center opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards] lg:justify-end">
           <div className="w-full max-w-md overflow-hidden rounded-2xl border-2 border-gray-500">
             {/* Window bar */}
             <div className="flex items-center gap-2 border-b border-gray-500/30 px-4 py-3">
               <span className="h-3 w-3 rounded-full bg-red-500" />
               <span className="h-3 w-3 rounded-full bg-yellow-400" />
               <span className="h-3 w-3 rounded-full bg-green-500" />
-              <span className="ml-3 text-xs text-gray-500 dark:text-gray-400">cesar.ts</span>
+              <span className="ml-3 text-xs text-gray-500 dark:text-gray-400">
+                cesar.ts
+              </span>
             </div>
 
             {/* Code */}
-            <pre className="overflow-x-auto p-10 font-mono text-sm leading-7 text-gray-700 dark:text-gray-300">
+            <pre className="overflow-x-auto p-5 font-mono text-xs leading-6 text-gray-700 dark:text-gray-300 sm:p-8 sm:text-sm sm:leading-7 lg:p-10">
               <code>
                 <span className="text-purple-600 dark:text-purple-400">const</span>{" "}
                 <span className="text-cyan-600 dark:text-cyan-400">cesar</span> = {"{"}
                 {"\n"}
-                {"  "}role: <span className="text-green-600 dark:text-green-400">"Software Engineer"</span>,
+                {"  "}role:{" "}
+                <span className="text-green-600 dark:text-green-400">
+                  "Software Engineer"
+                </span>
+                ,{"\n"}
+                {"  "}school:{" "}
+                <span className="text-green-600 dark:text-green-400">"IST"</span>,
                 {"\n"}
-                {"  "}school: <span className="text-green-600 dark:text-green-400">"IST"</span>,
+                {"  "}interests: [{"\n"}
+                {"    "}
+                <span className="text-green-600 dark:text-green-400">"AI"</span>,
                 {"\n"}
-                {"  "}interests: [
-                {"\n"}
-                {"    "}<span className="text-green-600 dark:text-green-400">"AI"</span>,
-                {"\n"}
-                {"    "}<span className="text-green-600 dark:text-green-400">"Databases"</span>,
-                {"\n"}
-                {"    "}<span className="text-green-600 dark:text-green-400">"Problem-solving"</span>,
-                {"\n"}
-                {"  "}],
-                {"\n"}
-                {"  "}openToWork: <span className="text-orange-600 dark:text-orange-400">true</span>,
+                {"    "}
+                <span className="text-green-600 dark:text-green-400">
+                  "Databases"
+                </span>
+                ,{"\n"}
+                {"    "}
+                <span className="text-green-600 dark:text-green-400">
+                  "Problem-solving"
+                </span>
+                ,{"\n"}
+                {"  "}],{"\n"}
+                {"  "}openToWork:{" "}
+                <span className="text-orange-600 dark:text-orange-400">true</span>,
                 {"\n"}
                 {"}"};
               </code>
