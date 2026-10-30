@@ -11,7 +11,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         SLITHERLINK AI SOLVER
@@ -23,11 +23,11 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Python
                             </p>
 
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 AI Algorithms
                             </p>
                         </div>
@@ -42,7 +42,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/C-sar-s-Portofolio"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         PORTFOLIO
@@ -54,19 +54,19 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Next.js
                             </p>
 
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 React
                             </p>
 
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 TypeScript
                             </p>
 
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 CSS
                             </p>
                         </div>
@@ -81,7 +81,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         MULTI CLIENT PACMAN GAME
@@ -93,11 +93,11 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Linux
                             </p>
 
-                            <p className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <p className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 C
                             </p>
                         </div>
@@ -114,7 +114,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/LibraryManager"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         LIBRARY MANAGEMENT SYSTEM
@@ -126,7 +126,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Java
                             </span>
                         </div>
@@ -141,7 +141,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/VACCINE-MANAGER"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         VACCINE MANAGEMENT SYSTEM
@@ -153,7 +153,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 C
                             </span>
                         </div>
@@ -168,7 +168,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/Star-Battle-Game-Solver"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         STAR BATTLE GAME SOLVER
@@ -180,7 +180,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Prolog
                             </span>
                         </div>
@@ -200,7 +200,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         PROTEIN CHAIN ENERGY MAXIMIZER
@@ -212,7 +212,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 C++
                             </span>
                         </div>
@@ -227,7 +227,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         DAG PATH COUNTER TRUCK ROUTING
@@ -239,7 +239,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 C++
                             </span>
                         </div>
@@ -254,7 +254,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/8-bit-Spike-Processor"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         8-BIT SPIKE PROCESSOR
@@ -266,7 +266,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Logisim
                             </span>
                         </div>
@@ -281,7 +281,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/Selection-Optimization-UI"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         SELECTION OPTIMIZATION UI
@@ -293,11 +293,11 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 JavaScript
                             </span>
 
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 CSS
                             </span>
                         </div>
@@ -315,7 +315,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/FOODINHO"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         FOODINHO
@@ -327,7 +327,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Figma
                             </span>
                         </div>
@@ -342,7 +342,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/Neural-Network-in-RISC-V"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         NEURAL NETWORK
@@ -354,11 +354,11 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Assembly
                             </span>
 
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 RISC-V
                             </span>
                         </div>
@@ -373,7 +373,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/MILP-Sports-League-Optimizer"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         MILP SPORTS LEAGUE OPTIMIZER
@@ -385,7 +385,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Python
                             </span>
                         </div>
@@ -400,7 +400,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/ZOO-MANAGMENT-DATABASE"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         ZOO DATABASE
@@ -412,11 +412,11 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 PostgreSQL
                             </span>
 
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 SQL
                             </span>
                         </div>
@@ -432,7 +432,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/Orbito-game"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         ORBITO GAME
@@ -444,7 +444,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Python
                             </span>
                         </div>
@@ -459,7 +459,7 @@ export default function work() {
 
                 <Link
                     href="https://github.com/CesarDanielDianov/MNK-Game"
-                    className="flex flex-col rounded-xl border-3 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col  border-2 border-gray-500  dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">
                         MNK GAME
@@ -471,7 +471,7 @@ export default function work() {
 
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 rounded-xl bg-gray-400 text-white font-bold">
+                            <span className="flex items-center justify-center h-8 px-4  bg-gray-400 text-white font-bold">
                                 Python
                             </span>
                         </div>
