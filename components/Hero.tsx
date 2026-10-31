@@ -12,7 +12,7 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mb-6 flex w-fit items-center gap-3 rounded-xl border-2 border-gray-500 px-5 py-2 text-sm font-bold text-gray-600 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards] dark:text-white sm:text-base md:text-lg lg:mx-0">
-            Computer Science and Engineering Student @ IST
+            Computer Engineering Student @ IST
             <span className="relative flex h-3 w-3">
               <span className="absolute h-3 w-3 animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative h-3 w-3 rounded-full bg-green-500" />
