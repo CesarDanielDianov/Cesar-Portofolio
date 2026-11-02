@@ -21,8 +21,8 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Python</p>
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">AI Algorithms</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400  dark:bg-gray-800 text-white font-bold">Python</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400  dark:bg-gray-800 text-white font-bold">AI Algorithms</p>
                         </div>
                         <img src="/robot.png" alt="Robot" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -39,8 +39,8 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Assembly</span>
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">RISC-V</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Assembly</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">RISC-V</span>
                         </div>
                         <img src="/9.png" alt="Neural Network" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -57,8 +57,8 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Linux</p>
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">C</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Linux</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">C</p>
                         </div>
                         <img src="/pacman.png" alt="Pacman" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -75,7 +75,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Python</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Python</span>
                         </div>
                         <img src="/eff.png" alt="MILP" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -92,7 +92,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">C++</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">C++</span>
                         </div>
                         <img src="/eff.png" alt="Protein" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -109,8 +109,8 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">PostgreSQL</span>
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">SQL</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">PostgreSQL</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">SQL</span>
                         </div>
                         <img src="/99.png" alt="Zoo Database" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -127,7 +127,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">C++</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">C++</span>
                         </div>
                         <img src="/eff.png" alt="Algorithms" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -144,7 +144,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Logisim</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Logisim</span>
                         </div>
                         <img src="/7.png" alt="Processor" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -161,7 +161,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Prolog</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Prolog</span>
                         </div>
                         <img src="/puzz.png" alt="Puzzle" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -178,8 +178,8 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">JavaScript</span>
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">CSS</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">JavaScript</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">CSS</span>
                         </div>
                         <img src="/e.png" alt="UI" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -196,10 +196,10 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Next.js</p>
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">React</p>
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">TypeScript</p>
-                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">CSS</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Next.js</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">React</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">TypeScript</p>
+                            <p className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">CSS</p>
                         </div>
                         <img src="/porrt.png" alt="Portfolio" className="w-12 h-12 object-contain flex-shrink-0 rotate-6" />
                     </div>
@@ -216,7 +216,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Java</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Java</span>
                         </div>
                         <img src="/l.png" alt="Library" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -233,7 +233,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Python</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Python</span>
                         </div>
                         <img src="/game.png" alt="Game" className="w-15 h-15 object-contain flex-shrink-0" />
                     </div>
@@ -250,7 +250,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Python</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Python</span>
                         </div>
                         <img src="/game.png" alt="Game" className="w-15 h-15 object-contain flex-shrink-0" />
                     </div>
@@ -267,7 +267,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">C</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">C</span>
                         </div>
                         <img src="/vacc.png" alt="Vaccine" className="w-12 h-12 object-contain flex-shrink-0" />
                     </div>
@@ -284,7 +284,7 @@ export default function work() {
                     </p>
                     <div className="flex items-end justify-between mt-6">
                         <div className="flex gap-2 flex-wrap">
-                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 text-white font-bold">Figma</span>
+                            <span className="flex items-center justify-center h-8 px-4 bg-gray-400 dark:bg-gray-800 text-white font-bold">Figma</span>
                         </div>
                         <img src="/44.png" alt="Foodinho" className="w-14 h-14 object-contain flex-shrink-0" />
                     </div>
