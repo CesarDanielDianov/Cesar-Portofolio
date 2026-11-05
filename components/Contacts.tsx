@@ -221,7 +221,7 @@ export default function ExperiencePage() {
                                                 {it.skills.map((skill) => (
                                                     <li
                                                         key={skill}
-                                                        className="bg-slate-200 text-slate-900 dark:bg-[#1e2736] dark:text-white px-3.5 py-1.5 text-sm font-bold"
+                                                        className="bg-gray-400 text-white dark:bg-gray-800 dark:text-white px-3.5 py-1.5 text-sm font-bold"
                                                     >
                                                         {skill}
                                                     </li>
