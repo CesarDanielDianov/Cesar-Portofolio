@@ -13,7 +13,7 @@ export default function work() {
                 {/* 1. SLITHERLINK AI SOLVER */}
                 <Link
                     href="https://github.com/CesarDanielDianov/SlitherLink-AI-Solver"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">SLITHERLINK AI SOLVER</h2>
                     <p className="mt-5 flex-grow">
@@ -31,7 +31,7 @@ export default function work() {
                 {/* 2. NEURAL NETWORK */}
                 <Link
                     href="https://github.com/CesarDanielDianov/Neural-Network-in-RISC-V"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">NEURAL NETWORK</h2>
                     <p className="mt-5 flex-grow">
@@ -49,7 +49,7 @@ export default function work() {
                 {/* 3. MULTI CLIENT PACMAN */}
                 <Link
                     href="https://github.com/CesarDanielDianov/PACMAN-SERVER"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">MULTI CLIENT PACMAN GAME</h2>
                     <p className="mt-5 flex-grow">
@@ -67,7 +67,7 @@ export default function work() {
                 {/* 4. MILP SPORTS LEAGUE OPTIMIZER */}
                 <Link
                     href="https://github.com/CesarDanielDianov/MILP-Sports-League-Optimizer"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">MILP SPORTS LEAGUE OPTIMIZER</h2>
                     <p className="mt-5 flex-grow">
@@ -84,7 +84,7 @@ export default function work() {
                 {/* 5. PROTEIN CHAIN ENERGY MAXIMIZER */}
                 <Link
                     href="https://github.com/CesarDanielDianov/Protein-Chain-Energy-Maximizer"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">PROTEIN CHAIN ENERGY MAXIMIZER</h2>
                     <p className="mt-5 flex-grow">
@@ -101,7 +101,7 @@ export default function work() {
                 {/* 6. ZOO DATABASE */}
                 <Link
                     href="https://github.com/CesarDanielDianov/ZOO-MANAGMENT-DATABASE"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">ZOO DATABASE</h2>
                     <p className="mt-5 flex-grow">
@@ -119,7 +119,7 @@ export default function work() {
                 {/* 7. DAG PATH COUNTER */}
                 <Link
                     href="https://github.com/CesarDanielDianov/DAG-Path-Counter-Truck-Routing"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">DAG PATH COUNTER TRUCK ROUTING</h2>
                     <p className="mt-5 flex-grow">
@@ -136,7 +136,7 @@ export default function work() {
                 {/* 8. 8-BIT SPIKE PROCESSOR */}
                 <Link
                     href="https://github.com/CesarDanielDianov/8-bit-Spike-Processor"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">8-BIT SPIKE PROCESSOR</h2>
                     <p className="mt-5 flex-grow">
@@ -153,7 +153,7 @@ export default function work() {
                 {/* 9. STAR BATTLE GAME SOLVER */}
                 <Link
                     href="https://github.com/CesarDanielDianov/Star-Battle-Game-Solver"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">STAR BATTLE GAME SOLVER</h2>
                     <p className="mt-5 flex-grow">
@@ -170,7 +170,7 @@ export default function work() {
                 {/* 10. SELECTION OPTIMIZATION UI */}
                 <Link
                     href="https://github.com/CesarDanielDianov/Selection-Optimization-UI"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">SELECTION OPTIMIZATION UI</h2>
                     <p className="mt-5 flex-grow">
@@ -188,7 +188,7 @@ export default function work() {
                 {/* 11. PORTFOLIO */}
                 <Link
                     href="https://github.com/CesarDanielDianov/C-sar-s-Portofolio"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">PORTFOLIO</h2>
                     <p className="mt-5 flex-grow">
@@ -208,7 +208,7 @@ export default function work() {
                 {/* 12. LIBRARY MANAGEMENT SYSTEM */}
                 <Link
                     href="https://github.com/CesarDanielDianov/LibraryManager"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">LIBRARY MANAGEMENT SYSTEM</h2>
                     <p className="mt-5 flex-grow">
@@ -225,7 +225,7 @@ export default function work() {
                 {/* 13. ORBITO GAME */}
                 <Link
                     href="https://github.com/CesarDanielDianov/Orbito-game"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">ORBITO GAME</h2>
                     <p className="mt-5 flex-grow">
@@ -242,7 +242,7 @@ export default function work() {
                 {/* 14. MNK GAME */}
                 <Link
                     href="https://github.com/CesarDanielDianov/MNK-Game"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">MNK GAME</h2>
                     <p className="mt-5 flex-grow">
@@ -259,7 +259,7 @@ export default function work() {
                 {/* 15. VACCINE MANAGEMENT SYSTEM */}
                 <Link
                     href="https://github.com/CesarDanielDianov/VACCINE-MANAGER"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">VACCINE MANAGEMENT SYSTEM</h2>
                     <p className="mt-5 flex-grow">
@@ -276,7 +276,7 @@ export default function work() {
                 {/* 16. FOODINHO */}
                 <Link
                     href="https://github.com/CesarDanielDianov/FOODINHO"
-                    className="flex flex-col border-2 border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+                    className="flex flex-col border border-gray-500 dark:text-white p-6 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
                 >
                     <h2 className="text-2xl font-bold">FOODINHO</h2>
                     <p className="mt-5 flex-grow">
