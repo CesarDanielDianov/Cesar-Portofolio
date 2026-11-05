@@ -28,12 +28,12 @@ export default function Navbar() {
             PROJECTS
           </Link>
 
-          <Link href="/cv" className="hover:text-gray-300 transition-colors">
-            CV
+          <Link href="/contacts" className="hover:text-gray-300 transition-colors">
+            EXPERIENCE
           </Link>
 
-          <Link href="/contacts" className="hover:text-gray-300 transition-colors">
-            CONTACTS
+          <Link href="/cv" className="hover:text-gray-300 transition-colors">
+            CV
           </Link>
         </div>
 
