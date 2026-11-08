@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/app/theme-toggle";
 
 export default function Navbar() {
@@ -11,6 +12,24 @@ export default function Navbar() {
       shadow-2xl shadow-gray-300 dark:shadow-gray-900"
     >
       <div className="relative flex items-center justify-center py-4 px-4">
+
+        {/* Bandeiras (extremo esquerdo) */}
+        <div className="absolute left-4 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 flex items-center gap-2">
+          <Image
+            src="/pt.webp"
+            alt="Português"
+            width={28}
+            height={20}
+            className="h-4 w-auto sm:h-5 "
+          />
+          <Image
+            src="/ml.png"
+            alt="English"
+            width={28}
+            height={20}
+            className="h-4 w-auto sm:h-5 "
+          />
+        </div>
 
         <div
           className="
