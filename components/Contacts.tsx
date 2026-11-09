@@ -17,7 +17,7 @@ type Item = {
 const items: Item[] = [
     {
         id: "leic",
-        label: "LEIC — IST",
+        label: "LEIC—IST",
         title: "LEIC STUDENT",
         period: "September 2024 — July 2027",
         description:
