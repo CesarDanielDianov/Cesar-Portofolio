@@ -19,7 +19,7 @@ const items: Item[] = [
         id: "leic",
         label: "LEIC — IST",
         title: "LEIC STUDENT",
-        period: "September 2024 — Present",
+        period: "September 2024 — July 2027",
         description:
             "Final-year (3rd year) student of the BSc in Computer Science and Engineering (LEIC) at Instituto Superior Técnico, University of Lisbon. Strong foundation in programming, algorithms, data structures, databases and software engineering. Preparing to specialize in Artificial Intelligence through the MSc at IST.",
         skills: ["Computer Science", "Algorithms", "Software Engineering", "Artificial Intelligence", "System Architecture", "Databases", "Computer Networks", "Distributed Systems"],
