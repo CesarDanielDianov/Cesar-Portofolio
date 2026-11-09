@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section>
-      <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+      <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-12 px-6 py-35 lg:grid-cols-2">
         {/* LEFT SIDE */}
         <div>
           <h1 className="mb-6 text-center text-5xl font-bold sm:text-6xl md:text-7xl lg:text-left lg:text-8xl animate-[fadeDown_1.6s_ease-out_forwards]">
