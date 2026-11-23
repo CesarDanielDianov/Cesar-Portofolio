@@ -1,10 +1,9 @@
-/** Site-wide identity, links and navigation. Single source of truth for the UI. */
+/**
+ * Site-wide identity, links and navigation. Single source of truth for the UI.
+ * Translated text (title, description, tagline, nav labels) lives in content/i18n.ts.
+ */
 export const site = {
     name: "César Dianov",
-    title: "César Dianov | Portfolio",
-    description:
-        "Computer Science and Engineering student at Instituto Superior Técnico. Software engineering, AI and automation.",
-    tagline: "Computer Engineering Student @ IST",
     location: "Oeiras, Portugal",
     cv: {
         href: "/cesar-dianov-cv.pdf",
@@ -16,9 +15,10 @@ export const site = {
     },
 } as const;
 
+/** `key` picks the label from the dictionary's `nav` section. */
 export const nav = [
-    { href: "/", label: "Home" },
-    { href: "/experience", label: "Experience" },
-    { href: "/projects", label: "Projects" },
-    { href: "/cv", label: "CV" },
+    { href: "/", key: "home" },
+    { href: "/experience", key: "experience" },
+    { href: "/projects", key: "projects" },
+    { href: "/cv", key: "cv" },
 ] as const;

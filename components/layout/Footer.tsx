@@ -1,11 +1,14 @@
 import { site } from "@/content/site";
+import { dict } from "@/content/i18n";
+import { getLang } from "@/lib/i18n-server";
 
-export default function Footer() {
+export default async function Footer() {
+    const t = dict[await getLang()].footer;
     return (
-        <footer className="px-8 py-6 text-black dark:text-white">
+        <footer className="mt-16 px-8 py-6 text-black md:mt-24 dark:text-white">
             <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between">
                 <p className="text-sm sm:text-base">
-                    © {new Date().getFullYear()} {site.name} — All rights reserved.
+                    © {new Date().getFullYear()} {site.name} — {t.rights}
                 </p>
 
                 <ul className="flex gap-10">

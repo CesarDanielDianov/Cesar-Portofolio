@@ -358,6 +358,50 @@ html {
   background-size: 100% 100%, 14px 14px, 14px 14px;
 }
 
+/* Fireflies (components/effects/Fireflies.tsx): dark theme only, behind everything.
+   Drift and blink are separate animations on transform and opacity, which the
+   compositor handles without repainting the page. */
+.fx-fireflies { display: none; }
+.dark .fx-fireflies {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fx-firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e6ff9e;
+  box-shadow: 0 0 7.5px 2.5px rgb(200 255 110 / 0.55), 0 0 20px 5px rgb(200 255 110 / 0.18);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation:
+    fx-firefly-drift var(--dur) ease-in-out var(--d) infinite alternate,
+    fx-firefly-blink var(--dur) linear var(--d) infinite;
+}
+@keyframes fx-firefly-drift {
+  0% { transform: translate(0, 0); }
+  35% { transform: translate(calc(var(--dx) * 0.6), calc(var(--dy) * -0.4)); }
+  70% { transform: translate(calc(var(--dx) * -0.3), calc(var(--dy) * 0.8)); }
+  100% { transform: translate(var(--dx), var(--dy)); }
+}
+/* Dark most of the cycle, then a slow glow with a flicker in the middle. */
+@keyframes fx-firefly-blink {
+  0%, 50.5% { opacity: 0; }
+  57% { opacity: 0.9; }
+  62% { opacity: 0.35; }
+  67% { opacity: 1; }
+  77% { opacity: 0.8; }
+  88%, 100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dark .fx-fireflies { display: none; }
+}
+
 /* Current page in the navbar keeps its underline */
 .fx-link.is-active::after { transform: scaleX(1); }
 
@@ -390,9 +434,13 @@ html[data-booted] .boot { display: none; }
   transition: transform 0.3s ease;
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
 }
-.fx-flags:hover .fx-flag:first-child { transform: rotate(-4deg); }
-.fx-flags:hover .fx-flag:last-child { transform: rotate(4deg); }
-.fx-flags:active .fx-flag { transform: scale(0.92); }
+.fx-flags:hover .fx-flag-btn:first-child .fx-flag { transform: rotate(-4deg); }
+.fx-flags:hover .fx-flag-btn:last-child .fx-flag { transform: rotate(4deg); }
+.fx-flag-btn { cursor: pointer; border-radius: 2px; }
+.fx-flag-btn:active .fx-flag { transform: scale(0.92); }
+.fx-flag-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+/* Its anthem is playing: wave hard (click again to stop). */
+.fx-flag-btn.is-playing { --wave-speed: 0.5s; }
 .fx-flag-slice {
   flex: 1 1 0;
   height: 100%;
@@ -624,10 +672,11 @@ html[data-booted] .boot { display: none; }
   --paper-edge: rgb(0 0 0 / 0.1);
 }
 .dark {
-  --paper: #111418;
-  --paper-under: #1a1e24;
-  --paper-edge: rgb(255 255 255 / 0.1);
+  --paper: #0a1433;
+  --paper-under: #0f1c45;
+  --paper-edge: rgb(255 255 255 / 0.12);
 }
+.dark .fx-paper-top { color: #fff; }
 .fx-paper-top {
   background-color: var(--paper);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 10px 24px -14px rgb(0 0 0 / 0.25);
@@ -818,3 +867,108 @@ html[data-booted] .boot { display: none; }
 }
 .fx-card:hover .fx-icon { animation: fx-wiggle 0.6s ease; }
 @media (prefers-reduced-motion: reduce) { .fx-card:hover .fx-icon { animation: none; } }
+
+/* ───────── Language switch: a sheet of lined paper wipes across (LangProvider) ─────────
+   Slides in from the right, holds while the page re-renders in the new language
+   underneath, then slides out to the left. The greeting writes itself in like
+   the homepage signature. Sits under the boot screen (z 100). */
+.fx-lang-curtain {
+  position: fixed;
+  inset: -6vh -8vw;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 1px var(--paper-edge), 0 30px 80px rgb(0 0 0 / 0.35);
+  pointer-events: all;
+}
+.fx-lang-curtain.is-in { animation: fx-curtain-in 0.4s cubic-bezier(.7,0,.3,1) both; }
+.fx-lang-curtain.is-out { animation: fx-curtain-out 0.45s cubic-bezier(.7,0,.3,1) both; }
+@keyframes fx-curtain-in {
+  from { transform: translateX(110%) rotate(4deg); }
+  to { transform: none; }
+}
+@keyframes fx-curtain-out {
+  from { transform: none; }
+  to { transform: translateX(-110%) rotate(-4deg); }
+}
+.fx-lang-word {
+  clip-path: inset(-25% 100% -35% -6%);
+  animation: fx-sign 0.5s cubic-bezier(0.55, 0.1, 0.35, 1) 0.2s forwards;
+}
+
+/* ───────── Navbar: a strip of paper taped across the top (Navbar) ───────── */
+.fx-navbar {
+  padding-block: 12px;
+  background-color: var(--paper);
+  border-bottom: 1px solid var(--paper-edge);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 10px 24px -16px rgb(0 0 0 / 0.3);
+  transition: padding 0.3s ease, box-shadow 0.3s ease;
+}
+@media (min-width: 1024px) { .fx-navbar { padding-block: 16px; } }
+/* Scrolled: tighter, and lifted off the page. */
+.fx-navbar.is-scrolled {
+  padding-block: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.08), 0 18px 36px -14px rgb(0 0 0 / 0.38);
+}
+@media (min-width: 1024px) { .fx-navbar.is-scrolled { padding-block: 10px; } }
+.dark .fx-navbar { box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 28px -14px rgb(0 0 0 / 0.7); }
+.dark .fx-navbar.is-scrolled { box-shadow: 0 2px 4px rgb(0 0 0 / 0.35), 0 20px 40px -12px rgb(0 0 0 / 0.8); }
+
+/* Tape holding the strip to the top edge of the screen, near each end. */
+.fx-navbar-tape {
+  position: absolute;
+  top: -9px;
+  width: 70px;
+  height: 20px;
+  background: rgb(232 218 180 / 0.75);
+  border: 1px solid rgb(0 0 0 / 0.06);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+  pointer-events: none;
+}
+.dark .fx-navbar-tape { background: rgb(255 255 255 / 0.22); border-color: rgb(255 255 255 / 0.08); }
+.fx-navbar-tape-l { left: 28px; rotate: -6deg; }
+.fx-navbar-tape-r { right: 28px; rotate: 5deg; }
+
+/* Links: pencil underline on hover; the current page gets a highlighter swipe. */
+.fx-nav-link {
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.15em;
+}
+.fx-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.15em;
+  right: 0.15em;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.fx-nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+.fx-nav-link.is-active::after { display: none; }
+.fx-nav-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.2em;
+  right: -0.25em;
+  top: 18%;
+  bottom: 4%;
+  border-radius: 3px 8px 4px 10px;
+  background: #fde047;
+  opacity: 0.75;
+  transform: skewX(-12deg) rotate(-1.5deg) scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(.6,0,.3,1);
+}
+.dark .fx-nav-link::before { background: rgb(45 212 191 / 0.4); opacity: 1; }
+.fx-nav-link.is-active::before { transform: skewX(-12deg) rotate(-1.5deg) scaleX(1); }
+.fx-nav-link { isolation: isolate; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-navbar, .fx-nav-link::before, .fx-nav-link::after { transition: none; }
+}

@@ -1,16 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useT } from "@/components/i18n/LangProvider";
 
 export const BOOT_KEY = "booted";
 
-const LINES = [
-    "Booting cesar-dianov.dev",
-    "Loading experience",
-    "Compiling projects",
-    "Mounting CV",
-    "Starting terminal",
-];
+/** Boot steps; the text comes from the dictionary (boot.lines). */
+const STEPS = 5;
 
 const STEP_MS = 220; // time per boot line
 const EXIT_MS = 650; // pull-away duration (matches .boot-exit in CSS)
@@ -22,6 +18,7 @@ const EXIT_MS = 650; // pull-away duration (matches .boot-exit in CSS)
  * CSS failsafe hides it even if JavaScript never runs.
  */
 export default function BootScreen() {
+    const t = useT().boot;
     const [step, setStep] = useState(0);
     const [phase, setPhase] = useState<"boot" | "exit" | "done">("boot");
 
@@ -34,7 +31,7 @@ export default function BootScreen() {
             return () => window.clearTimeout(t);
         }
 
-        const id = window.setInterval(() => setStep((s) => Math.min(s + 1, LINES.length)), STEP_MS);
+        const id = window.setInterval(() => setStep((s) => Math.min(s + 1, STEPS)), STEP_MS);
 
         const skipNow = () => setPhase((p) => (p === "boot" ? "exit" : p));
         window.addEventListener("keydown", skipNow);
@@ -48,7 +45,7 @@ export default function BootScreen() {
 
     // All lines printed: hold briefly on 100%, then slide away.
     useEffect(() => {
-        if (step < LINES.length || phase !== "boot") return;
+        if (step < STEPS || phase !== "boot") return;
         const t = window.setTimeout(() => setPhase("exit"), STEP_MS * 1.5);
         return () => window.clearTimeout(t);
     }, [step, phase]);
@@ -66,12 +63,12 @@ export default function BootScreen() {
 
     if (phase === "done") return null;
 
-    const pct = Math.round((Math.min(step, LINES.length) / LINES.length) * 100);
+    const pct = Math.round((Math.min(step, STEPS) / STEPS) * 100);
 
     return (
         <div
             role="status"
-            aria-label="Loading site"
+            aria-label={t.label}
             className={`boot site-bg fixed inset-0 z-[100] flex items-center justify-center px-6 ${
                 phase === "exit" ? "boot-exit" : ""
             }`}
@@ -80,10 +77,10 @@ export default function BootScreen() {
             <div className="fx-sheets w-full max-w-sm rotate-[-1.5deg]">
                 <div className="fx-paper-top border border-(--paper-edge) px-8 pt-7 pb-6 text-slate-800 dark:text-gray-100">
                     <p className="text-xs font-bold uppercase tracking-[0.35em] text-slate-500 dark:text-gray-400">César Dianov</p>
-                    <p className="mt-2 font-hand text-3xl font-bold text-blue-950 dark:text-blue-100">getting things ready…</p>
+                    <p className="mt-2 font-hand text-3xl font-bold text-blue-950 dark:text-blue-100">{t.heading}</p>
 
                     <ul className="mt-5 space-y-2 text-sm">
-                        {LINES.map((line, i) => {
+                        {t.lines.map((line, i) => {
                             const done = i < step;
                             return (
                                 <li key={line} className="flex items-center gap-3">
@@ -121,7 +118,7 @@ export default function BootScreen() {
                         <span className="w-10 text-right text-xs tabular-nums text-slate-500 dark:text-gray-400">{pct}%</span>
                     </div>
 
-                    <p className="mt-5 text-right font-hand text-lg text-slate-500 dark:text-gray-400">press any key to skip</p>
+                    <p className="mt-5 text-right font-hand text-lg text-slate-500 dark:text-gray-400">{t.skip}</p>
                 </div>
             </div>
         </div>

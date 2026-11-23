@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { experience, type ExperienceItem } from "@/content/experience";
+import { getExperience, type ExperienceItem } from "@/content/experience";
+import { useLang, useT } from "@/components/i18n/LangProvider";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { playToggle } from "@/lib/sound";
 
@@ -33,7 +34,7 @@ function RevealItem({ index, children }: { index: number; children: ReactNode })
     return (
         <li
             ref={ref}
-            className={`fx-reveal relative pl-9 pb-8 last:pb-0 ${shown ? "is-shown" : ""}`}
+            className={`fx-reveal relative pl-9 pb-12 last:pb-0 ${shown ? "is-shown" : ""}`}
             style={{ transitionDelay: `${index * 110}ms` }}
         >
             {children}
@@ -96,6 +97,9 @@ function Logo({ item }: { item: ExperienceItem }) {
 
 
 export default function ExperienceTimeline() {
+    const { lang } = useLang();
+    const t = useT().experience;
+    const experience = getExperience(lang);
     // Newest entry starts open; several can be open at once.
     const [open, setOpen] = useState<Set<string>>(() => new Set([experience[0].id]));
     const allOpen = open.size === experience.length;
@@ -118,7 +122,7 @@ export default function ExperienceTimeline() {
 
     return (
         <section className="relative min-h-screen px-6 pb-20 font-mono text-slate-900 dark:text-white">
-            <PageHeader subtitle="Work, student organizations & education" className="mb-0 md:mb-0">Experience</PageHeader>
+            <PageHeader subtitle={t.subtitle} className="mb-0 md:mb-0">{t.title}</PageHeader>
 
             <div className="mx-auto mt-12 flex w-full max-w-[924px] justify-end">
                 <button
@@ -127,7 +131,7 @@ export default function ExperienceTimeline() {
                     onClick={toggleAll}
                     className="text-xs uppercase text-slate-500 transition-colors hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 dark:hover:text-white dark:focus-visible:ring-white"
                 >
-                    {allOpen ? "[ − collapse all ]" : "[ + expand all ]"}
+                    {allOpen ? t.collapseAll : t.expandAll}
                 </button>
             </div>
 
@@ -205,7 +209,7 @@ export default function ExperienceTimeline() {
                                                 </ul>
                                             )}
 
-                                            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Skills">
+                                            <ul className="mt-6 flex flex-wrap gap-2" aria-label={t.skills}>
                                                 {it.skills.map((skill, k) => (
                                                     <li
                                                         key={skill}

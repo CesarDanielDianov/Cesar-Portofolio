@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 import Terminal from "@/components/home/Terminal";
 import { site } from "@/content/site";
-import { projects } from "@/content/projects";
-import { experience } from "@/content/experience";
+import { getProjects } from "@/content/projects";
+import { getExperience } from "@/content/experience";
+import { useLang, useT } from "@/components/i18n/LangProvider";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,13 +25,17 @@ const ZERO: Offset = { x: 0, y: 0 };
 /** Back to front. */
 const INITIAL_ORDER: SheetId[] = ["name", "terminal", "project", "card", "now"];
 
-/** Where each sheet lies on the desk (xl+), plus its tilt and mobile width. */
+/**
+ * Where each sheet lies on the desk (xl+), plus its tilt and mobile width.
+ * Two rows with room between them: name card and terminal on top; featured
+ * project, sticky note and index card below, the note in the gap between the two.
+ */
 const PLACE: Record<SheetId, string> = {
-    name: "rotate-[-1.2deg] xl:left-[1%] xl:top-[40px] xl:w-[540px]",
-    terminal: "rotate-[0.8deg] xl:right-[1%] xl:top-[16px] xl:w-[576px]",
-    now: "max-w-[270px] rotate-[3deg] xl:left-[41%] xl:top-[450px] xl:w-[250px]",
-    project: "max-w-md rotate-[-2deg] xl:left-[7%] xl:top-[610px] xl:w-[420px]",
-    card: "max-w-sm rotate-[1.5deg] xl:right-[5%] xl:top-[575px] xl:w-[360px]",
+    name: "rotate-[-1.2deg] xl:left-[1%] xl:top-[24px] xl:w-[540px]",
+    terminal: "rotate-[0.8deg] xl:right-[1%] xl:top-0 xl:w-[576px]",
+    now: "max-w-[270px] rotate-[3deg] xl:left-[42%] xl:top-[600px] xl:w-[250px]",
+    project: "max-w-md rotate-[-2deg] xl:left-[2%] xl:top-[620px] xl:w-[420px]",
+    card: "max-w-sm rotate-[1.5deg] xl:right-[3%] xl:top-[640px] xl:w-[360px]",
 };
 
 /** Where each sheet catches fire: three scorch-hole origins. */
@@ -80,7 +85,10 @@ function Fire() {
     );
 }
 
-type Drag = { sx: number; sy: number; bx: number; by: number; min: Offset; max: Offset; last: Offset };
+type Drag = { id: number; sx: number; sy: number; bx: number; by: number; min: Offset; max: Offset; last: Offset; live: boolean };
+
+/** Pixels the pointer must travel before a press turns into a drag, so plain clicks still work. */
+const DRAG_THRESHOLD = 4;
 
 function Sheet({
     id,
@@ -88,7 +96,6 @@ function Sheet({
     offset,
     onFront,
     onMove,
-    handle = false,
     delay,
     phase,
     round,
@@ -99,8 +106,6 @@ function Sheet({
     offset: Offset;
     onFront: (id: SheetId) => void;
     onMove: (id: SheetId, p: Offset) => void;
-    /** Only start a drag from an element marked data-drag-handle (the terminal's title bar). */
-    handle?: boolean;
     delay: number;
     phase: Phase;
     /** Bumped after a burn so fresh sheets mount and drop in again. */
@@ -116,16 +121,25 @@ function Sheet({
         onFront(id);
         if (e.button !== 0 || !window.matchMedia(DESK_QUERY).matches) return;
         const t = e.target as Element;
-        if (handle ? !t.closest("[data-drag-handle]") : t.closest("a, button, input, textarea, select, label")) return;
+        if (t.closest("a, button, input, textarea, select, label")) return;
         const el = ref.current;
         const stage = el?.parentElement;
         if (!el || !stage) return;
 
-        // Keep the sheet on the desk (with a little overhang).
+        // Free roam: across the whole window width, a little above the desk and well below it.
         const r = el.getBoundingClientRect();
-        const s = stage.getBoundingClientRect();
-        const slack = 40;
+        const desk = stage.getBoundingClientRect();
+        const edge = 8;
+        const s = {
+            left: edge,
+            right: document.documentElement.clientWidth - edge,
+            top: desk.top - 40,
+            bottom: desk.bottom + 320,
+        };
+        const slack = 0;
         drag.current = {
+            id: e.pointerId,
+            live: false,
             sx: e.clientX,
             sy: e.clientY,
             bx: offset.x,
@@ -134,15 +148,25 @@ function Sheet({
             max: { x: offset.x + s.right - r.right + slack, y: offset.y + s.bottom - r.bottom + slack },
             last: offset,
         };
-        el.setPointerCapture(e.pointerId);
-        e.preventDefault();
-        setDragging(true);
     };
 
     // Writes straight to the element while dragging; React only hears about the final spot.
     const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
         const d = drag.current;
         if (!d || !ref.current) return;
+        if (!d.live) {
+            // Released somewhere else before the drag began: forget the press.
+            if (e.buttons === 0) {
+                drag.current = null;
+                return;
+            }
+            if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < DRAG_THRESHOLD) return;
+            d.live = true;
+            ref.current.setPointerCapture(d.id);
+            window.getSelection()?.removeAllRanges();
+            setDragging(true);
+        }
+        e.preventDefault();
         d.last = {
             x: clamp(d.bx + e.clientX - d.sx, d.min.x, d.max.x),
             y: clamp(d.by + e.clientY - d.sy, d.min.y, d.max.y),
@@ -154,6 +178,7 @@ function Sheet({
         const d = drag.current;
         if (!d) return;
         drag.current = null;
+        if (!d.live) return;
         setDragging(false);
         onMove(id, d.last);
     };
@@ -168,7 +193,7 @@ function Sheet({
             onDragStart={(e) => e.preventDefault()}
             className={cn(
                 "fx-desk-sheet relative w-full max-w-xl xl:absolute xl:max-w-none",
-                !handle && "xl:cursor-grab",
+                "xl:cursor-grab",
                 dragging && "is-dragging xl:cursor-grabbing",
                 phase !== "idle" && "pointer-events-none",
                 phase === "reborn" && "is-reborn",
@@ -196,16 +221,14 @@ function Sheet({
 }
 
 function NameSheet() {
+    const t = useT();
     return (
         <div className="fx-sheets fx-sheets-alt">
             <div className="fx-paper-top border border-(--paper-edge) p-8 sm:p-10">
                 <h1>
                     <span className="sr-only">{site.name}</span>
-                    <span aria-hidden="true" className="block text-sm font-bold uppercase tracking-[0.35em] text-slate-500 dark:text-gray-400">
-                        {site.name}
-                    </span>
                     {/* Signature: written in left to right, then underlined with a swash */}
-                    <span aria-hidden="true" className="relative mt-3 block w-fit">
+                    <span aria-hidden="true" className="relative block w-fit">
                         <span className="fx-sign block font-hand text-[3.25rem] font-bold leading-[1.05] text-blue-950 sm:text-7xl xl:text-[5.5rem] dark:text-blue-100">
                             {site.name}
                         </span>
@@ -224,7 +247,7 @@ function NameSheet() {
                 </h1>
 
                 <p className="mt-6 inline-flex rotate-[-2deg] items-center gap-2.5 border-2 border-green-700/70 px-3 py-1 text-xs font-bold uppercase tracking-wider text-green-800 sm:text-sm dark:border-green-400/70 dark:text-green-400">
-                    {site.tagline}
+                    {t.site.tagline}
                     <span className="relative flex h-2.5 w-2.5">
                         <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-reduce:hidden" />
                         <span className="relative h-2.5 w-2.5 rounded-full bg-green-500" />
@@ -232,8 +255,7 @@ function NameSheet() {
                 </p>
 
                 <p className="mt-6 text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-300">
-                    Computer Engineering student at IST, IT Executive at Five Thousand Miles, Dev-Team &amp; HR member at
-                    NEIIST. Passionate about software engineering, AI, and technology.
+                    {t.home.intro}
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
@@ -241,14 +263,14 @@ function NameSheet() {
                         href="/projects"
                         className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-bold text-white dark:border-white dark:bg-white dark:text-gray-900"
                     >
-                        View projects
+                        {t.home.viewProjects}
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
                     <Link
                         href="/cv"
                         className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-bold dark:border-white"
                     >
-                        Read my CV
+                        {t.home.readCv}
                         <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
                     </Link>
                 </div>
@@ -257,13 +279,14 @@ function NameSheet() {
     );
 }
 
-const current = experience.filter((e) => /present/i.test(e.period));
-
 function NowNote() {
+    const { lang } = useLang();
+    const t = useT().home;
+    const current = getExperience(lang).filter((e) => e.current);
     return (
         <div className="fx-sticky relative px-6 pt-8 pb-6">
             <span aria-hidden="true" className="fx-tape" />
-            <p className="font-hand text-3xl font-bold leading-none">currently…</p>
+            <p className="font-hand text-3xl font-bold leading-none">{t.currently}</p>
             <ul className="mt-3 space-y-1 font-hand text-2xl leading-tight">
                 {current.map((e) => (
                     <li key={e.id}>→ {e.title.toLowerCase()}</li>
@@ -273,7 +296,7 @@ function NowNote() {
                 href="/experience"
                 className="mt-4 inline-block font-hand text-xl underline decoration-wavy underline-offset-4"
             >
-                see the whole story
+                {t.wholeStory}
             </Link>
         </div>
     );
@@ -295,9 +318,11 @@ function Paperclip() {
     );
 }
 
-const featured = projects.find((p) => p.layout === "featured") ?? projects[0];
-
 function ProjectSheet() {
+    const { lang } = useLang();
+    const t = useT().home;
+    const projects = getProjects(lang);
+    const featured = projects.find((p) => p.layout === "featured") ?? projects[0];
     return (
         <div className="fx-sheets relative">
             <Paperclip />
@@ -305,7 +330,7 @@ function ProjectSheet() {
                 <div className="flex items-start justify-between gap-4">
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-gray-400">
-                            ★ Featured project
+                            {t.featured}
                         </p>
                         <h2 className="mt-2 text-2xl font-bold">{featured.title}</h2>
                     </div>
@@ -326,10 +351,10 @@ function ProjectSheet() {
                         rel="noopener noreferrer"
                         className="underline-offset-4 hover:underline"
                     >
-                        View on GitHub ↗
+                        {t.viewOnGithub}
                     </a>
                     <Link href="/projects" className="text-slate-500 underline-offset-4 hover:underline dark:text-gray-400">
-                        all {projects.length} projects →
+                        {t.allProjects(projects.length)}
                     </Link>
                 </div>
             </div>
@@ -338,10 +363,11 @@ function ProjectSheet() {
 }
 
 function IndexCard() {
+    const t = useT().home;
     const rows: [string, string][] = [
-        ["based in", site.location],
-        ["studying", "LEIC @ IST"],
-        ["focus", "Software Architecture & AI"],
+        [t.basedIn, site.location],
+        [t.studying, "LEIC @ IST"],
+        [t.focus, t.focusValue],
     ];
     const links: [string, string][] = [
         ["GitHub ↗", site.links.github],
@@ -349,7 +375,7 @@ function IndexCard() {
     ];
     return (
         <div className="fx-paper-top fx-lined border border-(--paper-edge) py-[28px] pr-6 pl-14">
-            <p className="font-hand text-3xl font-bold leading-[28px] text-blue-900 dark:text-blue-200">about me</p>
+            <p className="font-hand text-3xl font-bold leading-[28px] text-blue-900 dark:text-blue-200">{t.aboutMe}</p>
             <dl className="mt-[28px] text-sm leading-[28px]">
                 {rows.map(([k, v]) => (
                     <div key={k} className="flex gap-2">
@@ -373,6 +399,7 @@ function IndexCard() {
 }
 
 export default function Hero() {
+    const t = useT().home;
     const [order, setOrder] = useState<SheetId[]>(INITIAL_ORDER);
     const [offsets, setOffsets] = useState<Partial<Record<SheetId, Offset>>>({});
 
@@ -428,11 +455,11 @@ export default function Hero() {
 
     return (
         <section className="relative">
-            <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 pt-32 pb-20 xl:mt-24 xl:mb-8 xl:block xl:h-[880px] xl:p-0">
+            <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 pt-48 pb-20 sm:pt-44 xl:mt-48 xl:mb-8 xl:block xl:h-[980px] xl:p-0">
                 <Sheet {...sheet("name", 0)}>
                     <NameSheet />
                 </Sheet>
-                <Sheet {...sheet("terminal", 150)} handle>
+                <Sheet {...sheet("terminal", 150)}>
                     <Terminal />
                 </Sheet>
                 <Sheet {...sheet("now", 450)}>
@@ -452,10 +479,10 @@ export default function Hero() {
                             onClick={tidy}
                             className="underline decoration-wavy underline-offset-4 hover:text-slate-900 dark:hover:text-white"
                         >
-                            ↺ tidy up the desk
+                            {t.tidy}
                         </button>
                     ) : (
-                        <span>psst… the papers move. drag them around ↖</span>
+                        <span>{t.psst}</span>
                     )}
                 </div>
             </div>

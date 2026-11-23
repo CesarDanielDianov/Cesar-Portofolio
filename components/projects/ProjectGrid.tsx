@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { projects, type Project, type ProjectLayout } from "@/content/projects";
+import { getProjects, type Project, type ProjectLayout } from "@/content/projects";
+import { dict, type Dict } from "@/content/i18n";
+import { getLang } from "@/lib/i18n-server";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { cn } from "@/lib/utils";
 
@@ -39,10 +41,10 @@ const TITLE: Record<ProjectLayout, string> = {
     standard: "text-2xl font-bold",
 };
 
-function Tags({ tags }: { tags: string[] }) {
+function Tags({ tags, label }: { tags: string[]; label: string }) {
     return (
         <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-widest opacity-60">Tech stack</p>
+            <p className="mb-2 text-xs font-bold uppercase tracking-widest opacity-60">{label}</p>
             <ul className="flex flex-wrap gap-2">
                 {tags.map((t) => (
                     <li
@@ -57,15 +59,15 @@ function Tags({ tags }: { tags: string[] }) {
     );
 }
 
-function ViewOnGitHub() {
+function ViewOnGitHub({ label }: { label: string }) {
     return (
         <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold opacity-70">
-            View on GitHub <span aria-hidden="true" className="fx-go inline-block transition-transform duration-300">↗</span>
+            {label} <span aria-hidden="true" className="fx-go inline-block transition-transform duration-300">↗</span>
         </span>
     );
 }
 
-function ProjectCard({ p, index }: { p: Project; index: number }) {
+function ProjectCard({ p, index, t }: { p: Project; index: number; t: Dict["projects"] }) {
     const num = String(index + 1).padStart(2, "0");
     const big = p.layout === "featured";
     const icon = ICON_SIZE[p.layout];
@@ -115,8 +117,8 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
                 <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-center">
                     <div className="flex flex-1 flex-col">
                         {text}
-                        <div className="mt-6"><Tags tags={p.tags} /></div>
-                        <ViewOnGitHub />
+                        <div className="mt-6"><Tags tags={p.tags} label={t.techStack} /></div>
+                        <ViewOnGitHub label={t.viewOnGithub} />
                     </div>
                     {stage}
                 </div>
@@ -124,17 +126,17 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
                 <>
                     {text}
                     {stage}
-                    <Tags tags={p.tags} />
-                    <ViewOnGitHub />
+                    <Tags tags={p.tags} label={t.techStack} />
+                    <ViewOnGitHub label={t.viewOnGithub} />
                 </>
             ) : (
                 <>
                     {text}
                     <div className="mt-6 flex items-end justify-between gap-4">
-                        <Tags tags={p.tags} />
+                        <Tags tags={p.tags} label={t.techStack} />
                         {img}
                     </div>
-                    <ViewOnGitHub />
+                    <ViewOnGitHub label={t.viewOnGithub} />
                 </>
             )}
         </a>
@@ -142,19 +144,22 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
     );
 }
 
-export default function ProjectGrid() {
+export default async function ProjectGrid() {
+    const lang = await getLang();
+    const t = dict[lang].projects;
+    const projects = getProjects(lang);
     return (
         <section className="relative min-h-screen">
-            <PageHeader subtitle="AI solvers, systems programming, databases & more">Projects</PageHeader>
+            <PageHeader subtitle={t.subtitle}>{t.title}</PageHeader>
 
-            <div className="mx-auto grid max-w-7xl grid-flow-dense auto-rows-[minmax(240px,auto)] grid-cols-1 gap-5 px-6 pb-16 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-7xl grid-flow-dense auto-rows-[minmax(240px,auto)] grid-cols-1 gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-4">
                 {projects.map((p, i) => (
-                    <ProjectCard key={p.href} p={p} index={i} />
+                    <ProjectCard key={p.href} p={p} index={i} t={t} />
                 ))}
             </div>
 
             <p className="mt-10 mb-5 flex justify-center font-bold text-gray-400">
-                More projects are on the way. Stay tuned!
+                {t.more}
             </p>
         </section>
     );

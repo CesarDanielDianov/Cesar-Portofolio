@@ -4,8 +4,11 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { site } from "@/content/site";
-import { projects } from "@/content/projects";
-import { experience } from "@/content/experience";
+import { getProjects, projectCount } from "@/content/projects";
+import { getExperience } from "@/content/experience";
+import { useLang, useT } from "@/components/i18n/LangProvider";
+import { LOCALE } from "@/lib/i18n";
+import type { Dict } from "@/content/i18n";
 import Snake from "@/components/home/terminal/Snake";
 
 const INTRO_CMD = "cat developer.ts";
@@ -31,6 +34,8 @@ function Prompt() {
 }
 
 function DeveloperObject() {
+    const T = useT();
+    const [r1, r2, r3] = T.terminal.roles;
     return (
         <pre className="overflow-x-auto text-gray-700 dark:text-gray-300">
             <code className="block">
@@ -41,17 +46,17 @@ function DeveloperObject() {
                 {"\n"}
                 {"  "}roles: [{"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;LEIC Senior @ IST&quot;</span>,
+                <span className="text-teal-700 dark:text-teal-300">&quot;{r1}&quot;</span>,
                 {"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;IT Exec @ Five Thousand Miles&quot;</span>,
+                <span className="text-teal-700 dark:text-teal-300">&quot;{r2}&quot;</span>,
                 {"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;Dev & HR @ NEIIST&quot;</span>
+                <span className="text-teal-700 dark:text-teal-300">&quot;{r3}&quot;</span>
                 {"\n"}
                 {"  "}]
                 {"\n"}
-                {"  "}focus: <span className="text-teal-700 dark:text-teal-300">&quot;Software Architecture & AI&quot;</span>
+                {"  "}focus: <span className="text-teal-700 dark:text-teal-300">&quot;{T.home.focusValue}&quot;</span>
                 {"\n"}
                 {"}"};
             </code>
@@ -59,29 +64,30 @@ function DeveloperObject() {
     );
 }
 
-const HELP: [string, string][] = [
-    ["help", "list commands"],
-    ["whoami", "who is this?"],
-    ["neofetch", "system info, developer edition"],
-    ["ls", "list files"],
-    ["ls projects", "list every project"],
-    ["ls experience", "list every role"],
-    ["cat developer.ts", "print the developer object"],
-    ["experience", "open the experience page"],
-    ["projects", "open the projects page"],
-    ["cv", "open the CV page"],
-    ["github", "open my GitHub"],
-    ["linkedin", "open my LinkedIn"],
-    ["theme", "switch light / dark"],
-    ["matrix", "follow the white rabbit"],
-    ["snake", "play snake"],
-    ["history", "commands you ran"],
-    ["clear", "clear the terminal"],
+/** Commands listed by `help`, in order; their descriptions are in the dictionary. */
+const COMMANDS: (keyof Dict["terminal"]["help"])[] = [
+    "help",
+    "whoami",
+    "neofetch",
+    "ls",
+    "ls projects",
+    "ls experience",
+    "cat developer.ts",
+    "experience",
+    "projects",
+    "cv",
+    "github",
+    "linkedin",
+    "theme",
+    "matrix",
+    "snake",
+    "history",
+    "clear",
 ];
 
 /** Everything Tab can complete to, most useful first. */
 const COMPLETIONS = [
-    ...HELP.map(([c]) => c),
+    ...COMMANDS,
     "theme dark",
     "theme light",
     "date",
@@ -105,14 +111,17 @@ const ASCII = [
 ].join("\n");
 
 function Neofetch({ theme, uptime }: { theme: string; uptime: number }) {
+    const { lang } = useLang();
+    const t = useT();
+    const k = t.terminal.neofetch;
     const rows: [string, string][] = [
-        ["Location", site.location],
-        ["Study", site.tagline],
-        ["Roles", experience.map((e) => e.title.toLowerCase()).slice(0, 3).join(", ")],
-        ["Projects", String(projects.length)],
-        ["Shell", "portfolio-sh"],
-        ["Theme", theme],
-        ["Uptime", uptime < 60 ? `${uptime}s` : `${Math.floor(uptime / 60)}m ${uptime % 60}s`],
+        [k.location, site.location],
+        [k.study, t.site.tagline],
+        [k.roles, getExperience(lang).map((e) => e.title.toLowerCase()).slice(0, 3).join(", ")],
+        [k.projects, String(projectCount)],
+        [k.shell, "portfolio-sh"],
+        [k.theme, t.terminal.themeName[theme] ?? theme],
+        [k.uptime, uptime < 60 ? `${uptime}s` : `${Math.floor(uptime / 60)}m ${uptime % 60}s`],
     ];
     return (
         <div className="flex flex-wrap items-start gap-x-5 gap-y-2">
@@ -192,6 +201,9 @@ type Entry = { cmd?: string; out: ReactNode };
 
 export default function Terminal() {
     const router = useRouter();
+    const { lang } = useLang();
+    const T = useT();
+    const t = T.terminal;
     const { resolvedTheme, setTheme } = useTheme();
     const [matrix, setMatrix] = useState(false);
     const [snake, setSnake] = useState(false);
@@ -237,9 +249,9 @@ export default function Terminal() {
 
     const endSnake = useCallback((score: number, best: number) => {
         setSnake(false);
-        setEntries((e) => [...e, { out: `snake: game over · score ${score} · best ${best}` }]);
+        setEntries((e) => [...e, { out: t.snakeOver(score, best) }]);
         window.setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 30);
-    }, []);
+    }, [t]);
 
     /** Runs a command clicked in the output, as if typed. */
     const runClicked = (cmd: string) => {
@@ -264,7 +276,7 @@ export default function Terminal() {
         } else if (lower === "help") {
             out = (
                 <div className="grid grid-cols-[auto_1fr] gap-x-4">
-                    {HELP.map(([c, d]) => (
+                    {COMMANDS.map((c) => (
                         <div key={c} className="contents">
                             <button
                                 type="button"
@@ -276,13 +288,13 @@ export default function Terminal() {
                             >
                                 {c}
                             </button>
-                            <span className="text-gray-500 dark:text-gray-400">{d}</span>
+                            <span className="text-gray-500 dark:text-gray-400">{t.help[c]}</span>
                         </div>
                     ))}
                 </div>
             );
         } else if (lower === "whoami") {
-            out = `${site.name}, ${site.tagline}.`;
+            out = `${site.name}, ${T.site.tagline}.`;
         } else if (lower === "ls") {
             out = (
                 <span className="text-blue-700 dark:text-blue-400">
@@ -292,7 +304,7 @@ export default function Terminal() {
         } else if (lower === "ls projects" || lower === "ls projects/") {
             out = (
                 <ol className="list-none">
-                    {projects.map((p, i) => (
+                    {getProjects(lang).map((p, i) => (
                         <li key={p.title}>
                             <span className="text-gray-400">{String(i + 1).padStart(2, "0")} </span>
                             <a
@@ -312,7 +324,7 @@ export default function Terminal() {
         } else if (lower === "ls experience" || lower === "ls experience/") {
             out = (
                 <div className="grid grid-cols-[auto_1fr] gap-x-4">
-                    {experience.map((e) => (
+                    {getExperience(lang).map((e) => (
                         <div key={e.id} className="contents">
                             <span className="text-teal-700 dark:text-teal-300">{e.title.toLowerCase()}</span>
                             <span className="text-gray-500 dark:text-gray-400">{e.period}</span>
@@ -326,38 +338,39 @@ export default function Terminal() {
         } else if (lower === "theme" || lower === "theme dark" || lower === "theme light") {
             const next = lower === "theme" ? (resolvedTheme === "dark" ? "light" : "dark") : lower.slice(6);
             setTheme(next);
-            out = `Theme set to ${next}.`;
+            out = t.themeSet(t.themeName[next] ?? next);
         } else if (lower === "matrix") {
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-                out = "Wake up, Neo… (animation off: reduced motion is on)";
+                out = t.matrixOff;
             } else {
                 setMatrix(true);
-                out = "Wake up, Neo… (press any key to exit)";
+                out = t.matrixOn;
             }
         } else if (lower === "snake") {
             setSnake(true);
-            out = "Starting snake… (q to quit)";
+            out = t.snakeStart;
         } else if (lower === "history") {
-            out = past.length ? [...past].reverse().map((c, i) => `${String(i + 1).padStart(3)}  ${c}`).join("\n") : "No history yet.";
+            out = past.length ? [...past].reverse().map((c, i) => `${String(i + 1).padStart(3)}  ${c}`).join("\n") : t.noHistory;
         } else if (lower === "cat developer.ts") {
             out = <DeveloperObject />;
         } else if (ROUTES[name]) {
-            out = `Opening ${name}…`;
+            out = t.opening(name);
             window.setTimeout(() => router.push(ROUTES[name]), 450);
         } else if (lower === "github" || lower === "linkedin") {
-            out = `Opening ${lower}…`;
+            out = t.opening(lower);
             window.open(site.links[lower], "_blank", "noopener,noreferrer");
         } else if (lower === "date") {
-            out = new Date().toString();
+            out = new Date().toLocaleString(LOCALE[lang], { dateStyle: "full", timeStyle: "long" });
         } else if (lower.startsWith("echo ")) {
             out = cmd.slice(5);
         } else if (lower.startsWith("sudo")) {
-            out = "Permission denied. Nice try.";
+            out = t.sudo;
         } else {
             out = (
                 <>
-                    command not found: {cmd}. Type{" "}
-                    <span className="text-amber-700 dark:text-yellow-300">help</span>.
+                    {t.notFound(cmd)}
+                    <span className="text-amber-700 dark:text-yellow-300">help</span>
+                    {t.notFoundAfter}
                 </>
             );
         }
@@ -450,7 +463,7 @@ export default function Terminal() {
                                 <div className="animate-[fadeIn_0.5s_ease-out_both]">
                                     <DeveloperObject />
                                     <p className="mt-2 text-gray-400 dark:text-gray-500">
-                                        {"// type "}
+                                        {t.hintBefore}
                                         <button
                                             type="button"
                                             onClick={(ev) => {
@@ -461,7 +474,7 @@ export default function Terminal() {
                                         >
                                             help
                                         </button>
-                                        {" and press Enter (Tab completes)"}
+                                        {t.hintAfter}
                                     </p>
                                 </div>
                             )}
@@ -491,7 +504,7 @@ export default function Terminal() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={onKeyDown}
-                                    aria-label="Terminal input"
+                                    aria-label={t.inputLabel}
                                     autoComplete="off"
                                     autoCapitalize="off"
                                     spellCheck={false}

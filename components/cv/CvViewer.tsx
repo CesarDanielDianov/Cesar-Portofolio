@@ -1,15 +1,18 @@
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { dict } from "@/content/i18n";
+import { getLang } from "@/lib/i18n-server";
 
 /**
  * The CV "prints" on arrival: the PDF sheet feeds out of a printer slot in a
  * few stepped pulls (CSS only, see .fx-printer in globals.css), then rests on
  * a small paper stack. Reduced motion shows it in place straight away.
  */
-export default function CvViewer() {
+export default async function CvViewer() {
+    const t = dict[await getLang()].cv;
     return (
         <section className="relative min-h-screen px-4">
-            <PageHeader subtitle="Download it or read it right here" className="mb-0 md:mb-0">CV</PageHeader>
+            <PageHeader subtitle={t.subtitle} className="mb-0 md:mb-0">{t.title}</PageHeader>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4 opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]">
                 <a
@@ -17,7 +20,7 @@ export default function CvViewer() {
                     download={site.cv.downloadName}
                     className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-bold text-white dark:border-white dark:bg-white dark:text-gray-900"
                 >
-                    Download PDF
+                    {t.download}
                     <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
                 </a>
                 <a
@@ -26,7 +29,7 @@ export default function CvViewer() {
                     rel="noopener noreferrer"
                     className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-bold dark:border-white"
                 >
-                    Open in new tab
+                    {t.newTab}
                     <span aria-hidden="true" className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                 </a>
             </div>
@@ -42,7 +45,7 @@ export default function CvViewer() {
                     <div className="fx-paper">
                         <iframe
                             src={site.cv.href}
-                            title={`${site.name}: CV (PDF)`}
+                            title={t.frameTitle(site.name)}
                             className="block h-[75vh] w-full bg-white md:h-screen"
                         />
                     </div>
@@ -50,9 +53,9 @@ export default function CvViewer() {
             </div>
 
             <p className="-mt-12 mb-16 text-center text-sm text-gray-500 dark:text-gray-400">
-                PDF not showing?{" "}
+                {t.notShowing}{" "}
                 <a href={site.cv.href} download={site.cv.downloadName} className="font-bold underline decoration-dotted">
-                    Download it instead.
+                    {t.downloadInstead}
                 </a>
             </p>
         </section>

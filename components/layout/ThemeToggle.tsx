@@ -4,11 +4,13 @@ import { flushSync } from "react-dom";
 import { useTheme } from "next-themes";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { useT } from "@/components/i18n/LangProvider";
 
 export function ThemeToggle() {
     // resolvedTheme reflects what is actually shown, including the "system" preference,
     // so the first click always flips the visible theme.
     const { resolvedTheme, setTheme } = useTheme();
+    const t = useT();
 
     /**
      * Switches theme with a circular wipe centred on the button, using the
@@ -62,7 +64,8 @@ export function ThemeToggle() {
             variant="outline"
             size="icon"
             className="size-10 rounded-full"
-            aria-label="Toggle dark mode"
+            aria-label={t.themeToggle}
+            title={t.themeToggle}
             onClick={toggle}
         >
             <FaSun aria-hidden="true" className="absolute size-5 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />

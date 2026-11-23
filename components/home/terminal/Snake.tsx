@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useT } from "@/components/i18n/LangProvider";
 
 const CELL = 14;
 const START_DELAY = 120; // ms per move
@@ -41,6 +42,7 @@ function saveBest(n: number) {
  * `onExit` must be stable (useCallback).
  */
 export default function Snake({ onExit }: { onExit: (score: number, best: number) => void }) {
+    const t = useT().snake;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [score, setScore] = useState(0);
     const [best, setBest] = useState(loadBest);
@@ -282,49 +284,49 @@ export default function Snake({ onExit }: { onExit: (score: number, best: number
         >
             <div className="flex items-center justify-between border-b border-gray-300 px-4 py-2 dark:border-white/10">
                 <span>
-                    <span className="text-green-700 dark:text-green-400">snake</span> · score{" "}
-                    <span className="font-bold text-gray-900 dark:text-white">{score}</span> · best {best}
+                    <span className="text-green-700 dark:text-green-400">snake</span> · {t.score}{" "}
+                    <span className="font-bold text-gray-900 dark:text-white">{score}</span> · {t.best} {best}
                 </span>
                 <button
                     type="button"
                     onClick={quit}
                     className="text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
                 >
-                    q to quit
+                    {t.quit}
                 </button>
             </div>
             <div className="relative min-h-0 flex-1 touch-none">
                 <canvas
                     ref={canvasRef}
-                    aria-label="Snake game"
+                    aria-label={t.label}
                     className="absolute inset-0 h-full w-full [--snake-frame:rgba(0,0,0,0.2)] dark:[--snake-frame:rgba(255,255,255,0.15)]"
                 />
                 {(over || paused) && (
                     <div className="absolute inset-0 grid place-items-center text-center backdrop-blur-[2px] animate-[fadeIn_0.3s_ease-out_both]">
                         {over ? (
                             <div>
-                                <p className="text-base font-bold text-red-600 dark:text-red-400">game over</p>
+                                <p className="text-base font-bold text-red-600 dark:text-red-400">{t.over}</p>
                                 <p className="mt-1">
-                                    score {score} · best {best}
+                                    {t.score} {score} · {t.best} {best}
                                 </p>
                                 <button
                                     type="button"
                                     onClick={restart}
                                     className="mt-3 rounded-md border border-gray-400 px-3 py-1 transition-colors hover:bg-gray-500/10 dark:border-white/20"
                                 >
-                                    play again (space)
+                                    {t.again}
                                 </button>
                             </div>
                         ) : (
                             <button type="button" onClick={togglePause} className="text-base font-bold">
-                                paused · space to resume
+                                {t.paused}
                             </button>
                         )}
                     </div>
                 )}
             </div>
             <div className="border-t border-gray-300 px-4 py-1.5 text-gray-500 dark:border-white/10">
-                arrows / WASD · space pauses · swipe on phones
+                {t.controls}
             </div>
         </div>
     );
