@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 export default function CvViewer() {
     return (
         <section className="relative min-h-screen px-4">
-            <PageHeader className="mb-0 md:mb-0">CV</PageHeader>
+            <PageHeader subtitle="Download it or read it right here" className="mb-0 md:mb-0">CV</PageHeader>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4 opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]">
                 <a

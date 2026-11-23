@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { experience } from "@/content/experience";
+import Snake from "@/components/home/terminal/Snake";
 
 const INTRO_CMD = "cat developer.ts";
 
@@ -73,6 +74,7 @@ const HELP: [string, string][] = [
     ["linkedin", "open my LinkedIn"],
     ["theme", "switch light / dark"],
     ["matrix", "follow the white rabbit"],
+    ["snake", "play snake"],
     ["history", "commands you ran"],
     ["clear", "clear the terminal"],
 ];
@@ -186,13 +188,13 @@ function MatrixRain({ onDone }: { onDone: () => void }) {
     );
 }
 
-type Entry = { cmd: string; out: ReactNode };
+type Entry = { cmd?: string; out: ReactNode };
 
 export default function Terminal() {
     const router = useRouter();
     const { resolvedTheme, setTheme } = useTheme();
     const [matrix, setMatrix] = useState(false);
-    const [session, setSession] = useState(0); // bumped by the red dot to replay the intro
+    const [snake, setSnake] = useState(false);
     const [typed, setTyped] = useState(0); // chars of INTRO_CMD typed so far
     const [entries, setEntries] = useState<Entry[]>([]);
     const [input, setInput] = useState("");
@@ -204,7 +206,7 @@ export default function Terminal() {
 
     const introDone = typed >= INTRO_CMD.length;
 
-    // Type the intro command, one character at a time (again after each restart).
+    // Type the intro command, one character at a time.
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             const t = window.setTimeout(() => setTyped(INTRO_CMD.length), 0);
@@ -223,7 +225,7 @@ export default function Terminal() {
             window.clearTimeout(start);
             window.clearInterval(id);
         };
-    }, [session]);
+    }, []);
 
     // Keep the newest output in view.
     useEffect(() => {
@@ -233,14 +235,11 @@ export default function Terminal() {
 
     const stopMatrix = useCallback(() => setMatrix(false), []);
 
-    const restart = () => {
-        setEntries([]);
-        setCleared(false);
-        setInput("");
-        setMatrix(false);
-        setTyped(0);
-        setSession((n) => n + 1);
-    };
+    const endSnake = useCallback((score: number, best: number) => {
+        setSnake(false);
+        setEntries((e) => [...e, { out: `snake: game over · score ${score} · best ${best}` }]);
+        window.setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 30);
+    }, []);
 
     /** Runs a command clicked in the output, as if typed. */
     const runClicked = (cmd: string) => {
@@ -335,6 +334,9 @@ export default function Terminal() {
                 setMatrix(true);
                 out = "Wake up, Neo… (press any key to exit)";
             }
+        } else if (lower === "snake") {
+            setSnake(true);
+            out = "Starting snake… (q to quit)";
         } else if (lower === "history") {
             out = past.length ? [...past].reverse().map((c, i) => `${String(i + 1).padStart(3)}  ${c}`).join("\n") : "No history yet.";
         } else if (lower === "cat developer.ts") {
@@ -394,54 +396,44 @@ export default function Terminal() {
     };
 
     return (
+        <div className="fx-sheets w-full max-w-xl rounded-xl">
         <div
-            className="relative isolate w-full max-w-md cursor-text overflow-hidden border-2 border-gray-600"
-            onClick={() => inputRef.current?.focus({ preventScroll: true })}
+            className="fx-paper-top relative isolate w-full cursor-text overflow-hidden rounded-xl border border-(--paper-edge) shadow-2xl shadow-black/10 dark:border-white/10 dark:shadow-black/40"
+            onClick={() => {
+                if (!snake) inputRef.current?.focus({ preventScroll: true });
+            }}
         >
-            {/* Linux/Tilix style Window bar */}
-            <div className="flex items-center justify-between border-b border-gray-300/50 px-4 py-2.5">
-                <div className="flex items-center gap-2">
-                    <svg
-                        className="h-4 w-4 text-purple-600 dark:text-purple-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                    </svg>
-                    <span className="font-mono text-xs font-medium text-gray-600 dark:text-gray-400">
-                        c.dianov@pop-os:~
+            {/* Window bar, GNOME / Pop!_OS style: title centered, minimize / maximize / close on the right */}
+            <div data-drag-handle className="relative flex items-center justify-end border-b border-(--paper-edge) px-3 py-2 xl:cursor-grab">
+                <span className="pointer-events-none absolute inset-x-0 text-center font-mono text-xs font-medium text-gray-500 dark:text-gray-400">
+                    c.dianov@pop-os:~
+                </span>
+                <div className="relative flex items-center gap-2">
+                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full text-gray-500 dark:text-gray-400">
+                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                            <path d="M4 11h8" />
+                        </svg>
                     </span>
-                </div>
-                <div className="flex gap-1.5">
-                    <button
-                        type="button"
-                        aria-label="Restart terminal"
-                        title="Restart"
-                        onClick={(ev) => {
-                            ev.stopPropagation();
-                            restart();
-                        }}
-                        className="h-3 w-3 rounded-full bg-red-500 transition-colors hover:bg-red-400"
-                    />
-                    <span className="h-3 w-3 rounded-full bg-yellow-400 transition-colors hover:bg-yellow-300" />
-                    <span className="h-3 w-3 rounded-full bg-green-500 transition-colors hover:bg-green-400" />
+                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full text-gray-500 dark:text-gray-400">
+                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                            <rect x="4" y="4" width="8" height="8" rx="1" />
+                        </svg>
+                    </span>
+                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-gray-500/15 text-gray-500 dark:text-gray-300">
+                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round">
+                            <path d="M5 5l6 6M11 5l-6 6" />
+                        </svg>
+                    </span>
                 </div>
             </div>
 
-            {/* Terminal body (glows sit outside the scroll area so they never cause scrollbars) */}
+            {/* Terminal body */}
             <div className="relative overflow-hidden">
-                <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 bg-[radial-gradient(circle,rgb(249_115_22/0.12),transparent_65%)]" />
-                <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 bg-[radial-gradient(circle,rgb(20_184_166/0.12),transparent_65%)]" />
             {matrix && <MatrixRain onDone={stopMatrix} />}
+            {snake && <Snake onExit={endSnake} />}
             <div
                 ref={bodyRef}
-                className="fx-term-scroll relative h-[360px] overflow-y-auto p-5 font-mono text-xs leading-relaxed sm:p-6 sm:text-sm lg:p-8"
+                className={`fx-term-scroll relative h-[400px] sm:h-[460px] overflow-y-auto p-5 font-mono text-xs leading-[1.9] sm:p-6 sm:text-sm sm:leading-[1.9] lg:p-8 lg:text-base lg:leading-[1.6] ${snake ? "invisible" : ""}`}
             >
 
                 <div className="relative z-10 flex flex-col gap-3">
@@ -478,17 +470,19 @@ export default function Terminal() {
 
                     {entries.map((e, i) => (
                         <div key={i}>
-                            <div>
-                                <Prompt />
-                                <span className="text-amber-700 dark:text-yellow-300">{e.cmd}</span>
-                            </div>
+                            {e.cmd !== undefined && (
+                                <div>
+                                    <Prompt />
+                                    <span className="text-amber-700 dark:text-yellow-300">{e.cmd}</span>
+                                </div>
+                            )}
                             {e.out !== null && (
                                 <div className="mt-1 whitespace-pre-wrap text-gray-700 dark:text-gray-300">{e.out}</div>
                             )}
                         </div>
                     ))}
 
-                    {introDone && (
+                    {introDone && !snake && (
                         <label className="flex items-center">
                             <Prompt />
                             <span className="relative flex-1">
@@ -518,6 +512,7 @@ export default function Terminal() {
                 </div>
             </div>
             </div>
+        </div>
         </div>
     );
 }

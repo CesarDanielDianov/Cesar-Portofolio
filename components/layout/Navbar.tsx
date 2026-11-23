@@ -11,7 +11,7 @@ export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <header className="fixed top-0 z-20 w-full bg-white/90 shadow-lg shadow-gray-300/60 backdrop-blur-sm dark:bg-gray-800/90 dark:shadow-gray-950/60">
+        <header className="fixed top-0 z-20 w-full bg-white/95 shadow-lg shadow-gray-300/60 dark:bg-gray-800/95 dark:shadow-gray-950/60">
             <div className="relative flex items-center justify-center px-4 py-4">
                 {/* Nationalities */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 sm:left-6 md:left-10">

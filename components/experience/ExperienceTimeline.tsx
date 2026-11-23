@@ -80,19 +80,20 @@ function Logo({ item }: { item: ExperienceItem }) {
         <Image
             src={item.icon}
             alt=""
-            width={44}
-            height={44}
-            className="fx-icon h-11 w-11 shrink-0 object-contain"
+            width={48}
+            height={48}
+            className="h-12 w-12 shrink-0 border border-(--paper-edge) bg-white object-contain p-1"
         />
     ) : (
         <div
             aria-hidden="true"
-            className="flex h-11 w-11 shrink-0 items-center justify-center border border-dashed border-slate-400 text-[10px] uppercase text-slate-400 dark:border-slate-500 dark:text-slate-500"
+            className="flex h-11 w-11 shrink-0 items-center justify-center border border-dashed border-(--paper-edge) text-[10px] uppercase text-slate-400 dark:text-slate-500"
         >
             logo
         </div>
     );
 }
+
 
 export default function ExperienceTimeline() {
     // Newest entry starts open; several can be open at once.
@@ -117,7 +118,7 @@ export default function ExperienceTimeline() {
 
     return (
         <section className="relative min-h-screen px-6 pb-20 font-mono text-slate-900 dark:text-white">
-            <PageHeader>Experience</PageHeader>
+            <PageHeader subtitle="Work, student organizations & education" className="mb-0 md:mb-0">Experience</PageHeader>
 
             <div className="mx-auto mt-12 flex w-full max-w-[924px] justify-end">
                 <button
@@ -152,7 +153,8 @@ export default function ExperienceTimeline() {
                                 }`}
                             />
 
-                            <div className="fx-card border border-slate-400 dark:border-slate-500">
+                            <div className={`fx-sheets ${idx % 2 ? "fx-sheets-alt" : ""}`}>
+                            <div className="fx-card fx-paper-top border border-(--paper-edge)">
                                 <button
                                     type="button"
                                     data-sound="own"
@@ -163,7 +165,10 @@ export default function ExperienceTimeline() {
                                 >
                                     <div className="min-w-0">
                                         <p className="text-xs text-slate-500 dark:text-gray-400">{it.period}</p>
-                                        <h2 className="mt-1 text-lg font-bold underline-offset-4 group-hover:underline sm:text-xl">
+                                        <h2 className="mt-1.5 text-lg font-bold underline-offset-4 group-hover:underline sm:text-2xl">
+                                            <span aria-hidden="true" className="mr-2 text-slate-400 dark:text-slate-500">
+                                                {String(idx + 1).padStart(2, "0")}
+                                            </span>
                                             {it.title}
                                         </h2>
                                     </div>
@@ -184,7 +189,7 @@ export default function ExperienceTimeline() {
                                     }`}
                                 >
                                     <div className="overflow-hidden">
-                                        <div className="border-t border-slate-400 p-4 sm:px-[23px] sm:py-[22px] dark:border-slate-500">
+                                        <div className="border-t border-(--paper-edge) p-4 sm:px-[23px] sm:py-[22px]">
                                             <p className="text-base leading-relaxed text-slate-700 dark:text-gray-100">
                                                 {it.description}
                                             </p>
@@ -205,8 +210,9 @@ export default function ExperienceTimeline() {
                                                     <li
                                                         key={skill}
                                                         style={{ animationDelay: `${120 + k * 45}ms` }}
-                                                        className={`${isOpen ? "fx-pop" : "opacity-0"} bg-gray-400 px-3.5 py-1.5 text-sm font-bold text-white dark:bg-gray-800`}
+                                                        className={`${isOpen ? "fx-pop" : "opacity-0"} border border-(--paper-edge) bg-slate-900/[0.04] px-3 py-1 text-sm font-bold text-slate-700 dark:bg-white/[0.06] dark:text-gray-100`}
                                                     >
+                                                        <span aria-hidden="true" className="text-slate-400 dark:text-slate-500">#</span>
                                                         {skill}
                                                     </li>
                                                 ))}
@@ -214,6 +220,7 @@ export default function ExperienceTimeline() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </RevealItem>
                     );

@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Caveat, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import HoverFx from "@/components/effects/HoverFx";
 import ClickSound from "@/components/effects/ClickSound";
 import BootScreen, { BOOT_KEY } from "@/components/effects/BootScreen";
 import { site } from "@/content/site";
@@ -15,6 +14,13 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500", "700"],
   display: "swap",
   variable: "--font-jetbrains",
+});
+
+/** Handwriting, for the sticky note and index card on the homepage desk. */
+const caveat = Caveat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-hand",
 });
 
 export const metadata: Metadata = {
@@ -48,7 +54,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn(jetbrains.variable)}>
+    <html lang="en" suppressHydrationWarning className={cn(jetbrains.variable, caveat.variable)}>
       <head>
         {/* Hide the boot screen before first paint if it already ran this session. */}
         <script
@@ -66,7 +72,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             Skip to content
           </a>
           <BootScreen />
-          <HoverFx />
           <ClickSound />
           <Navbar />
           <main id="main" className="flex-1">

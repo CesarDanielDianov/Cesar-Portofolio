@@ -167,41 +167,11 @@ html {
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
-.fx-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: radial-gradient(
-    260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(128, 128, 128, 0.18),
-    transparent 70%
-  );
-}
-.fx-card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 2px;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s ease;
-  background: currentColor;
-}
 .fx-card:hover,
 .fx-card:focus-visible {
-  transform: translateY(-4px) scale(1.015);
-  border-color: currentColor;
+  transform: translateY(-4px);
   box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.35);
 }
-.fx-card:hover::before,
-.fx-card:focus-visible::before { opacity: 1; }
-.fx-card:hover::after,
-.fx-card:focus-visible::after { transform: scaleX(1); }
 
 /* Nav / footer links: sliding underline */
 .fx-link {
@@ -226,17 +196,9 @@ html {
 .fx-tag { transition: transform 0.2s ease; }
 .fx-card:hover .fx-tag { transform: translateY(-2px); }
 
-/* Project icon: wiggle on card hover */
-@keyframes fx-wiggle {
-  0%, 100% { transform: rotate(0) scale(1); }
-  25% { transform: rotate(-8deg) scale(1.12); }
-  75% { transform: rotate(8deg) scale(1.12); }
-}
-.fx-card:hover .fx-icon { animation: fx-wiggle 0.6s ease; }
 
 @media (prefers-reduced-motion: reduce) {
-  .fx-card, .fx-card::before, .fx-card::after, .fx-link::after, .fx-tag { transition: none; }
-  .fx-card:hover .fx-icon { animation: none; }
+  .fx-card, .fx-link::after, .fx-tag { transition: none; }
 }
 
 /* Project cards: corner arrow + watermark icon */
@@ -261,7 +223,6 @@ html {
   background-size: 16px 16px;
   transition: border-color 0.3s ease;
 }
-.fx-card:hover .fx-stage { border-color: currentColor; }
 
 /* Big project images + "view" arrow */
 .fx-hero { transition: transform 0.5s ease; }
@@ -403,10 +364,18 @@ html {
 /* ───────── Boot screen ───────── */
 .boot { animation: boot-failsafe 0s linear 6s forwards; } /* hides itself even without JS */
 html[data-booted] .boot { display: none; }
-.boot-line { animation: fadeIn 0.25s ease-out both; }
+/* Ink tick pops onto the checkbox; the pen stroke follows the progress */
+.boot-tick { animation: boot-tick 0.25s ease-out both; }
+@keyframes boot-tick {
+  from { opacity: 0; transform: scale(1.6) rotate(-12deg); }
+  to { opacity: 1; transform: none; }
+}
+.boot-ink { transition: stroke-dashoffset 0.22s ease-out; }
+/* The whole page is pulled up off the desk, tilting as it goes */
 .boot-exit {
-  transform: translateY(-100%);
-  transition: transform 0.55s cubic-bezier(0.7, 0, 0.3, 1);
+  transform: translateY(-115%) rotate(-5deg);
+  transform-origin: top left;
+  transition: transform 0.65s cubic-bezier(0.7, 0, 0.3, 1);
 }
 @keyframes boot-failsafe { to { visibility: hidden; pointer-events: none; } }
 @media (prefers-reduced-motion: reduce) { .boot { display: none; } }
@@ -643,3 +612,209 @@ html[data-booted] .boot { display: none; }
   ::view-transition-new(.fx-peel) { animation: none; }
   ::view-transition-new(.fx-peel) { display: none; }
 }
+
+/* ───────── Paper-stack theme (same idea as the CV sheet) ─────────
+   Wrap any surface in .fx-sheets: two blank sheets sit underneath it, slightly
+   shifted and tilted, and fan out a little on hover. The surface itself should
+   use .fx-paper-top so it is opaque and hides the sheets below. Add
+   .fx-sheets-alt on every other item so neighbouring stacks don't look cloned. */
+:root {
+  --paper: #fcfcfa;
+  --paper-under: #f0f0ec;
+  --paper-edge: rgb(0 0 0 / 0.1);
+}
+.dark {
+  --paper: #111418;
+  --paper-under: #1a1e24;
+  --paper-edge: rgb(255 255 255 / 0.1);
+}
+.fx-paper-top {
+  background-color: var(--paper);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 10px 24px -14px rgb(0 0 0 / 0.25);
+}
+.fx-sheets { position: relative; isolation: isolate; }
+.fx-sheets::before,
+.fx-sheets::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--paper-under);
+  border: 1px solid var(--paper-edge);
+  /* Crisp offset edge instead of a blurred shadow: blurs are re-rasterised on
+     every frame while the sheets fan out, which is what made hover lag. */
+  box-shadow: 0 2px 0 var(--paper-edge);
+  transform: translate(var(--shift), 3px) rotate(var(--tilt));
+  transition: transform 0.35s ease;
+  backface-visibility: hidden;
+}
+.fx-sheets::before { --tilt: -1.1deg; --shift: -6px; }
+.fx-sheets::after { --tilt: 1.3deg; --shift: 7px; }
+.fx-sheets-alt::before { --tilt: 1deg; --shift: 6px; }
+.fx-sheets-alt::after { --tilt: -1.4deg; --shift: -7px; }
+.fx-sheets:hover::before,
+.fx-sheets:focus-within::before { transform: translate(calc(var(--shift) * 1.8), 5px) rotate(calc(var(--tilt) * 1.8)); }
+.fx-sheets:hover::after,
+.fx-sheets:focus-within::after { transform: translate(calc(var(--shift) * 1.8), 6px) rotate(calc(var(--tilt) * 1.8)); }
+@media (prefers-reduced-motion: reduce) {
+  .fx-sheets::before, .fx-sheets::after { transition: none; }
+}
+
+/* ───────── Homepage desk (components/home/Hero.tsx) ───────── */
+.font-hand { font-family: var(--font-hand), cursive; }
+
+/* Sheets are moved with the `translate` property and tilted with `rotate`,
+   so dragging never fights the tilt or the entrance animation (`transform`). */
+.fx-desk-sheet { transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), scale 0.15s ease; }
+.fx-desk-sheet.is-dragging { transition: scale 0.15s ease; scale: 1.02; user-select: none; }
+.fx-desk-sheet.is-dragging .fx-paper-top,
+.fx-desk-sheet.is-dragging .fx-sticky { box-shadow: 0 24px 40px -16px rgb(0 0 0 / 0.4); }
+
+@keyframes fx-drop {
+  from { opacity: 0; transform: translateY(-28px) scale(1.04); }
+  to { opacity: 1; transform: none; }
+}
+.fx-drop { animation: fx-drop 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+/* Yellow sticky note with a strip of tape */
+.fx-sticky {
+  background: #fde68a;
+  color: #292524;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 14px 22px -14px rgb(0 0 0 / 0.4);
+}
+.dark .fx-sticky { background: #e6cf6e; }
+.fx-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 96px;
+  height: 26px;
+  translate: -50% 0;
+  rotate: -4deg;
+  background: rgb(255 255 255 / 0.55);
+  border: 1px solid rgb(0 0 0 / 0.06);
+}
+.dark .fx-tape { background: rgb(255 255 255 / 0.3); }
+
+/* Index card: blue rules every 28px and a red margin line */
+.fx-lined {
+  background-image:
+    linear-gradient(90deg, transparent 38px, rgb(239 68 68 / 0.4) 38px 39px, transparent 39px),
+    repeating-linear-gradient(transparent 0 27px, rgb(59 130 246 / 0.2) 27px 28px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-drop { animation: none; }
+  .fx-desk-sheet { transition: none; }
+}
+
+/* Homepage signature: the name writes itself in, then the swash underlines it */
+.fx-sign {
+  clip-path: inset(-25% 100% -35% -6%);
+  animation: fx-sign 1.5s cubic-bezier(0.55, 0.1, 0.35, 1) 0.5s forwards;
+}
+@keyframes fx-sign { to { clip-path: inset(-25% -6% -35% -6%); } }
+.fx-swash path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: fx-swash 0.6s ease-out 1.9s forwards;
+}
+@keyframes fx-swash { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .fx-sign { animation: none; clip-path: none; }
+  .fx-swash path { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ───────── Desk: "tidy up" burns the papers, then fresh ones drop in ─────────
+   --burn grows three scorch holes (each sheet sets its own --h1..--h3 origins);
+   the mask eats the paper inside them and .fx-char paints the glowing,
+   charred rim just outside. Flames and embers rise from .fx-fire. */
+@property --burn {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+.fx-burn {
+  --b1: var(--burn);
+  --b2: calc(var(--burn) - 170px);
+  --b3: calc(var(--burn) - 330px);
+  -webkit-mask-image:
+    radial-gradient(circle at var(--h1), transparent var(--b1), #000 calc(var(--b1) + 14px)),
+    radial-gradient(circle at var(--h2), transparent var(--b2), #000 calc(var(--b2) + 14px)),
+    radial-gradient(circle at var(--h3), transparent var(--b3), #000 calc(var(--b3) + 14px));
+  mask-image:
+    radial-gradient(circle at var(--h1), transparent var(--b1), #000 calc(var(--b1) + 14px)),
+    radial-gradient(circle at var(--h2), transparent var(--b2), #000 calc(var(--b2) + 14px)),
+    radial-gradient(circle at var(--h3), transparent var(--b3), #000 calc(var(--b3) + 14px));
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  animation: fx-burn 1.7s cubic-bezier(0.5, 0, 0.9, 0.6) forwards;
+}
+@keyframes fx-burn { to { --burn: 950px; } }
+
+.fx-char {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--o),
+    transparent var(--r), #ffe08a calc(var(--r) + 1px), #ff8a1f calc(var(--r) + 4px),
+    #6b2a07 calc(var(--r) + 9px), rgb(40 22 10 / 0.75) calc(var(--r) + 16px),
+    rgb(90 50 20 / 0.25) calc(var(--r) + 34px), transparent calc(var(--r) + 50px)
+  );
+}
+/* One charred rim per scorch hole */
+.fx-char-1 { --o: var(--h1); --r: var(--b1); }
+.fx-char-2 { --o: var(--h2); --r: var(--b2); }
+.fx-char-3 { --o: var(--h3); --r: var(--b3); }
+
+.fx-fire { position: absolute; inset: 0; z-index: 70; pointer-events: none; overflow: visible; }
+.fx-flame {
+  position: absolute;
+  width: var(--s);
+  height: calc(var(--s) * 1.5);
+  margin-left: calc(var(--s) / -2);
+  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+  background: radial-gradient(ellipse at 50% 78%, #fff6c4 0 14%, #ffd23f 30%, #ff7a1a 52%, rgb(220 40 10 / 0) 72%);
+  filter: blur(1.5px);
+  transform-origin: 50% 100%;
+  opacity: 0;
+  animation:
+    fx-flicker 0.18s ease-in-out infinite alternate,
+    fx-flame-life 1.2s ease-out var(--d) forwards;
+}
+.fx-ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffb347;
+  box-shadow: 0 0 6px 2px rgb(255 140 30 / 0.7);
+  opacity: 0;
+  animation: fx-ember 1.4s ease-out var(--d) forwards;
+}
+@keyframes fx-flicker { from { scale: 1 1; } to { scale: 0.82 1.22; } }
+@keyframes fx-flame-life {
+  0% { opacity: 0; translate: 0 10px; }
+  20% { opacity: 1; }
+  100% { opacity: 0; translate: 0 -70px; }
+}
+@keyframes fx-ember {
+  0% { opacity: 0; translate: 0 0; }
+  15% { opacity: 1; }
+  100% { opacity: 0; translate: var(--dx) -160px; }
+}
+
+/* Fresh sheets snap home instantly (no slide) before dropping in */
+.fx-desk-sheet.is-reborn { transition: none; }
+
+/* Project icon: wiggle on card hover (projects page only; experience logos stay still) */
+@keyframes fx-wiggle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.12); }
+  75% { transform: rotate(8deg) scale(1.12); }
+}
+.fx-card:hover .fx-icon { animation: fx-wiggle 0.6s ease; }
+@media (prefers-reduced-motion: reduce) { .fx-card:hover .fx-icon { animation: none; } }

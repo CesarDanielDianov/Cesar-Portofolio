@@ -3,10 +3,18 @@ import { projects, type Project, type ProjectLayout } from "@/content/projects";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { cn } from "@/lib/utils";
 
+/** Grid placement, on the paper-stack wrapper. */
 const SPAN: Record<ProjectLayout, string> = {
-    featured: "md:col-span-2 lg:row-span-2 bg-gray-500/10 p-8",
-    tall: "lg:row-span-2 p-6",
-    wide: "md:col-span-2 p-6",
+    featured: "md:col-span-2 lg:row-span-2",
+    tall: "lg:row-span-2",
+    wide: "md:col-span-2",
+    standard: "",
+};
+
+const PAD: Record<ProjectLayout, string> = {
+    featured: "p-8",
+    tall: "p-6",
+    wide: "p-6",
     standard: "p-6",
 };
 
@@ -90,17 +98,18 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
     );
 
     const stage = p.layout !== "standard" && (
-        <div className={cn("fx-stage flex items-center justify-center overflow-hidden border border-gray-500/40", STAGE[p.layout])}>
+        <div className={cn("fx-stage flex items-center justify-center overflow-hidden border border-(--paper-edge)", STAGE[p.layout])}>
             {img}
         </div>
     );
 
     return (
+        <div className={cn("fx-sheets", index % 2 && "fx-sheets-alt", SPAN[p.layout])}>
         <a
             href={p.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn("fx-card flex flex-col border border-gray-500 dark:text-white", SPAN[p.layout])}
+            className={cn("fx-card fx-paper-top flex h-full flex-col border border-(--paper-edge) dark:text-white", PAD[p.layout])}
         >
             {p.layout === "wide" ? (
                 <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-center">
@@ -129,13 +138,14 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
                 </>
             )}
         </a>
+        </div>
     );
 }
 
 export default function ProjectGrid() {
     return (
         <section className="relative min-h-screen">
-            <PageHeader>Projects</PageHeader>
+            <PageHeader subtitle="AI solvers, systems programming, databases & more">Projects</PageHeader>
 
             <div className="mx-auto grid max-w-7xl grid-flow-dense auto-rows-[minmax(240px,auto)] grid-cols-1 gap-5 px-6 pb-16 md:grid-cols-2 lg:grid-cols-4">
                 {projects.map((p, i) => (
