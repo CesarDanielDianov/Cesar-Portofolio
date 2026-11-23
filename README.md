@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# César Dianov — Portfolio
 
-## Getting Started
+Personal portfolio: experience timeline, project showcase, CV, and an interactive terminal on the homepage.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript (strict) · Tailwind CSS v4 · next-themes
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000 (development, slower; not representative of real performance)
+npm run build    # production build, all pages are statically prerendered
+npm start        # serve the production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/                    Routes (App Router)
+  layout.tsx            Root layout: metadata, theme, navbar/footer, skip link
+  page.tsx              /            Home
+  experience/page.tsx   /experience  Timeline
+  projects/page.tsx     /projects    Project grid
+  cv/page.tsx           /cv          Embedded PDF
+  not-found.tsx         404
+  globals.css           Theme tokens, backgrounds, effects (fx-*)
+components/
+  layout/               Navbar, Footer, ThemeToggle
+  home/                 Hero, interactive Terminal
+  experience/           ExperienceTimeline
+  projects/             ProjectGrid
+  cv/                   CvViewer
+  effects/              HoverFx (cursor spotlight on cards)
+  ui/                   Shared primitives (PageHeader, shadcn Button)
+content/                All site copy and data: edit these to update the site
+  site.ts               Name, links, nav, tech stack
+  experience.ts         Timeline entries
+  projects.ts           Projects and their grid layout
+lib/                    Utilities (cn, sound)
+public/                 Images and the CV PDF
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Updating content
 
-## Learn More
+Content lives in `content/`. UI components never hard-code copy.
 
-To learn more about Next.js, take a look at the following resources:
+- **New project:** add an entry to `content/projects.ts`; `layout` controls its size in the grid (`featured`, `wide`, `tall`, `standard`).
+- **New role:** add an entry at the top of `content/experience.ts` (newest first).
+- **New CV:** replace `public/cesar-dianov-cv.pdf`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Old URLs `/contacts` and `/work` permanently redirect to `/experience` and `/projects` (`next.config.ts`).
+- Animations respect `prefers-reduced-motion`.
+- Backgrounds are pure CSS (no image assets).
