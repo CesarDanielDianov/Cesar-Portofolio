@@ -19,7 +19,7 @@ export default function Navbar() {
                 </div>
 
                 <nav aria-label="Main">
-                    <ul className="flex items-center gap-4 text-xs font-bold uppercase sm:gap-6 sm:text-sm md:gap-10 md:text-lg lg:gap-20 lg:text-xl dark:text-white">
+                    <ul className="flex items-center gap-4 text-xs font-bold uppercase sm:gap-6 sm:text-base md:gap-10 md:text-xl lg:gap-20 lg:text-2xl dark:text-white">
                         {nav.map(({ href, label }) => {
                             const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
                             return (

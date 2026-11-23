@@ -61,12 +61,12 @@ export function ThemeToggle() {
         <Button
             variant="outline"
             size="icon"
-            className="rounded-full"
+            className="size-10 rounded-full"
             aria-label="Toggle dark mode"
             onClick={toggle}
         >
-            <FaSun aria-hidden="true" className="absolute rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-            <FaMoon aria-hidden="true" className="absolute rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
+            <FaSun aria-hidden="true" className="absolute size-5 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
+            <FaMoon aria-hidden="true" className="absolute size-5 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
         </Button>
     );
 }

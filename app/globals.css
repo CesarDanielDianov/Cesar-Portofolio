@@ -619,8 +619,8 @@ html[data-booted] .boot { display: none; }
    use .fx-paper-top so it is opaque and hides the sheets below. Add
    .fx-sheets-alt on every other item so neighbouring stacks don't look cloned. */
 :root {
-  --paper: #fcfcfa;
-  --paper-under: #f0f0ec;
+  --paper: #faf6ee;
+  --paper-under: #eee9dc;
   --paper-edge: rgb(0 0 0 / 0.1);
 }
 .dark {
