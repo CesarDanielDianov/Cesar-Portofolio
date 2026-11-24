@@ -1,23 +1,21 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useT } from "@/components/i18n/LangProvider";
-
-const SLICES = 12;
 
 /** Official palettes, used for the confetti. */
 const PORTUGAL = ["#046A38", "#DA291C", "#FFE900"];
 const MOLDOVA = ["#0046AE", "#FFD200", "#CC092F"];
 
-type Flag = { id: "pt" | "md"; src: string; ratio: string; colors: string[]; audio: string; song: string };
+type Flag = { id: "pt" | "md"; src: string; ratio: number; colors: string[]; audio: string; song: string };
 
 const FLAGS: Flag[] = [
     // "A Portuguesa" by the United States Navy Band: public domain (US government work),
     // from Wikimedia Commons, File:A_Portuguesa.ogg.
-    { id: "pt", src: "/pt.webp", ratio: "3 / 2", colors: PORTUGAL, audio: "/audio/a-portuguesa.ogg", song: "A Portuguesa" },
+    { id: "pt", src: "/pt.webp", ratio: 3 / 2, colors: PORTUGAL, audio: "/audio/a-portuguesa.ogg", song: "A Portuguesa" },
     // "Limba noastră" by the United States Navy Band (c. 2003): public domain,
     // from Wikimedia Commons, File:Imnul_Republicii_Moldova_US_NAVY.ogg.
-    { id: "md", src: "/ml.png", ratio: "2 / 1", colors: MOLDOVA, audio: "/audio/limba-noastra.ogg", song: "Limba noastră" },
+    { id: "md", src: "/ml.png", ratio: 2, colors: MOLDOVA, audio: "/audio/limba-noastra.ogg", song: "Limba noastră" },
 ];
 
 /**
@@ -32,37 +30,121 @@ function pickSong(f: Flag) {
     return f.id === "md" && Math.random() < EGG.chance ? EGG : f;
 }
 
-/** Longest a song plays per click, and the fade at its end. */
-const CLIP_MS = 60000;
-const FADE_MS = 500;
 
+/** Wave period in seconds: idle, hovered, and while that flag's anthem plays. */
+const PERIOD = { idle: 1.6, hover: 0.7, playing: 0.5 };
+/** Room above and below the cloth for the wave, as a fraction of the flag's height. */
+const PAD = 0.1;
+/** How many wavelengths fit across the flag. */
+const WAVES = 1.15;
 /**
- * A flag drawn as vertical strips of the same image, each bobbing slightly
- * out of phase so the cloth ripples. The ripple grows away from the pole
- * (--a scales with the slice index), and a moving sheen fakes the folds.
+ * A flag drawn on a canvas one pixel column at a time. Each column shifts by
+ * a travelling sine wave whose height grows away from the pole, so the cloth
+ * bends as one continuous surface. Light and shade follow the slope of the
+ * wave to show the folds. `period` changes ease in, so the speed never jumps.
  */
-function WavingFlag({ src, ratio }: Pick<Flag, "src" | "ratio">) {
+function WavingFlag({ src, ratio, period }: Pick<Flag, "src" | "ratio"> & { period: number }) {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const periodRef = useRef(period);
+
+    useEffect(() => {
+        periodRef.current = period;
+    }, [period]);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas?.getContext("2d");
+        if (!canvas || !ctx) return;
+
+        const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const img = new Image();
+        img.src = src;
+
+        let phase = 0;
+        let speed = (2 * Math.PI) / periodRef.current;
+        let last = performance.now();
+        let raf = 0;
+
+        const draw = () => {
+            const W = canvas.width;
+            const H = canvas.height;
+            if (!W || !H || !img.naturalWidth) return;
+            const pad = (H * PAD) / (1 + 2 * PAD);
+            const fh = H - 2 * pad;
+            const k = WAVES * 2 * Math.PI;
+            const sw = img.naturalWidth / W;
+
+            ctx.clearRect(0, 0, W, H);
+            ctx.globalCompositeOperation = "source-over";
+            for (let x = 0; x < W; x++) {
+                const u = x / W;
+                const a = phase - u * k;
+                const reach = u * (0.35 + 0.65 * u); // pinned at the pole
+                const dy = Math.sin(a) * pad * reach;
+                // Folds facing away look slightly shorter: a hint of depth.
+                const ch = fh * (1 - 0.05 * reach * (1 - Math.cos(a)));
+                ctx.drawImage(img, x * sw, 0, sw, img.naturalHeight, x, pad + dy + (fh - ch) / 2, 1, ch);
+            }
+
+            // Shade the cloth only (source-atop): light on rising slopes, dark on falling ones.
+            const shade = ctx.createLinearGradient(0, 0, W, 0);
+            const stops = 32;
+            for (let i = 0; i <= stops; i++) {
+                const u = i / stops;
+                const slope = Math.cos(phase - u * k) * (0.3 + 0.7 * u);
+                shade.addColorStop(
+                    u,
+                    slope > 0 ? `rgba(255,255,255,${(0.22 * slope).toFixed(3)})` : `rgba(0,0,0,${(-0.28 * slope).toFixed(3)})`,
+                );
+            }
+            ctx.globalCompositeOperation = "source-atop";
+            ctx.fillStyle = shade;
+            ctx.fillRect(0, 0, W, H);
+            ctx.globalCompositeOperation = "source-over";
+        };
+
+        const frame = (now: number) => {
+            const dt = Math.min(0.05, (now - last) / 1000);
+            last = now;
+            const target = (2 * Math.PI) / periodRef.current;
+            speed += (target - speed) * Math.min(1, dt * 4);
+            phase += speed * dt;
+            draw();
+            raf = requestAnimationFrame(frame);
+        };
+
+        const resize = () => {
+            const r = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = Math.round(r.width * dpr);
+            canvas.height = Math.round(r.height * dpr);
+            draw();
+        };
+        const ro = new ResizeObserver(resize);
+        ro.observe(canvas);
+
+        img.onload = () => {
+            resize();
+            if (!still) {
+                last = performance.now();
+                raf = requestAnimationFrame(frame);
+            }
+        };
+
+        return () => {
+            cancelAnimationFrame(raf);
+            ro.disconnect();
+            img.onload = null;
+        };
+    }, [src]);
+
     return (
-        <span
-            className="fx-flag h-4 sm:h-7 lg:h-9"
-            style={{ aspectRatio: ratio } as CSSProperties}
-        >
-            {Array.from({ length: SLICES }, (_, i) => (
-                <span
-                    key={i}
-                    className="fx-flag-slice"
-                    style={
-                        {
-                            "--i": i,
-                            "--a": `${(i / (SLICES - 1)) * 2.2}px`,
-                            backgroundImage: `url(${src})`,
-                            backgroundSize: `${SLICES * 100}% 100%`,
-                            backgroundPosition: `${(i / (SLICES - 1)) * 100}% 0`,
-                        } as CSSProperties
-                    }
-                />
-            ))}
-        </span>
+        <canvas
+            ref={canvasRef}
+            aria-hidden
+            className="fx-flag h-[18px] sm:h-8 lg:h-10"
+            style={{ aspectRatio: `${ratio} / ${1 + 2 * PAD}` } as CSSProperties}
+        />
     );
 }
 
@@ -107,19 +189,16 @@ function burst(from: HTMLElement, colors: string[]) {
 }
 
 /**
- * One song at a time, module-wide. Plays up to CLIP_MS of a song, fading out at
- * the end; starting another song cuts off the current one. `owner` is the flag
- * that started it; `onChange` hears which flag is playing (or null), including
- * when a song ends on its own.
+ * One song at a time, module-wide. A song plays to its end; starting another
+ * cuts off the current one. `owner` is the flag that started it; `onChange`
+ * hears which flag is playing (or null), including when a song ends by itself.
  */
 const players = new Map<string, HTMLAudioElement>();
-let playing: { owner: string; audio: HTMLAudioElement; stop: ReturnType<typeof setTimeout>; fade?: ReturnType<typeof setInterval> } | null = null;
+let playing: { owner: string; audio: HTMLAudioElement } | null = null;
 let onChange: ((owner: string | null) => void) | null = null;
 
 function stopClip() {
     if (!playing) return;
-    clearTimeout(playing.stop);
-    clearInterval(playing.fade);
     playing.audio.pause();
     playing = null;
     onChange?.(null);
@@ -130,7 +209,6 @@ function playClip(src: string, owner: string) {
     let audio = players.get(src);
     if (!audio) {
         audio = new Audio(src);
-        // A song shorter than CLIP_MS ends by itself: count it as stopped.
         audio.addEventListener("ended", () => playing?.audio === audio && stopClip());
         players.set(src, audio);
     }
@@ -139,17 +217,7 @@ function playClip(src: string, owner: string) {
     a.volume = 0.8;
     // Fails quietly when the file is missing or the browser blocks playback.
     a.play().catch(() => playing?.audio === a && stopClip());
-
-    const stop = setTimeout(() => {
-        if (!playing || playing.audio !== a) return;
-        const steps = 10;
-        let n = 0;
-        playing.fade = setInterval(() => {
-            a.volume = Math.max(0, 0.8 * (1 - ++n / steps));
-            if (n >= steps) stopClip();
-        }, FADE_MS / steps);
-    }, CLIP_MS - FADE_MS);
-    playing = { owner, audio: a, stop };
+    playing = { owner, audio: a };
     onChange?.(owner);
 }
 
@@ -161,6 +229,7 @@ function playClip(src: string, owner: string) {
 export default function FlagPair() {
     const t = useT().flags;
     const [active, setActive] = useState<string | null>(null);
+    const [hover, setHover] = useState(false);
 
     useEffect(() => {
         onChange = setActive;
@@ -171,7 +240,15 @@ export default function FlagPair() {
     }, []);
 
     return (
-        <div role="group" aria-label={t.group} className="fx-flags flex items-center gap-2.5">
+        <div
+            role="group"
+            aria-label={t.group}
+            className="fx-flags flex items-center gap-2.5"
+            onPointerEnter={() => setHover(true)}
+            onPointerLeave={() => setHover(false)}
+            onFocus={() => setHover(true)}
+            onBlur={() => setHover(false)}
+        >
             {FLAGS.map((f) => {
                 const on = active === f.id;
                 return (
@@ -189,7 +266,7 @@ export default function FlagPair() {
                             burst(e.currentTarget, song.colors);
                         }}
                     >
-                        <WavingFlag src={f.src} ratio={f.ratio} />
+                        <WavingFlag src={f.src} ratio={f.ratio} period={on ? PERIOD.playing : hover ? PERIOD.hover : PERIOD.idle} />
                     </button>
                 );
             })}

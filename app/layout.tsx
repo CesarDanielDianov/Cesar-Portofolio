@@ -72,7 +72,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           }}
         />
       </head>
-      <body className="site-bg flex min-h-screen flex-col font-sans">
+      <body className="site-bg flex min-h-screen flex-col font-sans" suppressHydrationWarning>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <LangProvider initial={lang}>
           <Fireflies />

@@ -424,12 +424,10 @@ html[data-booted] .boot { display: none; }
 @keyframes boot-failsafe { to { visibility: hidden; pointer-events: none; } }
 @media (prefers-reduced-motion: reduce) { .boot { display: none; } }
 
-/* ───────── Navbar flags: waving cloth (FlagPair) ───────── */
-.fx-flags { cursor: pointer; --wave-speed: 1.6s; }
-.fx-flags:hover, .fx-flags:focus-visible { --wave-speed: 0.7s; }
+/* ───────── Navbar flags: waving cloth (FlagPair, drawn on canvas) ───────── */
+.fx-flags { cursor: pointer; }
 .fx-flag {
-  position: relative;
-  display: flex;
+  display: block;
   transform-origin: left center;
   transition: transform 0.3s ease;
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
@@ -439,36 +437,7 @@ html[data-booted] .boot { display: none; }
 .fx-flag-btn { cursor: pointer; border-radius: 2px; }
 .fx-flag-btn:active .fx-flag { transform: scale(0.92); }
 .fx-flag-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-/* Its anthem is playing: wave hard (click again to stop). */
-.fx-flag-btn.is-playing { --wave-speed: 0.5s; }
-.fx-flag-slice {
-  flex: 1 1 0;
-  height: 100%;
-  background-repeat: no-repeat;
-  animation: fx-flag-wave var(--wave-speed) ease-in-out infinite;
-  animation-delay: calc(var(--i) * 0.11s - 2s);
-}
-/* Sheen sweeping across the cloth to suggest folds. */
-.fx-flag::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 0.28) 20%, transparent 40%, rgb(0 0 0 / 0.18) 60%, transparent 80%);
-  background-size: 250% 100%;
-  animation: fx-flag-sheen var(--wave-speed) linear infinite;
-  mix-blend-mode: soft-light;
-}
-@keyframes fx-flag-wave {
-  0%, 100% { transform: translateY(calc(var(--a) * -1)); }
-  50% { transform: translateY(var(--a)); }
-}
-@keyframes fx-flag-sheen {
-  from { background-position: -150% 0; }
-  to { background-position: 100% 0; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .fx-flag-slice, .fx-flag::after { animation: none; }
   .fx-flag { transition: none; }
 }
 
