@@ -4,12 +4,9 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { site } from "@/content/site";
-import { getProjects, projectCount } from "@/content/projects";
+import { getProjects } from "@/content/projects";
 import { getExperience } from "@/content/experience";
 import { useLang, useT } from "@/components/i18n/LangProvider";
-import { LOCALE } from "@/lib/i18n";
-import type { Dict } from "@/content/i18n";
-import Snake from "@/components/home/terminal/Snake";
 
 const INTRO_CMD = "cat developer.ts";
 
@@ -34,8 +31,6 @@ function Prompt() {
 }
 
 function DeveloperObject() {
-    const T = useT();
-    const [r1, r2, r3] = T.terminal.roles;
     return (
         <pre className="overflow-x-auto text-gray-700 dark:text-gray-300">
             <code className="block">
@@ -46,17 +41,17 @@ function DeveloperObject() {
                 {"\n"}
                 {"  "}roles: [{"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;{r1}&quot;</span>,
+                <span className="text-teal-700 dark:text-teal-300">&quot;LEIC Senior @ IST&quot;</span>,
                 {"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;{r2}&quot;</span>,
+                <span className="text-teal-700 dark:text-teal-300">&quot;IT Exec @ Five Thousand Miles&quot;</span>,
                 {"\n"}
                 {"    "}
-                <span className="text-teal-700 dark:text-teal-300">&quot;{r3}&quot;</span>
+                <span className="text-teal-700 dark:text-teal-300">&quot;Dev & HR @ NEIIST&quot;</span>
                 {"\n"}
                 {"  "}]
                 {"\n"}
-                {"  "}focus: <span className="text-teal-700 dark:text-teal-300">&quot;{T.home.focusValue}&quot;</span>
+                {"  "}focus: <span className="text-teal-700 dark:text-teal-300">&quot;Software Architecture & AI&quot;</span>
                 {"\n"}
                 {"}"};
             </code>
@@ -64,30 +59,28 @@ function DeveloperObject() {
     );
 }
 
-/** Commands listed by `help`, in order; their descriptions are in the dictionary. */
-const COMMANDS: (keyof Dict["terminal"]["help"])[] = [
-    "help",
-    "whoami",
-    "neofetch",
-    "ls",
-    "ls projects",
-    "ls experience",
-    "cat developer.ts",
-    "experience",
-    "projects",
-    "cv",
-    "github",
-    "linkedin",
-    "theme",
-    "matrix",
-    "snake",
-    "history",
-    "clear",
+const HELP: [string, string][] = [
+    ["help", "list commands"],
+    ["whoami", "who is this?"],
+    ["neofetch", "system info, developer edition"],
+    ["ls", "list files"],
+    ["ls projects", "list every project"],
+    ["ls experience", "list every role"],
+    ["cat developer.ts", "print the developer object"],
+    ["experience", "open the experience page"],
+    ["projects", "open the projects page"],
+    ["cv", "open the CV page"],
+    ["github", "open my GitHub"],
+    ["linkedin", "open my LinkedIn"],
+    ["theme", "switch light / dark"],
+    ["matrix", "follow the white rabbit"],
+    ["history", "commands you ran"],
+    ["clear", "clear the terminal"],
 ];
 
 /** Everything Tab can complete to, most useful first. */
 const COMPLETIONS = [
-    ...COMMANDS,
+    ...HELP.map(([c]) => c),
     "theme dark",
     "theme light",
     "date",
@@ -112,16 +105,15 @@ const ASCII = [
 
 function Neofetch({ theme, uptime }: { theme: string; uptime: number }) {
     const { lang } = useLang();
-    const t = useT();
-    const k = t.terminal.neofetch;
+    const T = useT();
     const rows: [string, string][] = [
-        [k.location, site.location],
-        [k.study, t.site.tagline],
-        [k.roles, getExperience(lang).map((e) => e.title.toLowerCase()).slice(0, 3).join(", ")],
-        [k.projects, String(projectCount)],
-        [k.shell, "portfolio-sh"],
-        [k.theme, t.terminal.themeName[theme] ?? theme],
-        [k.uptime, uptime < 60 ? `${uptime}s` : `${Math.floor(uptime / 60)}m ${uptime % 60}s`],
+        ["Location", site.location],
+        ["Study", T.site.tagline],
+        ["Roles", getExperience(lang).map((e) => e.title.toLowerCase()).slice(0, 3).join(", ")],
+        ["Projects", String(getProjects(lang).length)],
+        ["Shell", "portfolio-sh"],
+        ["Theme", theme],
+        ["Uptime", uptime < 60 ? `${uptime}s` : `${Math.floor(uptime / 60)}m ${uptime % 60}s`],
     ];
     return (
         <div className="flex flex-wrap items-start gap-x-5 gap-y-2">
@@ -197,16 +189,15 @@ function MatrixRain({ onDone }: { onDone: () => void }) {
     );
 }
 
-type Entry = { cmd?: string; out: ReactNode };
+type Entry = { cmd: string; out: ReactNode };
 
 export default function Terminal() {
-    const router = useRouter();
     const { lang } = useLang();
     const T = useT();
-    const t = T.terminal;
+    const router = useRouter();
     const { resolvedTheme, setTheme } = useTheme();
     const [matrix, setMatrix] = useState(false);
-    const [snake, setSnake] = useState(false);
+    const [session, setSession] = useState(0); // bumped by the red dot to replay the intro
     const [typed, setTyped] = useState(0); // chars of INTRO_CMD typed so far
     const [entries, setEntries] = useState<Entry[]>([]);
     const [input, setInput] = useState("");
@@ -218,7 +209,7 @@ export default function Terminal() {
 
     const introDone = typed >= INTRO_CMD.length;
 
-    // Type the intro command, one character at a time.
+    // Type the intro command, one character at a time (again after each restart).
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             const t = window.setTimeout(() => setTyped(INTRO_CMD.length), 0);
@@ -237,7 +228,7 @@ export default function Terminal() {
             window.clearTimeout(start);
             window.clearInterval(id);
         };
-    }, []);
+    }, [session]);
 
     // Keep the newest output in view.
     useEffect(() => {
@@ -247,11 +238,14 @@ export default function Terminal() {
 
     const stopMatrix = useCallback(() => setMatrix(false), []);
 
-    const endSnake = useCallback((score: number, best: number) => {
-        setSnake(false);
-        setEntries((e) => [...e, { out: t.snakeOver(score, best) }]);
-        window.setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 30);
-    }, [t]);
+    const restart = () => {
+        setEntries([]);
+        setCleared(false);
+        setInput("");
+        setMatrix(false);
+        setTyped(0);
+        setSession((n) => n + 1);
+    };
 
     /** Runs a command clicked in the output, as if typed. */
     const runClicked = (cmd: string) => {
@@ -276,7 +270,7 @@ export default function Terminal() {
         } else if (lower === "help") {
             out = (
                 <div className="grid grid-cols-[auto_1fr] gap-x-4">
-                    {COMMANDS.map((c) => (
+                    {HELP.map(([c, d]) => (
                         <div key={c} className="contents">
                             <button
                                 type="button"
@@ -288,7 +282,7 @@ export default function Terminal() {
                             >
                                 {c}
                             </button>
-                            <span className="text-gray-500 dark:text-gray-400">{t.help[c]}</span>
+                            <span className="text-gray-500 dark:text-gray-400">{d}</span>
                         </div>
                     ))}
                 </div>
@@ -338,39 +332,35 @@ export default function Terminal() {
         } else if (lower === "theme" || lower === "theme dark" || lower === "theme light") {
             const next = lower === "theme" ? (resolvedTheme === "dark" ? "light" : "dark") : lower.slice(6);
             setTheme(next);
-            out = t.themeSet(t.themeName[next] ?? next);
+            out = `Theme set to ${next}.`;
         } else if (lower === "matrix") {
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-                out = t.matrixOff;
+                out = "Wake up, Neo… (animation off: reduced motion is on)";
             } else {
                 setMatrix(true);
-                out = t.matrixOn;
+                out = "Wake up, Neo… (press any key to exit)";
             }
-        } else if (lower === "snake") {
-            setSnake(true);
-            out = t.snakeStart;
         } else if (lower === "history") {
-            out = past.length ? [...past].reverse().map((c, i) => `${String(i + 1).padStart(3)}  ${c}`).join("\n") : t.noHistory;
+            out = past.length ? [...past].reverse().map((c, i) => `${String(i + 1).padStart(3)}  ${c}`).join("\n") : "No history yet.";
         } else if (lower === "cat developer.ts") {
             out = <DeveloperObject />;
         } else if (ROUTES[name]) {
-            out = t.opening(name);
+            out = `Opening ${name}…`;
             window.setTimeout(() => router.push(ROUTES[name]), 450);
         } else if (lower === "github" || lower === "linkedin") {
-            out = t.opening(lower);
+            out = `Opening ${lower}…`;
             window.open(site.links[lower], "_blank", "noopener,noreferrer");
         } else if (lower === "date") {
-            out = new Date().toLocaleString(LOCALE[lang], { dateStyle: "full", timeStyle: "long" });
+            out = new Date().toString();
         } else if (lower.startsWith("echo ")) {
             out = cmd.slice(5);
         } else if (lower.startsWith("sudo")) {
-            out = t.sudo;
+            out = "Permission denied. Nice try.";
         } else {
             out = (
                 <>
-                    {t.notFound(cmd)}
-                    <span className="text-amber-700 dark:text-yellow-300">help</span>
-                    {t.notFoundAfter}
+                    command not found: {cmd}. Type{" "}
+                    <span className="text-amber-700 dark:text-yellow-300">help</span>.
                 </>
             );
         }
@@ -409,44 +399,55 @@ export default function Terminal() {
     };
 
     return (
-        <div className="fx-sheets w-full max-w-xl rounded-xl">
+        <div className="fx-sheets h-full w-full">
         <div
-            className="fx-paper-top relative isolate w-full cursor-text overflow-hidden rounded-xl border border-(--paper-edge) shadow-2xl shadow-black/10 dark:border-white/10 dark:shadow-black/40"
-            onClick={() => {
-                if (!snake) inputRef.current?.focus({ preventScroll: true });
-            }}
+            className="fx-paper-top relative isolate flex h-full w-full cursor-text flex-col overflow-hidden border border-(--paper-edge)"
+            onClick={() => inputRef.current?.focus({ preventScroll: true })}
         >
-            {/* Window bar, GNOME / Pop!_OS style: title centered, minimize / maximize / close on the right */}
-            <div data-drag-handle className="relative flex items-center justify-end border-b border-(--paper-edge) px-3 py-2 xl:cursor-grab">
-                <span className="pointer-events-none absolute inset-x-0 text-center font-mono text-xs font-medium text-gray-500 dark:text-gray-400">
-                    c.dianov@pop-os:~
-                </span>
-                <div className="relative flex items-center gap-2">
-                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full text-gray-500 dark:text-gray-400">
-                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                            <path d="M4 11h8" />
-                        </svg>
+            {/* Linux/Tilix style Window bar */}
+            <div className="flex items-center justify-between border-b border-gray-300/50 px-4 py-2.5">
+                <div className="flex items-center gap-2">
+                    <svg
+                        className="h-4 w-4 text-purple-600 dark:text-purple-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                    </svg>
+                    <span className="font-mono text-xs font-medium text-gray-600 lg:text-sm dark:text-gray-400">
+                        c.dianov@pop-os:~
                     </span>
-                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full text-gray-500 dark:text-gray-400">
-                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                            <rect x="4" y="4" width="8" height="8" rx="1" />
-                        </svg>
-                    </span>
-                    <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-gray-500/15 text-gray-500 dark:text-gray-300">
-                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round">
-                            <path d="M5 5l6 6M11 5l-6 6" />
-                        </svg>
-                    </span>
+                </div>
+                <div className="flex gap-1.5">
+                    <button
+                        type="button"
+                        aria-label="Restart terminal"
+                        title="Restart"
+                        onClick={(ev) => {
+                            ev.stopPropagation();
+                            restart();
+                        }}
+                        className="h-3 w-3 rounded-full bg-red-500 transition-colors hover:bg-red-400"
+                    />
+                    <span className="h-3 w-3 rounded-full bg-yellow-400 transition-colors hover:bg-yellow-300" />
+                    <span className="h-3 w-3 rounded-full bg-green-500 transition-colors hover:bg-green-400" />
                 </div>
             </div>
 
-            {/* Terminal body */}
-            <div className="relative overflow-hidden">
+            {/* Terminal body (glows sit outside the scroll area so they never cause scrollbars) */}
+            <div className="relative min-h-0 flex-1 overflow-hidden">
+                <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 bg-[radial-gradient(circle,rgb(249_115_22/0.12),transparent_65%)]" />
+                <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 bg-[radial-gradient(circle,rgb(20_184_166/0.12),transparent_65%)]" />
             {matrix && <MatrixRain onDone={stopMatrix} />}
-            {snake && <Snake onExit={endSnake} />}
             <div
                 ref={bodyRef}
-                className={`fx-term-scroll relative h-[400px] sm:h-[460px] overflow-y-auto p-5 font-mono text-xs leading-[1.9] sm:p-6 sm:text-sm sm:leading-[1.9] lg:p-8 lg:text-base lg:leading-[1.6] ${snake ? "invisible" : ""}`}
+                className="fx-term-scroll relative h-[360px] overflow-y-auto lg:h-full p-5 font-mono text-xs leading-relaxed sm:p-6 sm:text-sm lg:p-8 lg:text-base"
             >
 
                 <div className="relative z-10 flex flex-col gap-3">
@@ -463,7 +464,7 @@ export default function Terminal() {
                                 <div className="animate-[fadeIn_0.5s_ease-out_both]">
                                     <DeveloperObject />
                                     <p className="mt-2 text-gray-400 dark:text-gray-500">
-                                        {t.hintBefore}
+                                        {"// type "}
                                         <button
                                             type="button"
                                             onClick={(ev) => {
@@ -474,7 +475,7 @@ export default function Terminal() {
                                         >
                                             help
                                         </button>
-                                        {t.hintAfter}
+                                        {" and press Enter (Tab completes)"}
                                     </p>
                                 </div>
                             )}
@@ -483,19 +484,17 @@ export default function Terminal() {
 
                     {entries.map((e, i) => (
                         <div key={i}>
-                            {e.cmd !== undefined && (
-                                <div>
-                                    <Prompt />
-                                    <span className="text-amber-700 dark:text-yellow-300">{e.cmd}</span>
-                                </div>
-                            )}
+                            <div>
+                                <Prompt />
+                                <span className="text-amber-700 dark:text-yellow-300">{e.cmd}</span>
+                            </div>
                             {e.out !== null && (
                                 <div className="mt-1 whitespace-pre-wrap text-gray-700 dark:text-gray-300">{e.out}</div>
                             )}
                         </div>
                     ))}
 
-                    {introDone && !snake && (
+                    {introDone && (
                         <label className="flex items-center">
                             <Prompt />
                             <span className="relative flex-1">
@@ -504,7 +503,7 @@ export default function Terminal() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={onKeyDown}
-                                    aria-label={t.inputLabel}
+                                    aria-label="Terminal input"
                                     autoComplete="off"
                                     autoCapitalize="off"
                                     spellCheck={false}

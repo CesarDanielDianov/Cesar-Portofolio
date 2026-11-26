@@ -37,10 +37,11 @@ const en = {
     },
 
     home: {
-        intro: "Computer Engineering student at IST, IT Executive at Five Thousand Miles, Dev-Team & HR member at NEIIST. Passionate about software engineering, AI, and technology.",
+        intro: "Computer Science and Engineering student at IST, IT Executive at Five Thousand Miles, member of the NEIIST Dev and HR teams. Passionate about software engineering, AI and technology.",
         viewProjects: "View projects",
         readCv: "Read my CV",
-        currently: "currently…",
+        nextSteps: "Next Steps....",
+        nextStepsList: ["C1 English certificate", "250 LeetCode problems", "Teaching Assistant", "Erasmus+", "Master's in AI"],
         wholeStory: "see the whole story",
         featured: "★ Featured project",
         viewOnGithub: "View on GitHub ↗",
@@ -184,7 +185,8 @@ const pt: Dict = {
         intro: "Estudante de Engenharia Informática no IST, IT Executive na Five Thousand Miles, membro das equipas de Dev e RH do NEIIST. Apaixonado por engenharia de software, IA e tecnologia.",
         viewProjects: "Ver projetos",
         readCv: "Ler o meu CV",
-        currently: "neste momento…",
+        nextSteps: "Próximos Passos....",
+        nextStepsList: ["Certificado C1 de inglês", "250 problemas no LeetCode", "Professor Assistente", "Erasmus+", "Mestrado em IA"],
         wholeStory: "ver a história toda",
         featured: "★ Projeto em destaque",
         viewOnGithub: "Ver no GitHub ↗",

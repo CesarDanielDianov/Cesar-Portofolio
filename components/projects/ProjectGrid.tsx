@@ -152,7 +152,7 @@ export default async function ProjectGrid() {
         <section className="relative min-h-screen">
             <PageHeader subtitle={t.subtitle}>{t.title}</PageHeader>
 
-            <div className="mx-auto grid max-w-7xl grid-flow-dense auto-rows-[minmax(240px,auto)] grid-cols-1 gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-7xl grid-flow-dense auto-rows-[minmax(240px,auto)] grid-cols-1 gap-5 px-6 pb-16 md:grid-cols-2 lg:grid-cols-4">
                 {projects.map((p, i) => (
                     <ProjectCard key={p.href} p={p} index={i} t={t} />
                 ))}

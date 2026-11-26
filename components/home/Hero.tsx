@@ -1,50 +1,34 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 import Terminal from "@/components/home/Terminal";
 import { site } from "@/content/site";
-import { getProjects } from "@/content/projects";
-import { getExperience } from "@/content/experience";
 import { useLang, useT } from "@/components/i18n/LangProvider";
 import { cn } from "@/lib/utils";
 
 /**
- * Homepage as a desk of papers. From xl up the sheets are scattered and can be
- * dragged around (clicking one brings it to the front); below xl they stack in
- * a column and stay put.
+ * Homepage as a desk of papers: the name paper on the left and the terminal on
+ * the right, both the same size, with a "next steps" sticky note stuck to the
+ * terminal's right side. From xl up the papers can be dragged around (clicking
+ * one brings it to the front), and "tidy up" sets the desk on fire and lays
+ * fresh papers back where they started.
  */
 
 const DESK_QUERY = "(min-width: 1280px)";
 
-type SheetId = "name" | "terminal" | "now" | "project" | "card";
+type SheetId = "name" | "terminal" | "now";
 type Offset = { x: number; y: number };
 
 const ZERO: Offset = { x: 0, y: 0 };
 /** Back to front. */
-const INITIAL_ORDER: SheetId[] = ["name", "terminal", "project", "card", "now"];
-
-/**
- * Where each sheet lies on the desk (xl+), plus its tilt and mobile width.
- * Two rows with room between them: name card and terminal on top; featured
- * project, sticky note and index card below, the note in the gap between the two.
- */
-const PLACE: Record<SheetId, string> = {
-    name: "rotate-[-1.2deg] xl:left-[1%] xl:top-[24px] xl:w-[540px]",
-    terminal: "rotate-[0.8deg] xl:right-[1%] xl:top-0 xl:w-[576px]",
-    now: "max-w-[270px] rotate-[3deg] xl:left-[42%] xl:top-[600px] xl:w-[250px]",
-    project: "max-w-md rotate-[-2deg] xl:left-[2%] xl:top-[620px] xl:w-[420px]",
-    card: "max-w-sm rotate-[1.5deg] xl:right-[3%] xl:top-[640px] xl:w-[360px]",
-};
+const INITIAL_ORDER: SheetId[] = ["name", "terminal", "now"];
 
 /** Where each sheet catches fire: three scorch-hole origins. */
 const BURN: Record<SheetId, CSSProperties> = {
     name: { "--h1": "25% 88%", "--h2": "80% 70%", "--h3": "40% 20%" } as CSSProperties,
     terminal: { "--h1": "70% 92%", "--h2": "15% 60%", "--h3": "60% 15%" } as CSSProperties,
     now: { "--h1": "50% 95%", "--h2": "85% 40%", "--h3": "10% 20%" } as CSSProperties,
-    project: { "--h1": "15% 90%", "--h2": "75% 85%", "--h3": "55% 10%" } as CSSProperties,
-    card: { "--h1": "80% 92%", "--h2": "20% 75%", "--h3": "50% 10%" } as CSSProperties,
 };
 
 /** Flames [left %, top %, size px, delay s] and embers [left %, top %, drift px, delay s]. */
@@ -99,6 +83,7 @@ function Sheet({
     delay,
     phase,
     round,
+    className,
     children,
 }: {
     id: SheetId;
@@ -110,6 +95,7 @@ function Sheet({
     phase: Phase;
     /** Bumped after a burn so fresh sheets mount and drop in again. */
     round: number;
+    className?: string;
     children: ReactNode;
 }) {
     const ref = useRef<HTMLDivElement>(null);
@@ -123,20 +109,19 @@ function Sheet({
         const t = e.target as Element;
         if (t.closest("a, button, input, textarea, select, label")) return;
         const el = ref.current;
-        const stage = el?.parentElement;
-        if (!el || !stage) return;
+        const desk = el?.closest("[data-desk]");
+        if (!el || !desk) return;
 
         // Free roam: across the whole window width, a little above the desk and well below it.
         const r = el.getBoundingClientRect();
-        const desk = stage.getBoundingClientRect();
+        const d = desk.getBoundingClientRect();
         const edge = 8;
         const s = {
             left: edge,
             right: document.documentElement.clientWidth - edge,
-            top: desk.top - 40,
-            bottom: desk.bottom + 320,
+            top: d.top - 40,
+            bottom: d.bottom + 320,
         };
-        const slack = 0;
         drag.current = {
             id: e.pointerId,
             live: false,
@@ -144,8 +129,8 @@ function Sheet({
             sy: e.clientY,
             bx: offset.x,
             by: offset.y,
-            min: { x: offset.x + s.left - r.left - slack, y: offset.y + s.top - r.top - slack },
-            max: { x: offset.x + s.right - r.right + slack, y: offset.y + s.bottom - r.bottom + slack },
+            min: { x: offset.x + s.left - r.left, y: offset.y + s.top - r.top },
+            max: { x: offset.x + s.right - r.right, y: offset.y + s.bottom - r.bottom },
             last: offset,
         };
     };
@@ -192,18 +177,17 @@ function Sheet({
             onPointerCancel={end}
             onDragStart={(e) => e.preventDefault()}
             className={cn(
-                "fx-desk-sheet relative w-full max-w-xl xl:absolute xl:max-w-none",
-                "xl:cursor-grab",
+                "fx-desk-sheet relative w-full xl:cursor-grab",
                 dragging && "is-dragging xl:cursor-grabbing",
                 phase !== "idle" && "pointer-events-none",
                 phase === "reborn" && "is-reborn",
-                PLACE[id]
+                className
             )}
             style={{ zIndex: z, translate: `${offset.x}px ${offset.y}px`, ...BURN[id] }}
         >
             <div
                 key={round}
-                className={phase === "burning" ? "fx-burn relative" : "fx-drop"}
+                className={cn("h-full", phase === "burning" ? "fx-burn relative" : "fx-drop")}
                 style={{ animationDelay: phase === "burning" ? `${delay / 3}ms` : `${delay}ms` }}
             >
                 {children}
@@ -223,13 +207,13 @@ function Sheet({
 function NameSheet() {
     const t = useT();
     return (
-        <div className="fx-sheets fx-sheets-alt">
-            <div className="fx-paper-top border border-(--paper-edge) p-8 sm:p-10">
+        <div className="fx-sheets fx-sheets-alt h-full">
+            <div className="fx-paper-top flex h-full flex-col justify-center border border-(--paper-edge) p-8 sm:p-10">
                 <h1>
                     <span className="sr-only">{site.name}</span>
                     {/* Signature: written in left to right, then underlined with a swash */}
                     <span aria-hidden="true" className="relative block w-fit">
-                        <span className="fx-sign block font-hand text-[3.25rem] font-bold leading-[1.05] text-blue-950 sm:text-7xl xl:text-[5.5rem] dark:text-blue-100">
+                        <span className="fx-sign block font-hand text-[3.25rem] font-bold leading-[1.05] text-blue-950 sm:text-7xl xl:text-[5.75rem] dark:text-blue-100">
                             {site.name}
                         </span>
                         <svg
@@ -246,7 +230,7 @@ function NameSheet() {
                     </span>
                 </h1>
 
-                <p className="mt-6 inline-flex rotate-[-2deg] items-center gap-2.5 border-2 border-green-700/70 px-3 py-1 text-xs font-bold uppercase tracking-wider text-green-800 sm:text-sm dark:border-green-400/70 dark:text-green-400">
+                <p className="mt-6 inline-flex w-fit rotate-[-2deg] items-center gap-2.5 border-2 border-green-700/70 px-3 py-1 text-xs font-bold uppercase tracking-wider text-green-800 sm:text-sm lg:text-base dark:border-green-400/70 dark:text-green-400">
                     {t.site.tagline}
                     <span className="relative flex h-2.5 w-2.5">
                         <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-reduce:hidden" />
@@ -254,24 +238,24 @@ function NameSheet() {
                     </span>
                 </p>
 
-                <p className="mt-6 text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-300">
+                <p className="mt-6 text-base leading-relaxed text-gray-600 sm:text-lg lg:text-xl dark:text-gray-300">
                     {t.home.intro}
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                         href="/projects"
-                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-bold text-white dark:border-white dark:bg-white dark:text-gray-900"
+                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-bold lg:text-lg text-white dark:border-white dark:bg-white dark:text-gray-900"
                     >
                         {t.home.viewProjects}
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
                     <Link
                         href="/cv"
-                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-bold dark:border-white"
+                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-bold lg:text-lg dark:border-white"
                     >
                         {t.home.readCv}
-                        <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+                        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
                 </div>
             </div>
@@ -279,126 +263,23 @@ function NameSheet() {
     );
 }
 
-function NowNote() {
-    const { lang } = useLang();
+function NextStepsNote() {
     const t = useT().home;
-    const current = getExperience(lang).filter((e) => e.current);
     return (
-        <div className="fx-sticky relative px-6 pt-8 pb-6">
+        <div className="fx-sticky relative px-5 pt-7 pb-5">
             <span aria-hidden="true" className="fx-tape" />
-            <p className="font-hand text-3xl font-bold leading-none">{t.currently}</p>
-            <ul className="mt-3 space-y-1 font-hand text-2xl leading-tight">
-                {current.map((e) => (
-                    <li key={e.id}>→ {e.title.toLowerCase()}</li>
+            <p className="font-hand text-2xl font-bold leading-none">{t.nextSteps}</p>
+            <ul className="mt-3 space-y-1.5 font-hand text-xl leading-tight">
+                {t.nextStepsList.map((s) => (
+                    <li key={s}>→ {s}</li>
                 ))}
             </ul>
-            <Link
-                href="/experience"
-                className="mt-4 inline-block font-hand text-xl underline decoration-wavy underline-offset-4"
-            >
-                {t.wholeStory}
-            </Link>
-        </div>
-    );
-}
-
-function Paperclip() {
-    return (
-        <svg
-            aria-hidden="true"
-            viewBox="0 0 24 60"
-            className="absolute -top-6 right-[100px] z-10 h-16 w-7 rotate-[8deg] text-slate-400 dark:text-slate-500"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2.2}
-            strokeLinecap="round"
-        >
-            <path d="M8 18v26a4 4 0 0 0 8 0V10a6 6 0 0 0-12 0v36a8 8 0 0 0 16 0V20" />
-        </svg>
-    );
-}
-
-function ProjectSheet() {
-    const { lang } = useLang();
-    const t = useT().home;
-    const projects = getProjects(lang);
-    const featured = projects.find((p) => p.layout === "featured") ?? projects[0];
-    return (
-        <div className="fx-sheets relative">
-            <Paperclip />
-            <div className="fx-paper-top border border-(--paper-edge) p-6">
-                <div className="flex items-start justify-between gap-4">
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-gray-400">
-                            {t.featured}
-                        </p>
-                        <h2 className="mt-2 text-2xl font-bold">{featured.title}</h2>
-                    </div>
-                    <Image
-                        src={featured.icon}
-                        alt={featured.iconAlt}
-                        width={64}
-                        height={64}
-                        draggable={false}
-                        className="h-16 w-16 shrink-0 object-contain"
-                    />
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{featured.desc}</p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm font-bold">
-                    <a
-                        href={featured.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline-offset-4 hover:underline"
-                    >
-                        {t.viewOnGithub}
-                    </a>
-                    <Link href="/projects" className="text-slate-500 underline-offset-4 hover:underline dark:text-gray-400">
-                        {t.allProjects(projects.length)}
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function IndexCard() {
-    const t = useT().home;
-    const rows: [string, string][] = [
-        [t.basedIn, site.location],
-        [t.studying, "LEIC @ IST"],
-        [t.focus, t.focusValue],
-    ];
-    const links: [string, string][] = [
-        ["GitHub ↗", site.links.github],
-        ["LinkedIn ↗", site.links.linkedin],
-    ];
-    return (
-        <div className="fx-paper-top fx-lined border border-(--paper-edge) py-[28px] pr-6 pl-14">
-            <p className="font-hand text-3xl font-bold leading-[28px] text-blue-900 dark:text-blue-200">{t.aboutMe}</p>
-            <dl className="mt-[28px] text-sm leading-[28px]">
-                {rows.map(([k, v]) => (
-                    <div key={k} className="flex gap-2">
-                        <dt className="text-slate-500 dark:text-gray-400">{k}:</dt>
-                        <dd className="font-bold">{v}</dd>
-                    </div>
-                ))}
-            </dl>
-            <div className="flex flex-wrap gap-x-5 text-sm font-bold leading-[28px]">
-                {links.map(([label, href]) => (
-                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                        {label}
-                    </a>
-                ))}
-                <a href={site.cv.href} download={site.cv.downloadName} className="underline-offset-4 hover:underline">
-                    CV ↓
-                </a>
-            </div>
         </div>
     );
 }
 
 export default function Hero() {
+    const { lang } = useLang();
     const t = useT().home;
     const [order, setOrder] = useState<SheetId[]>(INITIAL_ORDER);
     const [offsets, setOffsets] = useState<Partial<Record<SheetId, Offset>>>({});
@@ -426,7 +307,7 @@ export default function Hero() {
 
     useEffect(() => {
         if (phase === "idle") return;
-        const t = window.setTimeout(
+        const timer = window.setTimeout(
             () => {
                 if (phase === "burning") {
                     setOffsets({});
@@ -439,7 +320,7 @@ export default function Hero() {
             },
             phase === "burning" ? BURN_MS + 200 : REBORN_MS
         );
-        return () => window.clearTimeout(t);
+        return () => window.clearTimeout(timer);
     }, [phase]);
 
     const sheet = (id: SheetId, delay: number) => ({
@@ -455,24 +336,32 @@ export default function Hero() {
 
     return (
         <section className="relative">
-            <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 pt-48 pb-20 sm:pt-44 xl:mt-48 xl:mb-8 xl:block xl:h-[980px] xl:p-0">
-                <Sheet {...sheet("name", 0)}>
-                    <NameSheet />
-                </Sheet>
-                <Sheet {...sheet("terminal", 150)}>
-                    <Terminal />
-                </Sheet>
-                <Sheet {...sheet("now", 450)}>
-                    <NowNote />
-                </Sheet>
-                <Sheet {...sheet("project", 300)}>
-                    <ProjectSheet />
-                </Sheet>
-                <Sheet {...sheet("card", 400)}>
-                    <IndexCard />
-                </Sheet>
+            <div data-desk className="relative mx-auto max-w-6xl px-6 pt-40 pb-28 sm:pt-44">
+                <div className="grid items-stretch gap-10 lg:grid-cols-2">
+                    {/* Left: name paper */}
+                    <Sheet {...sheet("name", 0)} className="h-full lg:h-[580px]">
+                        <NameSheet />
+                    </Sheet>
 
-                <div className="absolute bottom-1 right-[1%] z-10 hidden items-center gap-5 font-hand text-xl text-slate-500 xl:flex dark:text-gray-400">
+                    {/* Right: terminal, sized to match the name paper, with the "next steps" note stuck to its right side */}
+                    <div className="relative">
+                        <Sheet {...sheet("terminal", 150)} className="h-full lg:h-[580px]">
+                            <Terminal />
+                        </Sheet>
+                        {/* The Portuguese items are longer, so the note is a bit wider there */}
+                        <Sheet
+                            {...sheet("now", 300)}
+                            className={cn(
+                                "mt-8 max-w-xs rotate-[4deg] xl:absolute xl:-right-14 xl:-bottom-20 xl:mt-0 2xl:-right-20",
+                                lang === "pt" ? "xl:w-[260px] xl:max-w-none" : "xl:w-60"
+                            )}
+                        >
+                            <NextStepsNote />
+                        </Sheet>
+                    </div>
+                </div>
+
+                <div className="absolute bottom-2 left-6 z-10 hidden items-center gap-5 font-hand text-xl text-slate-500 xl:flex dark:text-gray-400">
                     {phase !== "idle" ? null : moved ? (
                         <button
                             type="button"

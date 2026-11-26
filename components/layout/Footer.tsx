@@ -5,9 +5,9 @@ import { getLang } from "@/lib/i18n-server";
 export default async function Footer() {
     const t = dict[await getLang()].footer;
     return (
-        <footer className="mt-16 px-8 py-6 text-black md:mt-24 dark:text-white">
+        <footer className="mt-16 px-8 py-6 font-hand text-xl text-black md:mt-24 sm:text-2xl dark:text-white">
             <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between">
-                <p className="text-sm sm:text-base">
+                <p>
                     © {new Date().getFullYear()} {site.name} — {t.rights}
                 </p>
 
