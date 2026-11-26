@@ -37,6 +37,8 @@ const PERIOD = { idle: 1.6, hover: 0.7, playing: 0.5 };
 const PAD = 0.1;
 /** How many wavelengths fit across the flag. */
 const WAVES = 1.15;
+/** Minimum time between redraws (~30 fps). */
+const FRAME_MS = 1000 / 30;
 /**
  * A flag drawn on a canvas one pixel column at a time. Each column shifts by
  * a travelling sine wave whose height grows away from the pole, so the cloth
@@ -103,19 +105,23 @@ function WavingFlag({ src, ratio, period }: Pick<Flag, "src" | "ratio"> & { peri
             ctx.globalCompositeOperation = "source-over";
         };
 
+        // Redraw at most ~30 times a second: smooth enough for cloth, and on 120/144 Hz
+        // screens it avoids redrawing the flag several hundred column slices every frame.
         const frame = (now: number) => {
+            raf = requestAnimationFrame(frame);
+            if (now - last < FRAME_MS) return;
             const dt = Math.min(0.05, (now - last) / 1000);
             last = now;
             const target = (2 * Math.PI) / periodRef.current;
             speed += (target - speed) * Math.min(1, dt * 4);
             phase += speed * dt;
             draw();
-            raf = requestAnimationFrame(frame);
         };
 
         const resize = () => {
             const r = canvas.getBoundingClientRect();
-            const dpr = window.devicePixelRatio || 1;
+            // Capped at 2x: denser screens would only add columns nobody can tell apart.
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
             canvas.width = Math.round(r.width * dpr);
             canvas.height = Math.round(r.height * dpr);
             draw();

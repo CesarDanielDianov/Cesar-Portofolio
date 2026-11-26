@@ -245,14 +245,14 @@ function NameSheet() {
                 <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                         href="/projects"
-                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-bold lg:text-lg text-white dark:border-white dark:bg-white dark:text-gray-900"
+                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 bg-gray-900 px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white sm:text-base dark:border-white dark:bg-white dark:text-gray-900"
                     >
                         {t.home.viewProjects}
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
                     <Link
                         href="/cv"
-                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-bold lg:text-lg dark:border-white"
+                        className="fx-btn group inline-flex items-center gap-2 border-2 border-gray-900 px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider sm:text-base dark:border-white"
                     >
                         {t.home.readCv}
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

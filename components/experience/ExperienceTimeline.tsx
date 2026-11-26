@@ -34,7 +34,7 @@ function RevealItem({ index, children }: { index: number; children: ReactNode })
     return (
         <li
             ref={ref}
-            className={`fx-reveal relative pl-9 pb-12 last:pb-0 ${shown ? "is-shown" : ""}`}
+            className={`fx-reveal relative pb-12 last:pb-0 ${shown ? "is-shown" : ""}`}
             style={{ transitionDelay: `${index * 110}ms` }}
         >
             {children}
@@ -42,53 +42,19 @@ function RevealItem({ index, children }: { index: number; children: ReactNode })
     );
 }
 
-/**
- * Draws the timeline line as you scroll. Writes a scaleY transform straight to the
- * line element once per animation frame, so scrolling never re-renders React.
- */
-function useScrollProgress<L extends HTMLElement, B extends HTMLElement>(deps: unknown) {
-    const ref = useRef<L>(null);
-    const lineRef = useRef<B>(null);
-    useEffect(() => {
-        let raf = 0;
-        const update = () => {
-            raf = 0;
-            const el = ref.current;
-            const line = lineRef.current;
-            if (!el || !line) return;
-            const r = el.getBoundingClientRect();
-            const drawn = Math.max(0, Math.min(r.height, window.innerHeight * 0.65 - r.top));
-            line.style.transform = `scaleY(${r.height ? drawn / r.height : 0})`;
-        };
-        const schedule = () => {
-            if (!raf) raf = requestAnimationFrame(update);
-        };
-        schedule();
-        window.addEventListener("scroll", schedule, { passive: true });
-        window.addEventListener("resize", schedule);
-        return () => {
-            window.removeEventListener("scroll", schedule);
-            window.removeEventListener("resize", schedule);
-            if (raf) cancelAnimationFrame(raf);
-        };
-        // Re-measure when the list height changes (cards opening/closing).
-    }, [deps]);
-    return { ref, lineRef };
-}
-
 function Logo({ item }: { item: ExperienceItem }) {
     return item.icon ? (
         <Image
             src={item.icon}
             alt=""
-            width={48}
-            height={48}
-            className="h-12 w-12 shrink-0 border border-(--paper-edge) bg-white object-contain p-1"
+            width={64}
+            height={64}
+            className="h-14 w-14 shrink-0 border border-(--paper-edge) bg-white object-contain p-1 sm:h-16 sm:w-16"
         />
     ) : (
         <div
             aria-hidden="true"
-            className="flex h-11 w-11 shrink-0 items-center justify-center border border-dashed border-(--paper-edge) text-[10px] uppercase text-slate-400 dark:text-slate-500"
+            className="flex h-14 w-14 shrink-0 sm:h-16 sm:w-16 items-center justify-center border border-dashed border-(--paper-edge) text-[10px] uppercase text-slate-400 dark:text-slate-500"
         >
             logo
         </div>
@@ -103,7 +69,6 @@ export default function ExperienceTimeline() {
     // Newest entry starts open; several can be open at once.
     const [open, setOpen] = useState<Set<string>>(() => new Set([experience[0].id]));
     const allOpen = open.size === experience.length;
-    const { ref: listRef, lineRef } = useScrollProgress<HTMLOListElement, HTMLDivElement>(open);
 
     const toggle = (id: string) => {
         playToggle(!open.has(id));
@@ -135,28 +100,11 @@ export default function ExperienceTimeline() {
                 </button>
             </div>
 
-            <ol ref={listRef} className="relative mx-auto mt-4 w-full max-w-[924px]">
-                {/* Base line */}
-                <div aria-hidden="true" className="absolute bottom-0 left-[5px] top-2 w-px bg-slate-400 dark:bg-slate-500" />
-                {/* Line drawn with scroll */}
-                <div
-                    ref={lineRef}
-                    aria-hidden="true"
-                    className="fx-line absolute bottom-0 left-[4px] top-2 w-[3px] bg-slate-900 dark:bg-white"
-                    style={{ transform: "scaleY(0)" }}
-                />
-
+            <ol className="relative mx-auto mt-4 w-full max-w-[924px]">
                 {experience.map((it, idx) => {
                     const isOpen = open.has(it.id);
                     return (
                         <RevealItem key={it.id} index={idx}>
-                            <span
-                                aria-hidden="true"
-                                className={`fx-marker absolute left-0 top-[22px] block h-[11px] w-[11px] transition-colors ${
-                                    isOpen ? "is-open bg-slate-900 dark:bg-white" : "bg-slate-400 dark:bg-slate-500"
-                                }`}
-                            />
-
                             <div className={`fx-sheets ${idx % 2 ? "fx-sheets-alt" : ""}`}>
                             <div className="fx-card fx-paper-top border border-(--paper-edge)">
                                 <button

@@ -197,7 +197,6 @@ export default function Terminal() {
     const router = useRouter();
     const { resolvedTheme, setTheme } = useTheme();
     const [matrix, setMatrix] = useState(false);
-    const [session, setSession] = useState(0); // bumped by the red dot to replay the intro
     const [typed, setTyped] = useState(0); // chars of INTRO_CMD typed so far
     const [entries, setEntries] = useState<Entry[]>([]);
     const [input, setInput] = useState("");
@@ -209,7 +208,7 @@ export default function Terminal() {
 
     const introDone = typed >= INTRO_CMD.length;
 
-    // Type the intro command, one character at a time (again after each restart).
+    // Type the intro command, one character at a time.
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             const t = window.setTimeout(() => setTyped(INTRO_CMD.length), 0);
@@ -228,7 +227,7 @@ export default function Terminal() {
             window.clearTimeout(start);
             window.clearInterval(id);
         };
-    }, [session]);
+    }, []);
 
     // Keep the newest output in view.
     useEffect(() => {
@@ -237,15 +236,6 @@ export default function Terminal() {
     }, [entries, introDone]);
 
     const stopMatrix = useCallback(() => setMatrix(false), []);
-
-    const restart = () => {
-        setEntries([]);
-        setCleared(false);
-        setInput("");
-        setMatrix(false);
-        setTyped(0);
-        setSession((n) => n + 1);
-    };
 
     /** Runs a command clicked in the output, as if typed. */
     const runClicked = (cmd: string) => {
@@ -405,7 +395,7 @@ export default function Terminal() {
             onClick={() => inputRef.current?.focus({ preventScroll: true })}
         >
             {/* Linux/Tilix style Window bar */}
-            <div className="flex items-center justify-between border-b border-gray-300/50 px-4 py-2.5">
+            <div className="flex items-center border-b border-gray-300/50 px-4 py-2.5">
                 <div className="flex items-center gap-2">
                     <svg
                         className="h-4 w-4 text-purple-600 dark:text-purple-400"
@@ -420,23 +410,6 @@ export default function Terminal() {
                             d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                     </svg>
-                    <span className="font-mono text-xs font-medium text-gray-600 lg:text-sm dark:text-gray-400">
-                        c.dianov@pop-os:~
-                    </span>
-                </div>
-                <div className="flex gap-1.5">
-                    <button
-                        type="button"
-                        aria-label="Restart terminal"
-                        title="Restart"
-                        onClick={(ev) => {
-                            ev.stopPropagation();
-                            restart();
-                        }}
-                        className="h-3 w-3 rounded-full bg-red-500 transition-colors hover:bg-red-400"
-                    />
-                    <span className="h-3 w-3 rounded-full bg-yellow-400 transition-colors hover:bg-yellow-300" />
-                    <span className="h-3 w-3 rounded-full bg-green-500 transition-colors hover:bg-green-400" />
                 </div>
             </div>
 
